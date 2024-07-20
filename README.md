@@ -1,0 +1,1 @@
+compiler.py > claude_syntax_and_compliation_log.log
