@@ -1,1 +1,1 @@
-compiler.py > claude_syntax_and_compliation_log.log
+python compiler.py > claude_syntax_and_compliation_log.log compiler.py > claude_syntax_and_compliation_log.log

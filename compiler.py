@@ -2,7 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 
-def compile_files(source_dir, output_dir):
+def compile_files(source_dir, output_dir, logfile):
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
@@ -26,14 +26,16 @@ def compile_files(source_dir, output_dir):
                 try:
                     print(f"Compiling {source_file} to {output_file}")
                     result = subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                    print(f"Compilation successful: {output_file}")
+                    log_message = f"Compilation successful: {output_file}\n{result.stdout.decode()}"
                 except subprocess.CalledProcessError as e:
-                    print(f"Compilation failed for {source_file}:")
-                    print(e.stderr.decode())
-                    continue
+                    log_message = f"Compilation failed for {source_file}:\n{e.stderr.decode()}"
 
+                log_file = os.path.join(logfile)
+                with open(log_file, 'a') as log:
+                    log.write(log_message)
 
 if __name__ == "__main__":
-    source_directory = "./source/output/CLAUDE_claude-3-5-sonnet-20240620"  # Replace with the path to your source directory
+    logfile = "claude_syntax_and_compliation_c_log.log"  # Replace with the path to your source directory
+    source_directory = "./source/output/CLAUDE_claude-3-5-sonnet-20240620/c"  # Replace with the path to your source directory
     output_directory = "./out"  # Replace with the path to your output directory
-    compile_files(source_directory, output_directory)
+    compile_files(source_directory, output_directory,logfile)
