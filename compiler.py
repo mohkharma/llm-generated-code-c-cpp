@@ -34,6 +34,6 @@ def compile_files(source_dir, output_dir):
 
 
 if __name__ == "__main__":
-    source_directory = "C:/sourceCode/PhD/llm-generated-code-c-cpp/source/output/CLAUDE_claude-3-5-sonnet-20240620"  # Replace with the path to your source directory
-    output_directory = "C:/sourceCode/PhD/llm-generated-code-c-cpp/out"  # Replace with the path to your output directory
+    source_directory = "./source/output/CLAUDE_claude-3-5-sonnet-20240620"  # Replace with the path to your source directory
+    output_directory = "./out"  # Replace with the path to your output directory
     compile_files(source_directory, output_directory)
