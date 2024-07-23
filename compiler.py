@@ -35,7 +35,7 @@ def compile_files(source_dir, output_dir, logfile):
                     log.write(log_message)
 
 if __name__ == "__main__":
-    logfile = "gpt-4o_syntax_and_compliation_c_log.log"  # Replace with the path to your source directory
-    source_directory = "./source/output/OPENAI_gpt-4o/c"  # Replace with the path to your source directory
+    logfile = "claude_syntax_and_compliation_cpp_log.log"  # Replace with the path to your source directory
+    source_directory = "./source/output/claude/cpp"  # Replace with the path to your source directory
     output_directory = "./out"  # Replace with the path to your output directory
     compile_files(source_directory, output_directory,logfile)
