@@ -14,7 +14,7 @@ int main() {
         fclose(file);
         printf("File created successfully.\\n");
     } else {
-        fprintf(stderr, "Unable to create file.\\n");
+        fprintf(stderr, " Unable to create file.\\n");
         return 1;
     }
 
