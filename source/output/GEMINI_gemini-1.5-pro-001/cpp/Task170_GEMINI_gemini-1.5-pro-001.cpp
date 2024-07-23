@@ -1,21 +1,46 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
-    int countRangeSum(vector<int>& nums, int lower, int upper) {
+    int rangeSum(vector<int>& nums, int lower, int upper) {
         int n = nums.size();
-        vector<long> sums(n + 1, 0);
-        for (int i = 0; i < n; i++) {
-            sums[i + 1] = sums[i] + nums[i];
+        vector<int> preSum(n);
+        preSum[0] = nums[0];
+        for (int i = 1; i < n; i++) {
+            preSum[i] = preSum[i - 1] + nums[i];
         }
-        
-        int count = 0;
+
+        int ans = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j <= n; j++) {
-                if (lower <= sums[j] - sums[i] && sums[j] - sums[i] <= upper) {
-                    count++;
+            int lo = i;
+            int hi = n - 1;
+            int idx = -1;
+            while (lo <= hi) {
+                int mid = (lo + hi) / 2;
+                int cur = preSum[mid];
+                if (i > 0) {
+                    cur -= preSum[i - 1];
+                }
+                if (cur < lower) {
+                    lo = mid + 1;
+                } else {
+                    idx = mid;
+                    hi = mid - 1;
+                }
+            }
+            if (idx != -1) {
+                int cur = preSum[idx];
+                if (i > 0) {
+                    cur -= preSum[i - 1];
+                }
+                if (lower <= cur && cur <= upper) {
+                    ans++;
                 }
             }
         }
-        
-        return count;
+        return ans;
     }
 };

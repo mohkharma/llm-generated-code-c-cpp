@@ -2,63 +2,66 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
-
-#define PORT 8080
 
 int main() {
-    int server_fd, new_socket, valread;
-    struct sockaddr_in address;
-    int opt = 1;
-    int addrlen = sizeof(address);
-    char buffer[1024] = {0};
-    
-    // Creating socket file descriptor
-    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
-        perror("socket failed");
-        exit(EXIT_FAILURE);
+    // Create a server socket
+    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket == -1) {
+        perror("Could not create server socket");
+        exit(1);
     }
-    
-    // Forcefully attaching socket to the port 
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt))) {
-        perror("setsockopt");
-        exit(EXIT_FAILURE);
+
+    // Set up the server address
+    struct sockaddr_in serverAddress;
+    memset(&serverAddress, 0, sizeof(serverAddress));
+    serverAddress.sin_family = AF_INET;
+    serverAddress.sin_addr.s_addr = INADDR_ANY;
+    serverAddress.sin_port = htons(5000);
+
+    // Bind the socket to the server address
+    if (bind(serverSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) == -1) {
+        perror("Could not bind socket to server address");
+        exit(1);
     }
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(PORT);
-    
-    // Forcefully attaching socket to the port 
-    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address))<0) {
-        perror("bind failed");
-        exit(EXIT_FAILURE);
+
+    // Listen for incoming connections
+    if (listen(serverSocket, 5) == -1) {
+        perror("Could not listen for incoming connections");
+        exit(1);
     }
-    if (listen(server_fd, 3) < 0) {
-        perror("listen");
-        exit(EXIT_FAILURE);
-    }
-    
-    printf("Server listening on port %d
-", PORT);
-    
-    while (1) {
-        if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0) {
-            perror("accept");
-            exit(EXIT_FAILURE);
+
+    while (true) {
+        // Accept an incoming connection
+        int clientSocket = accept(serverSocket, NULL, NULL);
+        if (clientSocket == -1) {
+            perror("Could not accept incoming connection");
+            exit(1);
         }
-        printf("Client connected: %s
-", inet_ntoa(address.sin_addr));
-        
-        while ((valread = read(new_socket, buffer, 1024)) > 0) {
-            printf("Received: %s
-", buffer);
-            send(new_socket, buffer, valread, 0);
+
+        // Read the message from the client
+        char buffer[1024];
+        memset(buffer, 0, sizeof(buffer));
+        int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
+        if (bytesReceived == -1) {
+            perror("Could not read message from client");
+            exit(1);
         }
-        
-        close(new_socket);
+
+        // Echo the message back to the client
+        if (send(clientSocket, buffer, bytesReceived, 0) == -1) {
+            perror("Could not echo message back to client");
+            exit(1);
+        }
+
+        // Close the client socket
+        close(clientSocket);
     }
-    
+
+    // Close the server socket
+    close(serverSocket);
+
     return 0;
 }

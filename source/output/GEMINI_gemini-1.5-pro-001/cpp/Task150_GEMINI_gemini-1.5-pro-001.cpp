@@ -2,98 +2,97 @@
 
 using namespace std;
 
-// Node structure for the linked list
 struct Node {
     int data;
-    Node* next;
+    Node *next;
 };
 
-// Class to represent the linked list
 class LinkedList {
-private:
-    Node* head;
-
 public:
-    // Constructor
     LinkedList() {
-        head = nullptr;
+        head = NULL;
     }
 
-    // Function to insert a new node at the beginning of the list
-    void insert(int value) {
-        Node* newNode = new Node;
-        newNode->data = value;
-        newNode->next = head;
-        head = newNode;
-    }
+    void insert(int data) {
+        Node *new_node = new Node;
+        new_node->data = data;
+        new_node->next = NULL;
 
-    // Function to delete a node with a given value
-    void deleteNode(int value) {
-        Node* current = head;
-        Node* previous = nullptr;
-
-        while (current != nullptr && current->data != value) {
-            previous = current;
-            current = current->next;
-        }
-
-        if (current == nullptr) {
-            cout << "Value not found in the list." << endl;
+        if (head == NULL) {
+            head = new_node;
             return;
         }
 
-        if (previous == nullptr) {
-            head = current->next;
-        } else {
-            previous->next = current->next;
+        Node *current_node = head;
+        while (current_node->next != NULL) {
+            current_node = current_node->next;
         }
 
-        delete current;
+        current_node->next = new_node;
     }
 
-    // Function to search for a node with a given value
-    bool search(int value) {
-        Node* current = head;
-
-        while (current != nullptr) {
-            if (current->data == value) {
-                return true;
-            }
-            current = current->next;
+    void delete(int data) {
+        if (head == NULL) {
+            return;
         }
 
-        return false;
+        if (head->data == data) {
+            head = head->next;
+            return;
+        }
+
+        Node *current_node = head;
+        Node *prev_node = NULL;
+        while (current_node != NULL && current_node->data != data) {
+            prev_node = current_node;
+            current_node = current_node->next;
+        }
+
+        if (current_node == NULL) {
+            return;
+        }
+
+        prev_node->next = current_node->next;
     }
 
-    // Function to print the linked list
+    bool search(int data) {
+        Node *current_node = head;
+        while (current_node != NULL && current_node->data != data) {
+            current_node = current_node->next;
+        }
+
+        if (current_node == NULL) {
+            return false;
+        }
+
+        return true;
+    }
+
     void printList() {
-        Node* current = head;
-
-        while (current != nullptr) {
-            cout << current->data << " ";
-            current = current->next;
+        Node *current_node = head;
+        while (current_node != NULL) {
+            cout << current_node->data << " ";
+            current_node = current_node->next;
         }
 
         cout << endl;
     }
+
+private:
+    Node *head;
 };
 
 int main() {
-    LinkedList list;
-
-    list.insert(10);
-    list.insert(20);
-    list.insert(30);
-
-    cout << "Linked list: ";
-    list.printList();
-
-    cout << "Searching for 20: " << list.search(20) << endl;
-
-    list.deleteNode(20);
-
-    cout << "Linked list after deleting 20: ";
-    list.printList();
+    LinkedList ll;
+    ll.insert(1);
+    ll.insert(2);
+    ll.insert(3);
+    ll.insert(4);
+    ll.insert(5);
+    ll.printList();
+    ll.delete(3);
+    ll.printList();
+    cout << ll.search(4) << endl;
 
     return 0;
 }

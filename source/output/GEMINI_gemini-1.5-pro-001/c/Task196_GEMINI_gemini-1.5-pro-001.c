@@ -1,73 +1,61 @@
-#include <pthread.h>
+#include <semaphore.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
-    int n;
-    int current;
-    pthread_mutex_t mutex;
-    pthread_cond_t zero_cond;
-    pthread_cond_t even_cond;
-    pthread_cond_t odd_cond;
-} ZeroEvenOdd;
+  int n;
+  sem_t zero_sem;
+  sem_t even_sem;
+  sem_t odd_sem;
+  int count;
+  int thread_id;
+} zero_even_odd_t;
 
-ZeroEvenOdd* zeroEvenOddCreate(int n) {
-    ZeroEvenOdd* obj = (ZeroEvenOdd*)malloc(sizeof(ZeroEvenOdd));
-    obj->n = n;
-    obj->current = 0;
-    pthread_mutex_init(&obj->mutex, NULL);
-    pthread_cond_init(&obj->zero_cond, NULL);
-    pthread_cond_init(&obj->even_cond, NULL);
-    pthread_cond_init(&obj->odd_cond, NULL);
-    return obj;
+zero_even_odd_t *zero_even_odd_create(int n) {
+  zero_even_odd_t *obj = malloc(sizeof(zero_even_odd_t));
+  obj->n = n;
+  sem_init(&obj->zero_sem, 0, 1);
+  sem_init(&obj->even_sem, 0, 0);
+  sem_init(&obj->odd_sem, 0, 0);
+  obj->count = 1;
+  obj->thread_id = 0;
+  return obj;
 }
 
-void zero(ZeroEvenOdd* obj, void (*printNumber)(int)) {
-    for (int i = 0; i < obj->n; ++i) {
-        pthread_mutex_lock(&obj->mutex);
-        while (obj->current % 2 != 0) {
-            pthread_cond_wait(&obj->zero_cond, &obj->mutex);
-        }
-        printNumber(0);
-        obj->current++;
-        if (obj->current % 2 == 0) {
-            pthread_cond_signal(&obj->even_cond);
-        } else {
-            pthread_cond_signal(&obj->odd_cond);
-        }
-        pthread_mutex_unlock(&obj->mutex);
+void zero(zero_even_odd_t *obj, void (*print_number)(int)) {
+  for (int i = 0; i < obj->n; i++) {
+    sem_wait(&obj->zero_sem);
+    print_number(0);
+    obj->count++;
+    if (obj->count % 2 == 0) {
+      sem_post(&obj->odd_sem);
+    } else {
+      sem_post(&obj->even_sem);
     }
+  }
 }
 
-void even(ZeroEvenOdd* obj, void (*printNumber)(int)) {
-    for (int i = 2; i <= obj->n; i += 2) {
-        pthread_mutex_lock(&obj->mutex);
-        while (obj->current % 4 != 2) {
-            pthread_cond_wait(&obj->even_cond, &obj->mutex);
-        }
-        printNumber(i);
-        obj->current++;
-        pthread_cond_signal(&obj->zero_cond);
-        pthread_mutex_unlock(&obj->mutex);
-    }
+void even(zero_even_odd_t *obj, void (*print_number)(int)) {
+  for (int i = 2; i <= obj->n; i += 2) {
+    sem_wait(&obj->even_sem);
+    print_number(i);
+    obj->count++;
+    sem_post(&obj->zero_sem);
+  }
 }
 
-void odd(ZeroEvenOdd* obj, void (*printNumber)(int)) {
-    for (int i = 1; i <= obj->n; i += 2) {
-        pthread_mutex_lock(&obj->mutex);
-        while (obj->current % 4 != 1) {
-            pthread_cond_wait(&obj->odd_cond, &obj->mutex);
-        }
-        printNumber(i);
-        obj->current++;
-        pthread_cond_signal(&obj->zero_cond);
-        pthread_mutex_unlock(&obj->mutex);
-    }
+void odd(zero_even_odd_t *obj, void (*print_number)(int)) {
+  for (int i = 1; i <= obj->n; i += 2) {
+    sem_wait(&obj->odd_sem);
+    print_number(i);
+    obj->count++;
+    sem_post(&obj->zero_sem);
+  }
 }
 
-void zeroEvenOddFree(ZeroEvenOdd* obj) {
-    pthread_mutex_destroy(&obj->mutex);
-    pthread_cond_destroy(&obj->zero_cond);
-    pthread_cond_destroy(&obj->even_cond);
-    pthread_cond_destroy(&obj->odd_cond);
-    free(obj);
+void zero_even_odd_destroy(zero_even_odd_t *obj) {
+  sem_destroy(&obj->zero_sem);
+  sem_destroy(&obj->even_sem);
+  sem_destroy(&obj->odd_sem);
+  free(obj);
 }

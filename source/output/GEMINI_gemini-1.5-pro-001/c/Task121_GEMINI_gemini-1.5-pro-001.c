@@ -2,42 +2,54 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_FILE_SIZE 1048576 // 1MB
-
 int main() {
-    char filename[256];
-    char file_data[MAX_FILE_SIZE];
-    long file_size;
+    char filePath[256];
+    FILE *file;
+    long fileSize;
+    char *buffer;
+    size_t bytesRead;
 
-    printf("Enter filename: ");
-    scanf("%s", filename);
+    printf("Enter the path to the file you want to upload: ");
+    fgets(filePath, sizeof(filePath), stdin);
+    filePath[strcspn(filePath, "\n")] = '\0';  // Remove newline
 
-    FILE *fp = fopen(filename, "rb");
-    if (fp == NULL) {
-        printf("Error opening file.
-");
+    file = fopen(filePath, "rb");
+    if (file == NULL) {
+        fprintf(stderr, "Error opening file: %s\n", filePath);
         return 1;
     }
 
-    fseek(fp, 0, SEEK_END);
-    file_size = ftell(fp);
-    rewind(fp);
+    // Get the file size
+    fseek(file, 0, SEEK_END);
+    fileSize = ftell(file);
+    rewind(file);
 
-    if (file_size > MAX_FILE_SIZE) {
-        printf("File too large.
-");
-        fclose(fp);
+    // Allocate memory for the file content
+    buffer = (char *)malloc(fileSize + 1);
+    if (buffer == NULL) {
+        fprintf(stderr, "Memory allocation failed.\n");
+        fclose(file);
         return 1;
     }
 
-    fread(file_data, sizeof(char), file_size, fp);
-    fclose(fp);
+    // Read the file content into the buffer
+    bytesRead = fread(buffer, 1, fileSize, file);
+    if (bytesRead != fileSize) {
+        fprintf(stderr, "Error reading file.\n");
+        fclose(file);
+        free(buffer);
+        return 1;
+    }
+    buffer[fileSize] = '\0';  // Null-terminate the buffer
 
-    // At this point, the file data is stored in the 'file_data' array.
-    // You can now process or save it as needed.
+    fclose(file);
 
-    printf("File uploaded successfully.
-");
+    // Process the uploaded file content (buffer) here
+    // ...
+
+    free(buffer);
+
+    printf("File uploaded successfully!\n");
 
     return 0;
 }

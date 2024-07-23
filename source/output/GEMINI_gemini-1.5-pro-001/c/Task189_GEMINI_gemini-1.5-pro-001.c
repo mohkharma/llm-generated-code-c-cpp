@@ -1,76 +1,63 @@
-#include <stdio.h>
-#include <pthread.h>
-
 typedef struct {
     int n;
-    pthread_mutex_t mutex;
-    pthread_cond_t cond;
-    int turn;
-} ZeroEvenOddArgs;
+    int count;
+    sem_t z;
+    sem_t e;
+    sem_t o;
+} ZeroEvenOdd;
 
-void* zero(void* args) {
-    ZeroEvenOddArgs* arg = (ZeroEvenOddArgs*)args;
-    for (int i = 1; i <= arg->n; ++i) {
-        pthread_mutex_lock(&arg->mutex);
-        while (arg->turn != 0) {
-            pthread_cond_wait(&arg->cond, &arg->mutex);
-        }
-        printf("0");
-        arg->turn = (i % 2 == 0) ? 2 : 1;
-        pthread_cond_broadcast(&arg->cond);
-        pthread_mutex_unlock(&arg->mutex);
-    }
-    return NULL;
+ZeroEvenOdd* zeroEvenOddCreate(int n) {
+    ZeroEvenOdd* obj = malloc(sizeof(ZeroEvenOdd));
+    obj->n = n;
+    obj->count = 0;
+    sem_init(&obj->z, 0, 1);
+    sem_init(&obj->e, 0, 0);
+    sem_init(&obj->o, 0, 0);
+    return obj;
 }
 
-void* even(void* args) {
-    ZeroEvenOddArgs* arg = (ZeroEvenOddArgs*)args;
-    for (int i = 2; i <= arg->n; i += 2) {
-        pthread_mutex_lock(&arg->mutex);
-        while (arg->turn != 2) {
-            pthread_cond_wait(&arg->cond, &arg->mutex);
+void zeroEvenOddZero(ZeroEvenOdd* obj, int (*printNumber)(int)) {
+    for (int i = 0; i < obj->n; i++) {
+        sem_wait(&obj->z);
+        printNumber(0);
+        obj->count++;
+        if (obj->count % 2 == 0) {
+            sem_post(&obj->e);
+        } else {
+            sem_post(&obj->o);
         }
-        printf("%d", i);
-        arg->turn = 0;
-        pthread_cond_broadcast(&arg->cond);
-        pthread_mutex_unlock(&arg->mutex);
     }
-    return NULL;
 }
 
-void* odd(void* args) {
-    ZeroEvenOddArgs* arg = (ZeroEvenOddArgs*)args;
-    for (int i = 1; i <= arg->n; i += 2) {
-        pthread_mutex_lock(&arg->mutex);
-        while (arg->turn != 1) {
-            pthread_cond_wait(&arg->cond, &arg->mutex);
+void zeroEvenOddEven(ZeroEvenOdd* obj, int (*printNumber)(int)) {
+    for (int i = 2; i <= obj->n; i += 2) {
+        sem_wait(&obj->e);
+        printNumber(i);
+        obj->count++;
+        if (obj->count % 2 == 0) {
+            sem_post(&obj->e);
+        } else {
+            sem_post(&obj->o);
         }
-        printf("%d", i);
-        arg->turn = 0;
-        pthread_cond_broadcast(&arg->cond);
-        pthread_mutex_unlock(&arg->mutex);
     }
-    return NULL;
 }
 
-int main() {
-    int n = 5;
-    ZeroEvenOddArgs args;
-    args.n = n;
-    pthread_mutex_init(&args.mutex, NULL);
-    pthread_cond_init(&args.cond, NULL);
-    args.turn = 0;
+void zeroEvenOddOdd(ZeroEvenOdd* obj, int (*printNumber)(int)) {
+    for (int i = 1; i <= obj->n; i += 2) {
+        sem_wait(&obj->o);
+        printNumber(i);
+        obj->count++;
+        if (obj->count % 2 == 0) {
+            sem_post(&obj->e);
+        } else {
+            sem_post(&obj->o);
+        }
+    }
+}
 
-    pthread_t zeroThread, evenThread, oddThread;
-    pthread_create(&zeroThread, NULL, zero, &args);
-    pthread_create(&evenThread, NULL, even, &args);
-    pthread_create(&oddThread, NULL, odd, &args);
-
-    pthread_join(zeroThread, NULL);
-    pthread_join(evenThread, NULL);
-    pthread_join(oddThread, NULL);
-
-    pthread_mutex_destroy(&args.mutex);
-    pthread_cond_destroy(&args.cond);
-    return 0;
+void zeroEvenOddFree(ZeroEvenOdd* obj) {
+    sem_destroy(&obj->z);
+    sem_destroy(&obj->e);
+    sem_destroy(&obj->o);
+    free(obj);
 }

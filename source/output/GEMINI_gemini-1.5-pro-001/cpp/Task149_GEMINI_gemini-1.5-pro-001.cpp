@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 struct Node {
@@ -9,61 +8,37 @@ struct Node {
 
 class Queue {
 public:
-    Node* front;
-    Node* rear;
-
-    Queue() : front(nullptr), rear(nullptr) {}
-
-    void enqueue(int value) {
-        Node* newNode = new Node;
-        newNode->data = value;
-        newNode->next = nullptr;
-
-        if (isEmpty()) {
-            front = newNode;
-            rear = newNode;
-        } else {
-            rear->next = newNode;
-            rear = newNode;
+    Node *front, *rear;
+    Queue() { 
+        front = rear = NULL; 
+    }
+    void enqueue(int x) {
+        Node* temp = new Node;
+        temp->data = x;
+        temp->next = NULL;
+        if (rear == NULL) {
+            front = rear = temp;
+            return;
         }
+        rear->next = temp;
+        rear = temp;
     }
 
-    int dequeue() {
-        if (isEmpty()) {
-            cout << "Queue is empty." << endl;
-            return -1;
-        }
-
+    void dequeue() {
+        if (front == NULL)
+            return;
         Node* temp = front;
-        int value = temp->data;
         front = front->next;
-
-        if (front == nullptr) {
-            rear = nullptr;
-        }
-
-        delete temp;
-        return value;
+        if (front == NULL)
+            rear = NULL;
+        delete (temp);
     }
 
     int peek() {
-        if (isEmpty()) {
-            cout << "Queue is empty." << endl;
+        if (front == NULL){
+            cout << "Queue is empty" << endl;
             return -1;
         }
         return front->data;
     }
-
-    bool isEmpty() {
-        return front == nullptr;
-    }
 };
-
-int main() {
-    Queue q;
-    q.enqueue(10);
-    q.enqueue(20);
-    cout << q.dequeue() << endl;
-    cout << q.peek() << endl;
-    return 0;
-}

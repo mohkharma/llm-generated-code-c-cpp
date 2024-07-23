@@ -43,8 +43,7 @@ int main() {
         decryptedData[pair.first] = decrypt(pair.second);
     }
 
-    std::cout << "\
-Decrypted data:" << std::endl;
+    std::cout << "\\nDecrypted data:" << std::endl;
     for (const auto& pair : decryptedData) {
         std::cout << pair.first << ": " << pair.second << std::endl;
     }

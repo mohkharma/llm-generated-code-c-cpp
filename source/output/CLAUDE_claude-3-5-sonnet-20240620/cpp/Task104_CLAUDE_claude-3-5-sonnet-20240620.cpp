@@ -1,22 +1,29 @@
 
 #include <iostream>
 #include <string>
-#include <algorithm>
 
-const int BUFFER_SIZE = 20;
+const int BUFFER_SIZE = 100;
 
 int main() {
-    char buffer[BUFFER_SIZE];
-    std::string input;
+    std::string buffer;
+    std::string userInput;
 
-    std::cout << "Enter a string (max " << BUFFER_SIZE << " characters):" << std::endl;
-    std::getline(std::cin, input);
+    while (true) {
+        std::cout << "Enter text (or 'q' to quit): ";
+        std::getline(std::cin, userInput);
 
-    int length = std::min(static_cast<int>(input.length()), BUFFER_SIZE);
-    std::copy_n(input.begin(), length, buffer);
+        if (userInput == "q" || userInput == "Q") {
+            break;
+        }
 
-    std::cout << "Buffer contents:" << std::endl;
-    std::cout << std::string(buffer, length) << std::endl;
+        if (buffer.length() + userInput.length() <= BUFFER_SIZE) {
+            buffer += userInput;
+            std::cout << "Buffer content: " << buffer << std::endl;
+        } else {
+            std::cout << "Error: Buffer overflow. Cannot add more than " << BUFFER_SIZE << " characters." << std::endl;
+        }
+    }
 
+    std::cout << "Final buffer content: " << buffer << std::endl;
     return 0;
 }

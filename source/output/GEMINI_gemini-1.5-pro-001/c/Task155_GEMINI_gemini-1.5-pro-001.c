@@ -1,80 +1,49 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
 
-#define MAX_VERTICES 100
+void heapify(int arr[], int n, int i) {
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
 
-struct Graph {
-    int numVertices;
-    int adjMatrix[MAX_VERTICES][MAX_VERTICES];
-};
+  if (left < n && arr[left] > arr[largest]) {
+    largest = left;
+  }
 
-// Stack implementation
-struct Stack {
-    int top;
-    int items[MAX_VERTICES];
-};
+  if (right < n && arr[right] > arr[largest]) {
+    largest = right;
+  }
 
-struct Stack* createStack() {
-    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
-    stack->top = -1;
-    return stack;
+  if (largest != i) {
+    int temp = arr[i];
+    arr[i] = arr[largest];
+    arr[largest] = temp;
+    heapify(arr, n, largest);
+  }
 }
 
-bool isEmpty(struct Stack* stack) {
-    return stack->top == -1;
-}
+void heapSort(int arr[], int n) {
+  for (int i = n / 2 - 1; i >= 0; i--) {
+    heapify(arr, n, i);
+  }
 
-void push(struct Stack* stack, int item) {
-    stack->items[++stack->top] = item;
-}
-
-int pop(struct Stack* stack) {
-    if (isEmpty(stack)) {
-        return -1; // Stack underflow
-    }
-    return stack->items[stack->top--];
-}
-
-void depthFirstSearch(struct Graph* graph, int startVertex) {
-    bool visited[MAX_VERTICES] = { false };
-    struct Stack* stack = createStack();
-
-    push(stack, startVertex);
-
-    while (!isEmpty(stack)) {
-        int vertex = pop(stack);
-
-        if (!visited[vertex]) {
-            visited[vertex] = true;
-            printf("%d ", vertex); // Process the vertex here
-
-            // Push all adjacent vertices onto the stack
-            for (int i = graph->numVertices - 1; i >= 0; i--) {
-                if (graph->adjMatrix[vertex][i] && !visited[i]) {
-                    push(stack, i);
-                }
-            }
-        }
-    }
+  for (int i = n - 1; i >= 0; i--) {
+    int temp = arr[0];
+    arr[0] = arr[i];
+    arr[i] = temp;
+    heapify(arr, i, 0);
+  }
 }
 
 int main() {
-    struct Graph graph = {
-        6, // Number of vertices
-        {
-            {0, 1, 1, 0, 0, 0},
-            {1, 0, 0, 1, 1, 0},
-            {1, 0, 0, 0, 0, 1},
-            {0, 1, 0, 0, 0, 0},
-            {0, 1, 0, 0, 0, 1},
-            {0, 0, 1, 0, 1, 0}
-        } // Adjacency matrix representation of the graph
-    };
+  int arr[] = {12, 11, 13, 5, 6, 7};
+  int n = sizeof(arr) / sizeof(arr[0]);
 
-    int startVertex = 0; // Starting vertex for DFS
+  heapSort(arr, n);
 
-    printf("Depth First Traversal (starting from vertex %d): ", startVertex);
-    depthFirstSearch(&graph, startVertex);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
 
-    return 0;
+  return 0;
 }

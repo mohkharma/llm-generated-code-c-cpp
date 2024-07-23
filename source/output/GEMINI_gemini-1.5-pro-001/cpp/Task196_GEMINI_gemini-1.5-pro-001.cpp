@@ -1,49 +1,46 @@
-#include <functional>
-#include <mutex>
-#include <condition_variable>
-#include <thread>
-
-using namespace std;
-
 class ZeroEvenOdd {
-private:
     int n;
-    int current;
-    mutex m;
-    condition_variable cv;
-    bool zeroTurn;
-
+    bool zero_turn = true;
+    bool even_turn = false;
+    bool odd_turn = false;
 public:
-    ZeroEvenOdd(int n) : n(n), current(1), zeroTurn(true) {}
+    ZeroEvenOdd(int n) : n(n) {}
 
-    // printNumber(x) outputs "x", where x is an integer.
+    // printNumber is a function that prints the given number to the console.
     void zero(function<void(int)> printNumber) {
-        for (int i = 0; i < n; ++i) {
-            unique_lock<mutex> lock(m);
-            cv.wait(lock, [this]() { return zeroTurn; });
+        for (int i = 1; i <= n; i++) {
+            while (!zero_turn) {
+                this_thread::yield();
+            }
             printNumber(0);
-            zeroTurn = false;
-            cv.notify_all();
+            if (i % 2 == 0) {
+                even_turn = true;
+            } else {
+                odd_turn = true;
+            }
+            zero_turn = false;
         }
     }
 
     void even(function<void(int)> printNumber) {
         for (int i = 2; i <= n; i += 2) {
-            unique_lock<mutex> lock(m);
-            cv.wait(lock, [this]() { return !zeroTurn && current % 2 == 0; });
-            printNumber(current++);
-            zeroTurn = true;
-            cv.notify_all();
+            while (!even_turn) {
+                this_thread::yield();
+            }
+            printNumber(i);
+            zero_turn = true;
+            even_turn = false;
         }
     }
 
     void odd(function<void(int)> printNumber) {
         for (int i = 1; i <= n; i += 2) {
-            unique_lock<mutex> lock(m);
-            cv.wait(lock, [this]() { return !zeroTurn && current % 2 != 0; });
-            printNumber(current++);
-            zeroTurn = true;
-            cv.notify_all();
+            while (!odd_turn) {
+                this_thread::yield();
+            }
+            printNumber(i);
+            odd_turn = false;
+            zero_turn = true;
         }
     }
 };

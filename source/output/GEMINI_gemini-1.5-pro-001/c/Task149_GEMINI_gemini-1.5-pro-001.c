@@ -7,68 +7,51 @@ struct Node {
 };
 
 struct Queue {
-    struct Node* front;
-    struct Node* rear;
+    struct Node *front, *rear;
 };
 
-struct Queue* createQueue() {
+struct Node* newNode(int data)
+{
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    temp->data = data;
+    temp->next = NULL;
+    return temp;
+}
+
+struct Queue* createQueue()
+{
     struct Queue* q = (struct Queue*)malloc(sizeof(struct Queue));
     q->front = q->rear = NULL;
     return q;
 }
 
-int isEmpty(struct Queue* q) {
-    return (q->front == NULL);
+void enqueue(struct Queue* q, int data)
+{
+    struct Node* temp = newNode(data);
+    if (q->rear == NULL) {
+        q->front = q->rear = temp;
+        return;
+    }
+    q->rear->next = temp;
+    q->rear = temp;
 }
 
-void enqueue(struct Queue* q, int value) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = value;
-    newNode->next = NULL;
-
-    if (isEmpty(q)) {
-        q->front = newNode;
-    } else {
-        q->rear->next = newNode;
-    }
-    q->rear = newNode;
-}
-
-int dequeue(struct Queue* q) {
-    if (isEmpty(q)) {
-        printf("Queue is empty.
-");
-        return -1;
-    }
-
+void dequeue(struct Queue* q)
+{
+    if (q->front == NULL)
+        return;
     struct Node* temp = q->front;
-    int value = temp->data;
     q->front = q->front->next;
-
-    if (q->front == NULL) {
+    if (q->front == NULL)
         q->rear = NULL;
-    }
-
     free(temp);
-    return value;
 }
 
-int peek(struct Queue* q) {
-    if (isEmpty(q)) {
-        printf("Queue is empty.
-");
+int peek(struct Queue* q)
+{
+    if (q->front == NULL){
+        printf("Queue is empty\n");
         return -1;
     }
     return q->front->data;
-}
-
-int main() {
-    struct Queue* q = createQueue();
-    enqueue(q, 10);
-    enqueue(q, 20);
-    printf("%d
-", dequeue(q));
-    printf("%d
-", peek(q));
-    return 0;
 }

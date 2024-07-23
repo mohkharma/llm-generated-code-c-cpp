@@ -1,27 +1,29 @@
-#include <limits.h>
+#include <stdlib.h>
 
-double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {
-  int m = nums1Size, n = nums2Size;
-  if (m > n) return findMedianSortedArrays(nums2, nums2Size, nums1, nums1Size);
-
-  int imin = 0, imax = m, half_len = (m + n + 1) / 2;
-
-  while (imin <= imax) {
-    int i = (imin + imax) / 2;
-    int j = half_len - i;
-    if (i < m && nums2[j - 1] > nums1[i]) {
-      imin = i + 1;
-    } else if (i > 0 && nums1[i - 1] > nums2[j]) {
-      imax = i - 1;
-    } else {
-      int max_left = (i == 0) ? INT_MIN : nums1[i - 1];
-      max_left = max(max_left, nums2[j - 1]);
-
-      int max_right = (j == 0) ? INT_MAX : nums1[i];
-      max_right = min(max_right, nums2[j]);
-
-      return (m + n) % 2 ? max_left : (max_left + max_right) / 2.0;
+double findMedianSortedArrays(int* nums1, int m, int* nums2, int n) {
+    int* nums = malloc((m + n) * sizeof(int));
+    int i = 0, j = 0, k = 0;
+    while (i < m && j < n) {
+        if (nums1[i] < nums2[j]) {
+            nums[k++] = nums1[i++];
+        } else {
+            nums[k++] = nums2[j++];
+        }
     }
-  }
-  return 0.0;
+    while (i < m) {
+        nums[k++] = nums1[i++];
+    }
+    while (j < n) {
+        nums[k++] = nums2[j++];
+    }
+
+    double median;
+    if ((m + n) % 2 == 0) {
+        median = (nums[(m + n) / 2] + nums[(m + n) / 2 - 1]) / 2.0;
+    } else {
+        median = nums[(m + n) / 2];
+    }
+
+    free(nums);
+    return median;
 }

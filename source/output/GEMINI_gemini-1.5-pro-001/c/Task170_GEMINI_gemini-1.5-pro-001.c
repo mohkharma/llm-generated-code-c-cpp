@@ -1,18 +1,41 @@
-int countRangeSum(int* nums, int numsSize, int lower, int upper) {
-    long sums[numsSize + 1];
-    memset(sums, 0, sizeof(sums));
-    for (int i = 0; i < numsSize; i++) {
-        sums[i + 1] = sums[i] + nums[i];
+#include <stdio.h>
+#include <stdlib.h>
+
+int rangeSum(int* nums, int numsSize, int lower, int upper) {
+    int* preSum = (int*)malloc(sizeof(int) * numsSize);
+    preSum[0] = nums[0];
+    for (int i = 1; i < numsSize; i++) {
+        preSum[i] = preSum[i - 1] + nums[i];
     }
-    
-    int count = 0;
+
+    int ans = 0;
     for (int i = 0; i < numsSize; i++) {
-        for (int j = i + 1; j <= numsSize; j++) {
-            if (lower <= sums[j] - sums[i] && sums[j] - sums[i] <= upper) {
-                count++;
+        int lo = i;
+        int hi = numsSize - 1;
+        int idx = -1;
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            int cur = preSum[mid];
+            if (i > 0) {
+                cur -= preSum[i - 1];
+            }
+            if (cur < lower) {
+                lo = mid + 1;
+            } else {
+                idx = mid;
+                hi = mid - 1;
+            }
+        }
+        if (idx != -1) {
+            int cur = preSum[idx];
+            if (i > 0) {
+                cur -= preSum[i - 1];
+            }
+            if (lower <= cur && cur <= upper) {
+                ans++;
             }
         }
     }
-    
-    return count;
+    free(preSum);
+    return ans;
 }

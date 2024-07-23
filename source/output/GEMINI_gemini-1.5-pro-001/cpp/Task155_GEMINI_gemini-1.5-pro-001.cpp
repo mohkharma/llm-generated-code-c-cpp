@@ -1,15 +1,47 @@
-// Heap Sort in C++
-
 #include <iostream>
+#include <vector>
 
-void heapify(int arr[], int n, int i) {
-  int largest = i; // initialize largest as root
-  int l = 2 * i + 1; // left = 2*i + 1
-  int r = 2 * i + 2; // right = 2*i + 2
+using namespace std;
 
-  // If left child is larger than root
-  if (l < n && arr[l] > arr[largest])
-    largest = l;
+void heapify(vector<int>& arr, int n, int i) {
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
 
-  // If right child is larger than largest so far
-  if (r < n && arr
+  if (left < n && arr[left] > arr[largest]) {
+    largest = left;
+  }
+
+  if (right < n && arr[right] > arr[largest]) {
+    largest = right;
+  }
+
+  if (largest != i) {
+    swap(arr[i], arr[largest]);
+    heapify(arr, n, largest);
+  }
+}
+
+void heapSort(vector<int>& arr, int n) {
+  for (int i = n / 2 - 1; i >= 0; i--) {
+    heapify(arr, n, i);
+  }
+
+  for (int i = n - 1; i >= 0; i--) {
+    swap(arr[0], arr[i]);
+    heapify(arr, i, 0);
+  }
+}
+
+int main() {
+  vector<int> arr = {12, 11, 13, 5, 6, 7};
+  int n = arr.size();
+
+  heapSort(arr, n);
+
+  for (int i = 0; i < n; i++) {
+    cout << arr[i] << " ";
+  }
+
+  return 0;
+}

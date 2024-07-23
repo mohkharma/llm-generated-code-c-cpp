@@ -1,54 +1,37 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <thread>
 #include <mutex>
-#include <vector>
+#include <unordered_map>
 #include <filesystem>
 
-std::mutex file_mutex;
+namespace fs = std::filesystem;
+
+std::unordered_map<std::string, std::mutex> file_mutexes;
 
 void process_file(const std::string& file_path) {
-  // Acquire the mutex to ensure exclusive access to the file
-  std::lock_guard<std::mutex> lock(file_mutex);
-
-  // Open the file for reading
-  std::ifstream file(file_path);
-
-  // Check if the file is open
-  if (file.is_open()) {
-    // Process the file contents here
-    std::string line;
-    while (std::getline(file, line)) {
-      // Example: print each line
-      std::cout << line << std::endl;
-    }
-
-    // Close the file
-    file.close();
-  } else {
-    std::cerr << "Error: Unable to open file: " << file_path << std::endl;
-  }
+    std::lock_guard<std::mutex> lock(file_mutexes[file_path]);
+    // Simulate file processing
+    std::cout << "Thread " << std::this_thread::get_id() << " is processing file: " << file_path << std::endl;
+    // Add your file processing logic here
 }
 
 int main() {
-  // Directory containing the files to process
-  std::string directory_path = "/path/to/directory";
+    std::string directory_path = "path/to/your/directory"; // Replace with your directory path
 
-  // Create a vector to store the threads
-  std::vector<std::thread> threads;
-
-  // Iterate over the files in the directory
-  for (const auto& entry : std::filesystem::directory_iterator(directory_path)) {
-    if (entry.is_regular_file()) {
-      // Create a new thread to process the file
-      threads.emplace_back(process_file, entry.path().string());
+    for (const auto& entry : fs::directory_iterator(directory_path)) {
+        if (entry.is_regular_file()) {
+            file_mutexes[entry.path()] = {}; 
+            std::thread t(process_file, entry.path());
+            t.detach(); 
+        }
     }
-  }
 
-  // Join all the threads
-  for (auto& thread : threads) {
-    thread.join();
-  }
+    // Keep the main thread alive to allow detached threads to complete
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
 
-  return 0;
+    return 0;
 }
