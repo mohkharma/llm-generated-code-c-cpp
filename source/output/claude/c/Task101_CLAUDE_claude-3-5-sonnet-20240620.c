@@ -5,7 +5,7 @@
 
 int main() {
     const char* filename = "script.sh";
-    const char* content = "#!/bin/bash\\necho \\"Hello, World!\\"";
+    const char* content = "#!/bin/bash \\n echo \"Hello, World!\"";
 
     // Create the file
     FILE* file = fopen(filename, "w");
