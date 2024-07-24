@@ -7,7 +7,7 @@
 #include <cstring>
 #include <unistd.h>
 #include <arpa/inet.h>
-
+//compilation error, dependancies
 std::vector<int> clients;
 std::mutex clients_mutex;
 

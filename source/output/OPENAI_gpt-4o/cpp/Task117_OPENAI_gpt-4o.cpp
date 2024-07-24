@@ -4,7 +4,7 @@
 #include <zip.h>
 #include <archive.h>
 #include <archive_entry.h>
-
+//compilation error, dependancies
 void extract_zip(const std::string &file_path, const std::string &extract_to) {
     int err = 0;
     zip_t *archive = zip_open(file_path.c_str(), 0, &err);

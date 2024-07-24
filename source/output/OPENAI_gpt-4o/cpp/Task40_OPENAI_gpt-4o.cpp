@@ -5,7 +5,7 @@
 #include <cppcms/http_response.h>
 #include <cppcms/http_request.h>
 #include <cppcms/session_interface.h>
-
+//compilation error, dependancies
 class settings : public cppcms::application {
 public:
     settings(cppcms::service &srv) : cppcms::application(srv) {}

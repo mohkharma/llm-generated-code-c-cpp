@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-
+// compilation error warning: overflow in conversion from 'long long int' to 'long int'
 long findNb(long m) {
     long n = 0, totalVolume = 0;
     while (totalVolume < m) {

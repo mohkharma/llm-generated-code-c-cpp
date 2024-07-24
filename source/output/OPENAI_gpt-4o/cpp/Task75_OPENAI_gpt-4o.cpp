@@ -1,7 +1,7 @@
 #include <iostream>
 #include <csignal>
 #include <cstdlib>
-
+//compilation error, dependancies
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         std::cout << "Usage: " << argv[0] << " <PID>" << std::endl;

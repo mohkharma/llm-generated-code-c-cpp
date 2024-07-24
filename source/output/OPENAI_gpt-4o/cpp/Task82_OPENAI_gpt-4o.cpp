@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iomanip>
 #include <openssl/sha.h>
-
+//compilation error, dependancies
 std::string compute_hash(const std::string& password, const std::string& salt) {
     std::string combined = password + salt;
     unsigned char hash[SHA256_DIGEST_LENGTH];

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <json/json.h>
-
+//compilation error, dependancies
 int main(int argc, char *argv[]) {
     std::string domainComponent = argv[1];
     std::string username = argv[2];

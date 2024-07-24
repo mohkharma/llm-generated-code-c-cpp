@@ -2,7 +2,7 @@
 #include <fstream>
 #include <openssl/rsa.h>
 #include <openssl/pem.h>
-
+//compilation error, dependancies
 void save_key(RSA* key, const char* filename) {
     FILE* file = fopen(filename, "wb");
     PEM_write_RSAPrivateKey(file, key, nullptr, nullptr, 0, nullptr, nullptr);

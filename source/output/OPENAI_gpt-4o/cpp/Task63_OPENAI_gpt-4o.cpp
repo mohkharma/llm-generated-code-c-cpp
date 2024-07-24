@@ -3,7 +3,9 @@
 #include <vector>
 #include <base64/base64.h>
 #include "json/json.h"
-
+//compilation error, dependancies
+//https://github.com/ReneNyffenegger/cpp-base64/blob/master/base64.h
+//https://github.com/open-source-parsers/jsoncpp/blob/master/include/json/json.h
 using namespace std;
 
 string processRequest(string req);

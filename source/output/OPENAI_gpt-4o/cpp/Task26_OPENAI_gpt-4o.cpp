@@ -1,5 +1,5 @@
 #include <iostream>
-
+//compilation error error: taking address of temporary array
 int findOddOccurrence(int arr[], int size) {
     int result = 0;
     for (int i = 0; i < size; i++) {

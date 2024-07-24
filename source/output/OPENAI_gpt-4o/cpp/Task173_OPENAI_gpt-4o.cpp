@@ -4,8 +4,9 @@
 #include <vector>
 
 using namespace std;
-
-string roll_hash(const string &s, int length) {
+//compilation error, error: could not convert 'hash_value' from 'long long int' to 'std::string' {aka 'std::__cxx11::basic_string<char>'}
+// string roll_hash(const string &s, int length) {
+long long roll_hash(const string &s, int length) {
     const long long p = 31, m = (1LL << 61) - 1;
     long long hash_value = 0, p_pow = 1;
     for (int i = 0; i < length; ++i) {

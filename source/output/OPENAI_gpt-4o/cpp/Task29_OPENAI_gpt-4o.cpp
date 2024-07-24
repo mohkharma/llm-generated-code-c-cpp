@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-vector<int> twoSum(vector<int>& numbers, int target) {
+//compliation error add const; error: cannot bind non-const lvalue reference of type
+vector<int> twoSum(const vector<int>& numbers, int target) {
+// vector<int> twoSum(vector<int>& numbers, int target) {
     for (int i = 0; i < numbers.size(); i++) {
         for (int j = i + 1; j < numbers.size(); j++) {
             if (numbers[i] + numbers[j] == target) {

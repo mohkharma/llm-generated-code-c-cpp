@@ -1,6 +1,6 @@
 #include <iostream>
 #include <httplib.h>
-
+//compilation error, dependancies
 int main() {
     httplib::Server svr;
     

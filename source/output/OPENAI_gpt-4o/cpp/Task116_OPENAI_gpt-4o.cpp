@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstdlib>
-
+//compilation error
 int main() {
     if (geteuid() != 0) {
         std::cerr << "This script must be run as root!" << std::endl;

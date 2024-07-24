@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <string>
 #include <openssl/sha.h>
-
+//compilation error, dependancies
 class UserAuth {
 private:
     std::unordered_map<std::string, std::string> users;

@@ -2,7 +2,7 @@
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>
 #include <bsoncxx/json.hpp>
-
+//compilation error, dependancies
 int main() {
     // Initialize MongoDB
     mongocxx::instance instance{};

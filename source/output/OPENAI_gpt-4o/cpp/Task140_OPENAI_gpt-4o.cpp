@@ -1,9 +1,9 @@
 #include <iostream>
 
 using namespace std;
-
-double calculate(double a, double b, char operator) {
-    switch (operator) {
+//compilation error, fixed
+double calculate(double a, double b, char operator1) {
+    switch (operator1) {
         case '+':
             return a + b;
         case '-':
@@ -20,7 +20,9 @@ double calculate(double a, double b, char operator) {
 
 int main() {
     double a, b;
-    char operator;
+    // error: expected type-specifier before ';' token
+    // char operator;
+    char operator1;
 
     cout << "Enter first number: ";
     cin >> a;
@@ -29,9 +31,9 @@ int main() {
     cin >> b;
 
     cout << "Enter operator (+, -, *, /): ";
-    cin >> operator;
+    cin >> operator1;
 
-    cout << "Result: " << calculate(a, b, operator) << endl;
+    cout << "Result: " << calculate(a, b, operator1) << endl;
 
     return 0;
 }

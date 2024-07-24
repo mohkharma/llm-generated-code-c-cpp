@@ -2,7 +2,8 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
-
+#include <functional>
+//compilation error, error: 'function' has not been declared
 using namespace std;
 
 class ZeroEvenOdd {
@@ -19,7 +20,7 @@ public:
         counter = 1;
         zeroTurn = true;
     }
-
+        //error error: 'function' has not been declared
     void zero(function<void(int)> printNumber) {
         for (int i = 0; i < n; ++i) {
             unique_lock<mutex> lock(m);

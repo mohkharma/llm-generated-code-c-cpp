@@ -5,7 +5,7 @@
 #include <filesystem>
 #include <locale>
 #include <codecvt>
-
+//compilation error
 int main() {
     // Generate a random string
     std::string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

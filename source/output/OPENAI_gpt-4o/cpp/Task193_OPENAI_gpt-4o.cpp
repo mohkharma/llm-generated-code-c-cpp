@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
-
-bool xorGame(std::vector<int>& nums) {
+//compilation error, add const ,  error: cannot bind non-const lvalue reference of type 'std::vector<int>&' to an rvalue of type 'std::vector<int>'
+// bool xorGame(std::vector<int>& nums) {
+bool xorGame(const std::vector<int>& nums) {
     int xorValue = 0;
     for (int num : nums) {
         xorValue ^= num;

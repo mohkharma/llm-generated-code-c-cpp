@@ -4,7 +4,7 @@
 #include <string>
 #include <openssl/aes.h>
 #include <openssl/rand.h>
-
+//compilation error, dependancies
 void saveKey(const std::vector<unsigned char>& key, const std::string& filename) {
     std::ofstream file(filename, std::ios::binary);
     file.write(reinterpret_cast<const char*>(key.data()), key.size());
