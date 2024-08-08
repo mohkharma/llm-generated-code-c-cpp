@@ -1,55 +1,62 @@
+#include <climits>
 #include <iostream>
-#include <unordered_map>
+#include <vector>
 #include <queue>
+#include <unordered_map>
 #include <limits>
+#include <unordered_set>
 
 using namespace std;
 
-// Structure to represent a node in the priority queue
+typedef pair<int, string> Pair;
+
 struct Node {
     string vertex;
-    int distance;
+    int weight;
 
-    Node(string v, int d) : vertex(v), distance(d) {}
+    Node(string v, int w) : vertex(v), weight(w) {}
 };
 
-// Custom comparator for priority queue
 struct CompareDistance {
-    bool operator()(const Node& n1, const Node& n2) {
-        return n1.distance > n2.distance;
+    bool operator()(const Pair& a, const Pair& b) {
+        return a.first > b.first;
     }
 };
 
 unordered_map<string, int> dijkstra(const unordered_map<string, unordered_map<string, int>>& graph, const string& start) {
     unordered_map<string, int> distances;
     for (const auto& pair : graph) {
-        distances[pair.first] = numeric_limits<int>::max();
+        distances[pair.first] = INT_MAX;
     }
     distances[start] = 0;
 
-    priority_queue<Node, vector<Node>, CompareDistance> queue;
-    queue.push(Node(start, 0));
+    priority_queue<Pair, vector<Pair>, CompareDistance> pq;
+    pq.push({0, start});
+
     unordered_set<string> visited;
 
-    while (!queue.empty()) {
-        Node current = queue.top();
-        queue.pop();
+    while (!pq.empty()) {
+        int distance = pq.top().first;
+        string u = pq.top().second;
+        pq.pop();
 
-        if (visited.find(current.vertex) != visited.end()) {
+        if (visited.find(u) != visited.end()) {
             continue;
         }
-        visited.insert(current.vertex);
 
-        for (const auto& neighborPair : graph[current.vertex]) {
-            string neighbor = neighborPair.first;
-            int weight = neighborPair.second;
-            int distance = distances[current.vertex] + weight;
+        visited.insert(u);
 
-            if (distance < distances[neighbor]) {
-                distances[neighbor] = distance;
-                queue.push(Node(neighbor, distance));
-            }
-        }
+        //error: passing ‘const std::unordered_map<std::__cxx11::basic_string<char>, std::unordered_map<std::__cxx11::basic_string<char>, int> >’ as ‘this’ argument discards qualifiers [-fpermissive]
+        //
+        // for (const auto& neighbor : graph[u]) {
+        //     string v = neighbor.first;
+        //     int weight = neighbor.second;
+        //
+        //     if (distances[u] != INT_MAX && distances[v] > distances[u] + weight) {
+        //         distances[v] = distances[u] + weight;
+        //         pq.push({distances[v], v});
+        //     }
+        // }
     }
 
     return distances;
@@ -57,16 +64,16 @@ unordered_map<string, int> dijkstra(const unordered_map<string, unordered_map<st
 
 int main() {
     unordered_map<string, unordered_map<string, int>> graph = {
-        {"A", {{"B", 1}, {"C", 4}}},
-        {"B", {{"A", 1}, {"C", 2}, {"D", 5}}},
-        {"C", {{"A", 4}, {"B", 2}, {"D", 1}}},
-        {"D", {{"B", 5}, {"C", 1}}}
+        {"A", {{"B", 4}, {"C", 2}}},
+        {"B", {{"A", 4}, {"C", 2}, {"D", 7}}},
+        {"C", {{"A", 2}, {"B", 2}, {"D", 3}}},
+        {"D", {{"B", 7}, {"C", 3}}}
     };
 
     string startNode = "A";
     unordered_map<string, int> distances = dijkstra(graph, startNode);
 
-    cout << "Shortest distances from node " << startNode << ": " << endl;
+    cout << "Shortest distances from node " << startNode << ":" << endl;
     for (const auto& pair : distances) {
         cout << pair.first << ": " << pair.second << endl;
     }

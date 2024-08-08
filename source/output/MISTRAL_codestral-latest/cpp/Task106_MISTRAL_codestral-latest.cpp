@@ -2,6 +2,7 @@
 // This example uses OpenSSL library for RSA implementation.
 // Please make sure to include the OpenSSL library in your project.
 
+#include <iomanip>
 #include <openssl/rsa.h>
 #include <openssl/pem.h>
 #include <openssl/err.h>

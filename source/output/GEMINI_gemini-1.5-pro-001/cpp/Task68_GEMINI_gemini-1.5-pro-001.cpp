@@ -1,7 +1,22 @@
+#include <algorithm>
 #include <iostream>
 #include <ldap.h>
+#include <string>
 
 using namespace std;
+
+/**
+ *
+error: ‘ldap_simple_bind_s’ was not declared in this scope; did you mean ‘ldap_sasl_bind_s’?
+error: too many arguments to function ‘berval** ldap_get_values_len(LDAP*, LDAPMessage*, const char*)
+
+added these gloable functions
+ */
+char ** ldap_get_values(LDAP * ld, LDAPMessage * entry, char * attr);
+
+int ldap_simple_bind_s(LDAP * ld, string::const_pointer c_str, string::const_pointer const_pointer);
+
+void ldap_value_free(char ** vals);
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -11,6 +26,7 @@ int main(int argc, char *argv[]) {
 
     string username = argv[1];
     string domainComponent = argv[2];
+    string password = ""; // Replace with actual password
 
     LDAP *ld;
     LDAPMessage *result;
@@ -22,13 +38,13 @@ int main(int argc, char *argv[]) {
 
     // Initialize LDAP
     if (ldap_initialize(&ld, "ldap://localhost") != LDAP_SUCCESS) {
-        cerr << "LDAP initialization failed" << endl;
+        cerr << "LDAP initialization failed: " << ldap_err2string(rc) << endl;
         return 1;
     }
 
-    // Bind to the server
-    if (ldap_simple_bind_s(ld, NULL, NULL) != LDAP_SUCCESS) {
-        cerr << "LDAP bind failed" << endl;
+    // Bind to the server using simple bind (replace with appropriate authentication)
+    if (ldap_simple_bind_s(ld, username.c_str(), password.c_str()) != LDAP_SUCCESS) {
+        cerr << "LDAP bind failed: " << ldap_err2string(rc) << endl;
         ldap_unbind_ext_s(ld, NULL, NULL);
         return 1;
     }
@@ -67,6 +83,8 @@ int main(int argc, char *argv[]) {
                         }
                         cout << endl;
                         ldap_value_free(vals);
+                    } else {
+                        cerr << "ldap_get_values failed" << endl;
                     }
                     ldap_memfree(attr);
                 }

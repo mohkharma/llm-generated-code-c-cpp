@@ -2,7 +2,9 @@
 
 int main() {
     double num1, num2;
-    char operator;
+    //error: expected type-specifier before ‘;’ token
+    // char operator;
+    char operator1;
 
     std::cout << "Enter first number: ";
     std::cin >> num1;
@@ -11,11 +13,11 @@ int main() {
     std::cin >> num2;
 
     std::cout << "Enter operator (+, -, *, /): ";
-    std::cin >> operator;
+    std::cin >> operator1;
 
     double result;
 
-    switch (operator) {
+    switch (operator1) {
         case '+':
             result = num1 + num2;
             break;

@@ -1,2 +1,0 @@
-// This problem is not suitable for C language as it does not have built-in string manipulation functions.
-// The above code in C++ can be modified to work in C, but it would be very complex and inefficient.

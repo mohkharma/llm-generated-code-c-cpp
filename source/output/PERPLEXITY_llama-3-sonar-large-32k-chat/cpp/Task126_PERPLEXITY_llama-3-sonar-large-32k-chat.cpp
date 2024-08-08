@@ -1,4 +1,3 @@
-code here:
 // C++ does not have a built-in way to open a web browser, so we'll use the system() function
 #include <iostream>
 #include <string>

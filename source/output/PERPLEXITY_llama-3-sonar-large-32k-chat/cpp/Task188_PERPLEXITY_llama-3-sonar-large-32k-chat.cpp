@@ -1,6 +1,7 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <functional>
 
 class FooBar {
 private:
@@ -12,7 +13,7 @@ private:
 public:
     FooBar(int n) : n(n) {}
 
-    void foo(function<void()> printFoo) {
+    void foo(std::function<void()> printFoo) {
         for (int i = 0; i < n; i++) {
             std::unique_lock<std::mutex> lock(mtx);
             cv.wait(lock, [this] { return fooLock; });
@@ -22,7 +23,7 @@ public:
         }
     }
 
-    void bar(function<void()> printBar) {
+    void bar(std::function<void()> printBar) {
         for (int i = 0; i < n; i++) {
             std::unique_lock<std::mutex> lock(mtx);
             cv.wait(lock, [this] { return !fooLock; });

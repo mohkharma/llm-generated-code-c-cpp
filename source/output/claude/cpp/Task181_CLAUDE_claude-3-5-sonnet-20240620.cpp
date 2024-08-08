@@ -59,15 +59,25 @@ private:
     std::mutex mutex;
 
 public:
+    //error: no matching function for call to ‘std::pair<const std::__cxx11::basic_string<char>, BankAccount>::pair(const std::__cxx11::basic_string<char>&, BankAccount)’
+    // bool openAccount(const std::string& accountNumber, double initialBalance) {
+    //     std::lock_guard<std::mutex> lock(mutex);
+    //     if (accounts.find(accountNumber) != accounts.end()) {
+    //         return false;
+    //     }
+    //     accounts.emplace(accountNumber, BankAccount(accountNumber, initialBalance));
+    //     return true;
+    // }
     bool openAccount(const std::string& accountNumber, double initialBalance) {
         std::lock_guard<std::mutex> lock(mutex);
         if (accounts.find(accountNumber) != accounts.end()) {
             return false;
         }
-        accounts.emplace(accountNumber, BankAccount(accountNumber, initialBalance));
+        accounts.emplace(std::piecewise_construct,
+                         std::forward_as_tuple(accountNumber),
+                         std::forward_as_tuple(accountNumber, initialBalance));
         return true;
     }
-
     bool closeAccount(const std::string& accountNumber) {
         std::lock_guard<std::mutex> lock(mutex);
         auto it = accounts.find(accountNumber);

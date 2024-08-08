@@ -1,12 +1,14 @@
 #include <vector>
 
 bool xorGame(std::vector<int>& nums) {
-    int xor = 0;
+    //error: expected unqualified-id before ‘xor’ token
+    // int xor = 0;
+    int xor1 = 0;
     for (int num : nums) {
-        xor ^= num;
+        xor1 ^= num;
     }
 
-    if (xor == 0) {
+    if (xor1 == 0) {
         return false;
     } else if (nums.size() % 2 == 0) {
         return false;

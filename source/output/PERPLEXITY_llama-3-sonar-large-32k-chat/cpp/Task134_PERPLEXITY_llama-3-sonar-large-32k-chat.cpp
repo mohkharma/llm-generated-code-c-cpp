@@ -34,9 +34,12 @@ public:
     std::string hashKey(const std::string& keyName) {
         RSA* key = this->getKey(keyName);
         if (key != nullptr) {
-            unsigned char buffer[256];
-            unsigned int length = i2s_PublicKey(key, buffer);
+            unsigned char* buffer = nullptr;
+//error: ‘i2s_PublicKey’ was not declared in this scope; did you mean ‘i2d_PublicKey’?
+            //fixed by regeneration
+            int length = i2d_RSAPublicKey(key, &buffer);
             std::string keyString((char*)buffer, length);
+            OPENSSL_free(buffer);
             unsigned char hash[SHA256_DIGEST_LENGTH];
             SHA256((unsigned char*)keyString.c_str(), keyString.length(), hash);
             std::string hashString((char*)hash, SHA256_DIGEST_LENGTH);
@@ -53,9 +56,10 @@ int main() {
     manager.generateKey(keyName);
     RSA* key = manager.getKey(keyName);
     std::cout << "Generated key for " << keyName << ": ";
-    char buffer[256];
-    unsigned int length = i2s_PublicKey(key, buffer);
-    std::cout << std::string(buffer, length) << std::endl;
+    unsigned char* buffer = nullptr;
+    int length = i2d_RSAPublicKey(key, &buffer);
+    std::cout << std::string((char*)buffer, length) << std::endl;
+    OPENSSL_free(buffer);
     std::cout << "Hash of " << keyName << ": " << manager.hashKey(keyName) << std::endl;
     manager.deleteKey(keyName);
     std::cout << "Key " << keyName << " deleted: ";

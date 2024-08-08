@@ -26,6 +26,6 @@ public:
     }
 
 private:
-    priority_queue<int> small;
-    priority_queue<int, vector<int>, greater<int>> large;
+    std::priority_queue<int> small;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> large;
 };

@@ -1,10 +1,13 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 
 class DeserializeData {
 public:
     static void deserializeData(const std::string& data) {
+        //"error: variable ‘std::istringstream iss’ has initializer but incomplete type.
+        // Fixed by changing the include from #include <iostream> to #include <sstream>"
         std::istringstream iss(data);
         std::string token;
         while (std::getline(iss, token, ':')) {

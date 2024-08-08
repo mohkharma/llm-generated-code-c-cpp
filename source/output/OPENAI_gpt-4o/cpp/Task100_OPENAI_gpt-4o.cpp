@@ -3,7 +3,7 @@
 #include <regex>
 #include <string>
 #include <vector>
-//compilation error
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " <pattern> <filename>" << std::endl;
@@ -13,7 +13,9 @@ int main(int argc, char *argv[]) {
     std::string pattern = argv[1];
     std::string filename = argv[2];
     std::ifstream file(filename);
-    if (!file.isOpened()) {
+    // error: ‘std::ifstream’ {aka ‘class std::basic_ifstream<char>’} has no member named ‘isOpened’
+    // if (!file.isOpened()) {
+    if (!file.is_open()) {
         std::cerr << "Could not open the file!" << std::endl;
         return 1;
     }

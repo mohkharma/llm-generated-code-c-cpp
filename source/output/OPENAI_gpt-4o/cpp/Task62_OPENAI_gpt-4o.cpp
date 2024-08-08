@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "json/json.h"
-//compilation error, dependancies https://github.com/open-source-parsers/jsoncpp/blob/master/include/json/json.h
+
 int main() {
     std::string jsonString = "{\"name\": \"John\", \"age\": 30, \"city\": \"New York\"}";
     

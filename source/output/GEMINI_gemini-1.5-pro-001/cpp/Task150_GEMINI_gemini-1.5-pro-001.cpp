@@ -30,8 +30,8 @@ public:
 
         current_node->next = new_node;
     }
-
-    void delete(int data) {
+//error: expected unqualified-id before ‘delete’
+    void delete1(int data) {
         if (head == NULL) {
             return;
         }
@@ -90,7 +90,7 @@ int main() {
     ll.insert(4);
     ll.insert(5);
     ll.printList();
-    ll.delete(3);
+    ll.delete1(3);
     ll.printList();
     cout << ll.search(4) << endl;
 

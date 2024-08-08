@@ -30,8 +30,11 @@ int main() {
         if(res != CURLE_OK) {
             std::cerr << "cURL error: " << curl_easy_strerror(res) << std::endl;
         } else {
-            std::cout << "Status Code: " << curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE) << std::endl;
-            std::cout << "Headers: " << curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL) << std::endl;
+            // error: macro "curl_easy_getinfo" requires 3 arguments, but only 2 given
+            // std::cout << "Status Code: " << curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE) << std::endl;
+            // std::cout << "Headers: " << curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL) << std::endl;
+            std::cout << "Status Code: " << curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, NULL) << std::endl;
+            std::cout << "Headers: " << curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, NULL) << std::endl;
             std::cout << "Content: " << readBuffer << std::endl;
         }
 

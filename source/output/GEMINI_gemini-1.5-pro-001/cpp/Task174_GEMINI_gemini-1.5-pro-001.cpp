@@ -1,6 +1,8 @@
+#include <string>
+
 class Solution {
 public:
-    string shortestPalindrome(string s) {
+    std::string shortestPalindrome(std::string s) {
         int n = s.size();
         long long base = 26, mod = 1e9 + 7;
         long long hashVal = 0, powBase = 1;
@@ -11,11 +13,11 @@ public:
                 best = i + 1;
             }
         }
-        return string(s.rbegin(), s.rbegin() + n - best) + s;
+        return std::string(s.rbegin(), s.rbegin() + n - best) + s;
     }
 
 private:
-    bool isPalindrome(string s, int left, int right) {
+    bool isPalindrome(std::string s, int left, int right) {
         while (left < right) {
             if (s[left] != s[right]) {
                 return false;

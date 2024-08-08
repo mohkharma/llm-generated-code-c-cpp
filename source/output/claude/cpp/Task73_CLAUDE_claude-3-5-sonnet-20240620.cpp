@@ -17,7 +17,9 @@ bool isValidAdminPassword(const std::string& password) {
     if (!std::regex_search(password, std::regex("\\\\d"))) {
         return false;
     }
-    if (!std::regex_search(password, std::regex("[!@#$%^&*(),.?\\":{}|<>]"))) {
+    //error: missing terminating " character
+    // if (!std::regex_search(password, std::regex("[!@#$%^&*(),.?\\":{}|<>]"))) {
+    if (!std::regex_search(password, std::regex("[!@#$%^&*(),.?\":{}|<>]"))) {
         return false;
     }
     std::string lowercasePassword = password;

@@ -64,12 +64,52 @@ std::vector<uint8_t> createDNSResponse(const DNSHeader& header, const DNSQuestio
 
     response.insert(response.end(), reinterpret_cast<uint8_t*>(&responseHeader), reinterpret_cast<uint8_t*>(&responseHeader) + sizeof(DNSHeader));
 
+    //" error: request for member ‘length’ in ‘label’, which is of non-class type ‘const char’
+    // 69 | response.push_back(label.length());
+// error:
+//     request
+//     for member ‘ begin’ in ‘ label’ , which is of non
+//     -
+//     class type
+//     ‘
+//     const char’
+//
+//     70 | response.insert(response.end(), label.begin(), label.end());
+// error:
+//     request
+//     for member ‘ end’ in ‘ label’ , which is of non
+//     -
+//     class type
+//     ‘
+//     const char’
+//
+//     70 | response.insert(response.end(), label.begin(), label.end());
+//
+//     Fixed by regenerating the response *********
+//     "
+    // // Question section
+    // for (const auto& label : question.qname) {
+    //     response.push_back(label.length());
+    //     response.insert(response.end(), label.begin(), label.end());
+    // }
+    // response.push_back(0);
+
     // Question section
     for (const auto& label : question.qname) {
-        response.push_back(label.length());
-        response.insert(response.end(), label.begin(), label.end());
+        if (label == '.') {
+            continue;  // Skip dots, as they're used as separators
+        }
+        size_t len = 0;
+        const char* start = &label;
+        while (*start != '.' && *start != '\0') {
+            len++;
+            start++;
+        }
+        response.push_back(static_cast<uint8_t>(len));
+        response.insert(response.end(), &label, &label + len);
     }
     response.push_back(0);
+
     uint16_t qtype = htons(question.qtype);
     uint16_t qclass = htons(question.qclass);
     response.insert(response.end(), reinterpret_cast<uint8_t*>(&qtype), reinterpret_cast<uint8_t*>(&qtype) + 2);

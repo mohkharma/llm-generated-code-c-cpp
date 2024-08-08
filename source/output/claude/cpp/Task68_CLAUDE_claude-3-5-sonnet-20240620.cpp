@@ -30,7 +30,11 @@ void searchLDAP(const std::string& username, const std::string& dc) {
         return;
     }
 
-    rc = ldap_set_option(ld, LDAP_OPT_PROTOCOL_VERSION, &(const int){LDAP_VERSION3});
+    //"error: invalid conversion from ‘int’ to ‘const void*’ [-fpermissive].
+    // fixed by regenerate"
+    // rc = ldap_set_option(ld, LDAP_OPT_PROTOCOL_VERSION, (const int){LDAP_VERSION3});
+    int version = LDAP_VERSION3;
+    rc = ldap_set_option(ld, LDAP_OPT_PROTOCOL_VERSION, &version);
     if (rc != LDAP_OPT_SUCCESS) {
         std::cerr << "ldap_set_option failed!" << std::endl;
         ldap_unbind_ext_s(ld, nullptr, nullptr);

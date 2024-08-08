@@ -3,8 +3,11 @@
 #include <algorithm>
 
 int maxSubArraySum(std::vector<int>& arr) {
+    //error: ‘maxGlobal’ was not declared in this scope
+    int maxGlobal;
     int maxCurrent = maxGlobal = arr[0];
-    for (int i =  = 1; i < arr.size(); i++) {
+    // for (int i =  = 1; i < arr.size(); i++) {
+    for (int i = 1; i < arr.size(); i++) {
         maxCurrent = std::max(arr[i], maxCurrent + arr[i]);
         if (maxCurrent > maxGlobal) {
             maxGlobal = maxCurrent;

@@ -34,6 +34,10 @@ public:
     Robot() {
         this->name = generateName();
     }
+    // error: ‘std::string Robot::name’ is private within this context
+    std::string getName() const {
+        return name;
+    }
 };
 
 std::set<std::string> Robot::existingNames;
@@ -45,7 +49,9 @@ std::mt19937 Robot::RANDOM(std::chrono::system_clock::now().time_since_epoch().c
 int main() {
     std::set<std::string> names;
     for (int i = 0; i < 1000; i++) {
-        names.insert(Robot().name);
+        // error: ‘std::string Robot::name’ is private within this context
+        // names.insert(Robot().name);
+        names.insert(Robot().getName());
     }
     if (names.size() != 1000) {
         throw std::runtime_error("Names are not unique");

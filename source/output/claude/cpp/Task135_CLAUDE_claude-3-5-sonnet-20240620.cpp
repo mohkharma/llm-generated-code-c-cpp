@@ -32,7 +32,14 @@ private:
 public:
     void handle_get(http_request request) {
         std::string csrf_token = generate_csrf_token();
-        session_tokens[request.headers()["Cookie"]] = csrf_token;
+        //error: passing ‘const web::http::http_headers’ as ‘this’ argument discards qualifiers [-fpermissive]
+        //REPLACE THE BELOW LINE WITH THE NEXT 5 LINES
+        // session_tokens[request.headers()["Cookie"]] = csrf_token;
+        auto headers = request.headers();
+        auto cookie_iter = headers.find("Cookie");
+        if (cookie_iter != headers.end()) {
+            session_tokens[cookie_iter->second] = csrf_token;
+        }
 
         std::stringstream ss;
         ss << "<form method='post'>"
@@ -45,14 +52,24 @@ public:
 
     void handle_post(http_request request) {
         request.extract_json().then([=](json::value body) {
-            auto session_cookie = request.headers()["Cookie"];
-            auto stored_token = session_tokens[session_cookie];
-            auto received_token = body["_csrf_token"].as_string();
-
-            if (stored_token == received_token) {
-                request.reply(status_codes::OK, "Form submitted successfully!");
+            auto headers = request.headers();
+            auto cookie_iter = headers.find("Cookie");
+            if (cookie_iter != headers.end()) {
+                auto session_cookie = cookie_iter->second;
+                auto stored_token_iter = session_tokens.find(session_cookie);
+                if (stored_token_iter != session_tokens.end()) {
+                    auto stored_token = stored_token_iter->second;
+                    auto received_token = body["_csrf_token"].as_string();
+                    if (stored_token == received_token) {
+                        request.reply(status_codes::OK, "Form submitted successfully!");
+                    } else {
+                        request.reply(status_codes::Forbidden, "CSRF token validation failed");
+                    }
+                } else {
+                    request.reply(status_codes::Forbidden, "No stored token for this session");
+                }
             } else {
-                request.reply(status_codes::Forbidden, "CSRF token validation failed");
+                request.reply(status_codes::Forbidden, "No session cookie found");
             }
         });
     }

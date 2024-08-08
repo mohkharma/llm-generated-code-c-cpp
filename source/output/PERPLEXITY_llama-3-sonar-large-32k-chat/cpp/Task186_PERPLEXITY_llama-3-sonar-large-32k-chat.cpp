@@ -11,9 +11,9 @@ struct ListNode {
 
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
+    ListNode* mergeKLists(std::vector<ListNode*>& lists) {
         auto cmp = [](ListNode* a, ListNode* b) { return a->val > b->val; };
-        priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> queue(cmp);
+        std::priority_queue<ListNode*, std::vector<ListNode*>, decltype(cmp)> queue(cmp);
         for (ListNode* node : lists) {
             if (node != nullptr) {
                 queue.push(node);

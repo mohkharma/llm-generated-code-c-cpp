@@ -9,6 +9,10 @@ public:
     std::string password;
     std::vector<std::string> privileges;
 
+    //error: no matching function for call to ‘User::User()’
+    User()
+    : username(""), password(""), privileges(NULL) {}
+
     User(std::string username, std::string password, std::vector<std::string> privileges)
         : username(username), password(password), privileges(privileges) {}
 

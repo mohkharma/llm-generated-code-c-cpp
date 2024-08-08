@@ -1,8 +1,12 @@
 
+#include <algorithm>
+#include <deque>
+#include <vector>
+
 class Solution {
 public:
-    int constrainedSubsetSum(vector<int>& nums, int k) {
-        deque<int> dq;
+    int constrainedSubsetSum(std::vector<int>& nums, int k) {
+        std::deque<int> dq;
         for (int i = 0; i < nums.size(); i++) {
             if (!dq.empty()) {
                 nums[i] += dq.front();

@@ -24,7 +24,10 @@ int main() {
     collection.insert_one(document.view());
 
     // Read a document
-    auto result = collection.find_one(bsoncxx::builder::stream::document{} << "name" << "John");
+    //error: no matching function for call to ‘mongocxx::v_noabi::collection::find_one(bsoncxx::detail::requires_not_t<bsoncxx::v_noabi::builder::stream::key_context<>, bsoncxx::detail::is_invocable<const char (&)[5], bsoncxx::v_noabi::builder::stream::single_context> >)’
+    // auto result = collection.find_one(bsoncxx::builder::stream::document{} << "name" << "John");
+    auto result = collection.find_one(bsoncxx::builder::stream::document{} << "name" << "John" << bsoncxx::builder::stream::finalize);
+
     if (result) {
         std::cout << bsoncxx::to_json(*result) << std::endl;
     }
@@ -32,10 +35,13 @@ int main() {
     // Update a document
     bsoncxx::builder::stream::document update_document{};
     update_document << "$set" << bsoncxx::builder::stream::document{} << "age" << 31;
-    collection.update_one(bsoncxx::builder::stream::document{} << "name" << "John", update_document.view());
+    // collection.update_one(bsoncxx::builder::stream::document{} << "name" << "John", update_document.view());
+    collection.update_one(bsoncxx::builder::stream::document{} << "name" << "John" << bsoncxx::builder::stream::finalize, update_document.view());
 
+    //error: no matching function for call to ‘mongocxx::v_noabi::collection::delete_one(bsoncxx::detail::requires_not_t<bsoncxx::v_noabi::builder::stream::key_context<>, bsoncxx::detail::is_invocable<const char (&)[5], bsoncxx::v_noabi::builder::stream::single_context> >)’
     // Delete a document
-    collection.delete_one(bsoncxx::builder::stream::document{} << "name" << "John");
+    // collection.delete_one(bsoncxx::builder::stream::document{} << "name" << "John");
+    collection.delete_one(bsoncxx::builder::stream::document{} << "name" << "John" << bsoncxx::builder::stream::finalize);
 
     return 0;
 }

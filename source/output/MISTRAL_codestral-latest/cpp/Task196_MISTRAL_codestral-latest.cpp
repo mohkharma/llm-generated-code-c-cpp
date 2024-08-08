@@ -16,7 +16,7 @@ public:
         sem_init(&oddSemaphore, 0, 0);
     }
 
-    void zero(function<void(int)> printNumber) {
+    void zero(std::function<void(int)> printNumber) {
         for (int i = 0; i < n; i++) {
             sem_wait(&zeroSemaphore);
             printNumber(0);
@@ -28,7 +28,7 @@ public:
         }
     }
 
-    void even(function<void(int)> printNumber) {
+    void even(std::function<void(int)> printNumber) {
         for (int i = 2; i <= n; i += 2) {
             sem_wait(&evenSemaphore);
             printNumber(i);
@@ -36,7 +36,7 @@ public:
         }
     }
 
-    void odd(function<void(int)> printNumber) {
+    void odd(std::function<void(int)> printNumber) {
         for (int i = 1; i <= n; i += 2) {
             sem_wait(&oddSemaphore);
             printNumber(i);

@@ -3,7 +3,7 @@
 #include <sstream>
 #include <iomanip>
 #include <openssl/sha.h>
-//compilation error, dependancies
+
 class CSRFProtection {
     private:
         std::string token;

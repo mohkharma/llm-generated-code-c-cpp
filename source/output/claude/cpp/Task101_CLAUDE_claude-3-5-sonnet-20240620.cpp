@@ -6,7 +6,8 @@
 
 int main() {
     const char* filename = "script.sh";
-    const char* content = "#!/bin/bash\\necho \\"Hello, World!\\"";
+    // const char* content = "#!/bin/bash\\necho \\"Hello, World!\\"";
+    const char* content = "#!/bin/bash\necho \"Hello, World!\"";
 
     // Create the file
     std::ofstream file(filename);

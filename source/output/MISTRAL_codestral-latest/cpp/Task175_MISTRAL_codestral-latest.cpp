@@ -1,4 +1,31 @@
+#include <stdexcept>
+#include <vector>
+
 // C++
+class MountainArray {
+private:
+    //change defintion below
+    //vector<int> arr;
+    std::vector<int> arr;
+    int calls;
+
+public:
+    //change defintion below
+    //vector<int> arr;
+    MountainArray(std::vector<int> arr) : arr(arr), calls(0) {
+    }
+
+    int get(int index) {
+        calls++;
+
+        if (calls > 100) throw std::runtime_error("Too many calls");
+        return arr[index];
+    }
+
+    int length() {
+        return arr.size();
+    }
+};
 class Solution {
 public:
     int findInMountainArray(int target, MountainArray &mountainArr) {

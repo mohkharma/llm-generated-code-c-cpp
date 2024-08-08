@@ -1,6 +1,7 @@
 // C++
 // This is a simple example using AES encryption algorithm.
 // Please note that you need to add OpenSSL library to your project.
+#include <cstring>
 #include <openssl/aes.h>
 #include <openssl/rand.h>
 #include <iostream>

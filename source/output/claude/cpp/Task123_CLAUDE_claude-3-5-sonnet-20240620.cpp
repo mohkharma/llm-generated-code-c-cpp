@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include <random>
+#include <thread>
 
 class Session {
 public:
@@ -13,6 +14,10 @@ public:
     std::string userId;
     std::chrono::system_clock::time_point creationTime;
     std::chrono::system_clock::time_point lastActivity;
+
+    //error: no matching function for call to ‘Session::Session()’
+    //add default constructor
+    Session() = default;  // Add this line
 
     Session(const std::string& userId) : userId(userId) {
         sessionId = generateUUID();
@@ -96,6 +101,9 @@ int main() {
         std::cout << "Session not found" << std::endl;
     }
 
+    //error: ‘std::this_thread’ has not been declared
+    //fixed by including #include <thread>
+    //
     // Simulate session expiration
     std::this_thread::sleep_for(std::chrono::seconds(2));
     sessionManager = SessionManager(1); // Set timeout to 1 second for demonstration

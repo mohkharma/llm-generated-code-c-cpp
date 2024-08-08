@@ -1,11 +1,15 @@
 
+#include <vector>
+
 class Solution {
 private:
-    vector<int> count;
-    vector<int> indexes;
-    vector<int> temp;
+    //error: ‘vector’ does not name a type
+    // vector<int> count;
+    std::vector<int> count;
+    std::vector<int> indexes;
+    std::vector<int> temp;
 
-    void mergeSort(vector<int>& nums, int start, int end) {
+    void mergeSort(std::vector<int>& nums, int start, int end) {
         if (start >= end) return;
 
         int mid = start + (end - start) / 2;
@@ -15,7 +19,7 @@ private:
         merge(nums, start, mid, end);
     }
 
-    void merge(vector<int>& nums, int start, int mid, int end) {
+    void merge(std::vector<int>& nums, int start, int mid, int end) {
         for (int i = start; i <= end; i++) {
             temp[i] = indexes[i];
         }
@@ -45,7 +49,7 @@ private:
     }
 
 public:
-    vector<int> countSmaller(vector<int>& nums) {
+    std::vector<int> countSmaller(std::vector<int>& nums) {
         int n = nums.size();
         count.resize(n, 0);
         indexes.resize(n);

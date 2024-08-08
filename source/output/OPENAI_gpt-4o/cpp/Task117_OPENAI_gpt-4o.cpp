@@ -4,7 +4,7 @@
 #include <zip.h>
 #include <archive.h>
 #include <archive_entry.h>
-//compilation error, dependancies
+
 void extract_zip(const std::string &file_path, const std::string &extract_to) {
     int err = 0;
     zip_t *archive = zip_open(file_path.c_str(), 0, &err);
@@ -59,6 +59,14 @@ void extract_tar(const std::string &file_path, const std::string &extract_to) {
     }
     archive_read_free(a);
 }
+// Custom function to check if a string ends with a given suffix
+bool ends_with(const std::string& str, const std::string& suffix) {
+    if (str.size() >= suffix.size()) {
+        return str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+    } else {
+        return false;
+    }
+}
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -69,9 +77,13 @@ int main(int argc, char *argv[]) {
     std::string archive_path = argv[1];
     std::string extract_to = argv[2];
 
-    if (archive_path.ends_with(".zip")) {
+    //error: ‘std::string’ {aka ‘class std::__cxx11::basic_string<char>’} has no member named ‘ends_with’
+    //The ends_with member function of std::string is a feature introduced in C++20.
+    // if (archive_path.ends_with(".zip")) {
+    if (ends_with(archive_path, ".zip")) {
         extract_zip(archive_path, extract_to);
-    } else if (archive_path.ends_with(".tar")) {
+    // } else if (archive_path.ends_with(".tar")) {
+    } else if (ends_with(archive_path, ".tar")) {
         extract_tar(archive_path, extract_to);
     } else {
         std::cerr << "Unsupported file type\n";

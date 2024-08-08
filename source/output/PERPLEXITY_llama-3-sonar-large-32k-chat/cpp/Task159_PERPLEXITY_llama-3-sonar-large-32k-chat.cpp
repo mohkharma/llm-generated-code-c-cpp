@@ -1,4 +1,3 @@
-code here:
 #include <iostream>
 
 int main() {

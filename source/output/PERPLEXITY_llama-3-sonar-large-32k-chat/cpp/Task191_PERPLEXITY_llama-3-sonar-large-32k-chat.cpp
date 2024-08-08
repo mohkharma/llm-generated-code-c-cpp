@@ -1,9 +1,12 @@
+#include <stack>
+#include <string>
+
 class Solution {
 public:
-    int longestValidParentheses(string s) {
+    int longestValidParentheses(std::string s) {
         int max_len = 0;
         int last_invalid = -1;
-        stack<int> stack;
+        std::stack<int> stack;
         for (int i = 0; i < s.length(); i++) {
             if (s[i] == '(') {
                 stack.push(i);
@@ -13,9 +16,9 @@ public:
                 } else {
                     stack.pop();
                     if (stack.empty()) {
-                        max_len = max(max_len, i - last_invalid);
+                        max_len = std::max(max_len, i - last_invalid);
                     } else {
-                        max_len = max(max_len, i - stack.top());
+                        max_len = std::max(max_len, i - stack.top());
                     }
                 }
             }

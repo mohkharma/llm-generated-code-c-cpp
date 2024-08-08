@@ -21,7 +21,10 @@ public:
     }
 
     void handle_post(http_request request) {
-        request.extract_json().then([this](json::value body) {
+
+        //error: ‘request’ is not captured
+        // request.extract_json().then([this](json::value body) {
+        request.extract_json().then([this, request](json::value body) {
             auto name = body["name"].as_string();
             auto email = body["email"].as_string();
 

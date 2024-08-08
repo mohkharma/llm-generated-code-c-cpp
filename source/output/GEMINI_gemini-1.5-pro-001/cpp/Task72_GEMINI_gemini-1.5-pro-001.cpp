@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <openssl/aes.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
@@ -14,7 +15,7 @@ void handleErrors(void) {
 
 // Function to encrypt data using AES-CBC with a static IV
 vector<unsigned char> encryptData(const unsigned char *plaintext, int plaintext_len,
-                                   const unsigned char *key, const unsigned char *iv) {
+                                  const unsigned char *key, const unsigned char *iv) {
   // Create and initialize cipher context
   EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
   if (!ctx) handleErrors();

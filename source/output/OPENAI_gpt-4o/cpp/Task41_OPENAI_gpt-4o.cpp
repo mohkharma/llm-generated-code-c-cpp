@@ -1,13 +1,15 @@
-/* Simulated C++ part in Java (in CppPart.java) */
+#include <iostream>
+#include <string>
 
-//compilation error, no cpp code
-// import java.util.Scanner;
-//
-// class CPart {
-//     public static void main(String[] args) {
-//         System.out.println("Enter a string (C): ");
-//         Scanner scanner = new Scanner(System.in);
-//         String inputC = scanner.nextLine();
-//         System.out.println("You entered (C): " + inputC);
-//     }
-// }
+int main() {
+    std::string userInput;
+
+    std::cout << "Please enter a string: ";
+    std::getline(std::cin, userInput);  // Safely read a line of input from the user
+
+    // Process the input string (e.g., output the length of the input)
+    std::cout << "You entered: " << userInput << std::endl;
+    std::cout << "Length of the input string: " << userInput.length() << std::endl;
+
+    return 0;
+}

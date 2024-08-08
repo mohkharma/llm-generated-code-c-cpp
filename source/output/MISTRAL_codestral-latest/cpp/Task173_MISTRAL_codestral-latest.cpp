@@ -1,47 +1,29 @@
+#include <string>
 #include <unordered_set>
-#include <cmath>
-using namespace std;
 
-class Solution {
-public:
-    string longestDupSubstring(string s) {
-        int n = s.length();
-        vector<int> nums(n);
-        for (int i = 0; i < n; i++) {
-            nums[i] = s[i] - 'a';
-        }
-        int a = 26;
-        long mod = pow(2, 32);
+std::string longestDupSubstring(std::string s) {
+    int n = s.length();
+    int left = 1, right = n;
+    std::string result = "";
 
-        int check(int length) {
-            long h = 0;
-            for (int i = 0; i < length; i++) {
-                h = (h * a + nums[i]) % mod;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        std::unordered_set<std::string> seen;
+
+        for (int i = 0; i <= n - mid; i++) {
+            std::string sub = s.substr(i, mid);
+            if (seen.find(sub) != seen.end()) {
+                result = sub;
+                left = mid + 1;
+                break;
             }
-            unordered_set<long> seen;
-            seen.insert(h);
-            long aL = 1;
-            for (int i = 1; i <= length; i++) {
-                aL = (aL * a) % mod;
-            }
-            for (int start = 1; start <= n - length; start++) {
-                h = (h * a - nums[start - 1] * aL + nums[start + length - 1]) % mod;
-                if (seen.find(h) != seen.end()) {
-                    return start;
-                }
-                seen.insert(h);
-            }
-            return -1;
+            seen.insert(sub);
         }
 
-        int start = -1, length = 0;
-        for (int k = 1; k < n; k++) {
-            int pos = check(k);
-            if (pos != -1 && k > length) {
-                start = pos;
-                length = k;
-            }
+        if (left > mid) {
+            right = mid - 1;
         }
-        return start != -1 ? s.substr(start, length) : "";
     }
-};
+
+    return result;
+}

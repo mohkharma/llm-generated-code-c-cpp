@@ -1,7 +1,11 @@
 #include <iostream>
-#include <bsoncxx/json.hpp>
+// #include <bsoncxx/json.hpp>
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>
+#include <mongocxx/uri.hpp>
+#include <bsoncxx/builder/stream/document.hpp>
+//error: ‘to_json’ is not a member of ‘bsoncxx’
+#include <bsoncxx/json.hpp>
 
 int main() {
     mongocxx::instance inst{};
@@ -18,6 +22,7 @@ int main() {
     // Read
     auto cursor = collection.find({});
     for (auto&& doc : cursor) {
+        // std::cout << bsoncxx::to_json(doc) << std::endl;
         std::cout << bsoncxx::to_json(doc) << std::endl;
     }
 

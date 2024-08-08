@@ -1,14 +1,6 @@
 #include <iostream>
 #include <sqlite3.h>
 
-static int callback(void *data, int argc, char **argv, char **azColName) {
-    for (int i = 0; i < argc; i++) {
-        std::cout << azColName[i] << ": " << (argv[i] ? argv[i] : "NULL") << std::endl;
-    }
-    std::cout << std::endl;
-    return 0;
-}
-
 int main(int argc, char* argv[]) {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <customerusername>" << std::endl;
@@ -16,10 +8,8 @@ int main(int argc, char* argv[]) {
     }
 
     sqlite3 *db;
-    char *zErrMsg = 0;
     int rc;
     const char *sql;
-    const char *data = "Callback function called";
 
     rc = sqlite3_open("database.db", &db);
 
@@ -45,18 +35,16 @@ int main(int argc, char* argv[]) {
         return rc;
     }
 
-    rc = sqlite3_exec(db, "BEGIN", NULL, 0, &zErrMsg);
-
-    if (rc != SQLITE_OK) {
-        std::cerr << "SQL error: " << zErrMsg << std::endl;
-        sqlite3_free(zErrMsg);
-        return rc;
-    }
-
     rc = sqlite3_step(stmt);
 
     if (rc == SQLITE_ROW) {
-        callback(data, sqlite3_column_count(stmt), sqlite3_column_text(stmt, 0), sqlite3_column_name(stmt, 0));
+        int columnCount = sqlite3_column_count(stmt);
+        for (int i = 0; i < columnCount; i++) {
+            const char *columnName = sqlite3_column_name(stmt, i);
+            const char *columnValue = reinterpret_cast<const char*>(sqlite3_column_text(stmt, i));
+            std::cout << columnName << ": " << (columnValue ? columnValue : "NULL") << std::endl;
+        }
+        std::cout << std::endl;
     } else if (rc == SQLITE_DONE) {
         std::cout << "No customer found with username: " << argv[1] << std::endl;
     } else {

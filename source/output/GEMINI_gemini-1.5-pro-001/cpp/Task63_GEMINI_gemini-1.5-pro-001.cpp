@@ -6,7 +6,7 @@
 
 std::string process_request(const std::string& request) {
   // Encoding to UTF-8 is already handled by std::string
-  std::string raw_data = request; 
+  std::string raw_data = request;
 
   // Base64 decode
   // ... Implement base64 decoding logic here ...
@@ -20,7 +20,7 @@ std::string process_request(const std::string& request) {
 
 int main() {
   // Example usage:
-  std::string request = /* ... Get the request data ... */;
+  std::string request = "sample input"/* ... Get the request data ... */;
   std::string data = process_request(request);
 
   // ... Use the processed data ...

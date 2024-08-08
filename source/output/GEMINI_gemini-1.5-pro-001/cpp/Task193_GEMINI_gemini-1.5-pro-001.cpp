@@ -1,6 +1,8 @@
+#include <vector>
+
 class Solution {
 public:
-    bool xorGame(vector<int>& nums) {
+    bool xorGame(std::vector<int>& nums) {
         int xorSum = 0;
         for (int num : nums) {
             xorSum ^= num;

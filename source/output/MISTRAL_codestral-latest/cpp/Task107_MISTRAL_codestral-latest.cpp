@@ -3,15 +3,17 @@
 // This is a complex solution that requires a deep understanding of both C++ and Java.
 // Here's a simplified example of how you might use JNI to perform a JNDI lookup, but it's not complete and may not work:
 
-#include <jni.h>
+//Answer is not complete and may not work and commented
 
-JNIEXPORT void JNICALL Java_JNDILookup_main(JNIEnv *env, jobject obj) {
-    jclass initialContextClass = env->FindClass("javax/naming/InitialContext");
-    jmethodID initialContextConstructor = env->GetMethodID(initialContextClass, "<init>", "()V");
-    jobject initialContext = env->NewObject(initialContextClass, initialContextConstructor);
-
-    jmethodID lookupMethod = env->GetMethodID(initialContextClass, "lookup", "(Ljava/lang/String;)Ljava/lang/Object;");
-    jstring lookupString = env->NewStringUTF("java:comp/env/jdbc/MyDB");
-    jobject lookup = env->CallObjectMethod(initialContext, lookupMethod, lookupString);
-    // Use the lookup object here
-}
+// #include <jni.h>
+//
+// JNIEXPORT void JNICALL Java_JNDILookup_main(JNIEnv *env, jobject obj) {
+//     jclass initialContextClass = env->FindClass("javax/naming/InitialContext");
+//     jmethodID initialContextConstructor = env->GetMethodID(initialContextClass, "<init>", "()V");
+//     jobject initialContext = env->NewObject(initialContextClass, initialContextConstructor);
+//
+//     jmethodID lookupMethod = env->GetMethodID(initialContextClass, "lookup", "(Ljava/lang/String;)Ljava/lang/Object;");
+//     jstring lookupString = env->NewStringUTF("java:comp/env/jdbc/MyDB");
+//     jobject lookup = env->CallObjectMethod(initialContext, lookupMethod, lookupString);
+//     // Use the lookup object here
+// }

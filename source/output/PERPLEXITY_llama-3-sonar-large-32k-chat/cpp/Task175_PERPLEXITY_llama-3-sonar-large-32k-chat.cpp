@@ -1,3 +1,17 @@
+#include <vector>
+
+class MountainArray {
+public:
+    std::vector<int> array;
+    MountainArray(std::vector<int>& arr) : array(arr) {}
+    int get(int index) {
+        return array[index];
+    }
+    int length() {
+        return array.size();
+    }
+};
+
 class Solution {
 public:
     int findInMountainArray(int target, MountainArray &mountainArr) {

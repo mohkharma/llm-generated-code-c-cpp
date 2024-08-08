@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <numeric>
 #include <vector>
 
 int queueTime(std::vector<int> customers, int n) {

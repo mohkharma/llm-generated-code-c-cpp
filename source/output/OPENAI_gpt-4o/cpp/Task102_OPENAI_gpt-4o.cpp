@@ -1,11 +1,12 @@
+// C++ code to accept username and password, hash the password, and update the database
+// Comment: Complete implementation for a database connection in C++ can be complex and might require additional libraries. This is a simplistic representation.
+
 #include <iomanip>
 #include <iostream>
 #include <string>
 #include <openssl/sha.h>
 #include <sqlite3.h>
-// C++ code to accept username and password, hash the password, and update the database
-// Comment: Complete implementation for a database connection in C++ can be complex and might require additional libraries. This is a simplistic representation.
-//compilation error, dependancies
+
 std::string hashPassword(const std::string& password) {
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_CTX sha256;

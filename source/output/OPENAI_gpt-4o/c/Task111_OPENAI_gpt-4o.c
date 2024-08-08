@@ -1,1 +1,0 @@
-/* Not feasible to implement full XML-RPC server in C easily without multiple external dependencies. */

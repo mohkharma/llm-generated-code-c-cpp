@@ -1,6 +1,8 @@
+#include <vector>
+
 class ProductOfNumbers {
 public:
-    vector<int> prefixProducts;
+    std::vector<int> prefixProducts;
 
     ProductOfNumbers() {
         prefixProducts.push_back(1); // Initialize with 1 for empty subarrays

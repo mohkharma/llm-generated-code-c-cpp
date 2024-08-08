@@ -3,7 +3,7 @@
 #include <deque>
 #include <vector>
 #include <climits>
-//compilation error, missing include for #include <algorithm>
+
 using namespace std;
 
 int maxSubsequenceSum(vector<int>& nums, int k) {
@@ -25,7 +25,7 @@ int maxSubsequenceSum(vector<int>& nums, int k) {
         }
         deq.push_back(i);
     }
-//missing include for #include <algorithm>
+
     return *max_element(dp.begin(), dp.end());
 }
 

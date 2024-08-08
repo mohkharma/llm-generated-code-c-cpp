@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include <xmlrpc-c/base.hpp>
 #include <xmlrpc-c/registry.hpp>
 #include <xmlrpc-c/server_abyss.hpp>
@@ -31,8 +32,11 @@ int main() {
 
     xmlrpc_c::serverAbyss myAbyssServer(xmlrpc_c::serverAbyss::constrOpt()
         .registryP(&myRegistry)
-        .port(8000));
-
+        //error: ‘class xmlrpc_c::serverAbyss::constrOpt’ has no member named ‘port’
+        // .port(8000));
+        .portNumber(8000));
+    // error: ‘cout’ is not a member of ‘std’.
+    // fixed by adding #include <iostream>
     std::cout << "XML-RPC server is running on port 8000..." << std::endl;
     myAbyssServer.run();
 

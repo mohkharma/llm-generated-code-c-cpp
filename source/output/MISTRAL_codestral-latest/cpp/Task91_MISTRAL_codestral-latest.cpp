@@ -1,10 +1,12 @@
-// C++ doesn't have built-in UDP DNS server, so a library like ldns is required.
-// This is a simplified example and doesn't include error handling or DNS record resolution.
-
+//can't be fixed
 #include <ldns/ldns.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+//error: ‘ldns_pkt_push_question’ was not declared in this scope; did you mean ‘ldns_pkt_set_question’?
+//I defined it
+void ldns_pkt_push_question(ldns_pkt * response, ldns_rr_list * question){}
 
 ldns_pkt* resolve_dns(ldns_pkt* request) {
     ldns_pkt* response = ldns_pkt_new();
@@ -14,23 +16,30 @@ ldns_pkt* resolve_dns(ldns_pkt* request) {
     ldns_pkt_set_rd(response, ldns_pkt_rd(request));
     ldns_pkt_set_ra(response, 1);
 
-    ldns_rr* question = ldns_pkt_question(request);
-    ldns_pkt_push_question(response, question);
-
-    // Resolve DNS records (this part is not implemented)
-
-    // Add a DNS answer (replace with actual resolution)
-    ldns_rr* answer = ldns_rr_new();
-    ldns_rr_set_type(answer, LDNS_RR_TYPE_A);
-    ldns_rr_set_class(answer, LDNS_RR_CLASS_IN);
-    ldns_rr_set_ttl(answer, 60);
-    ldns_rr_set_owner(answer, ldns_rr_owner(question));
-    ldns_rdf* rdf = ldns_rdf_new_frm_data(LDNS_RDF_TYPE_A, 4, (const uint8_t[]){192, 168, 1, 1});
-    ldns_rr_push_rdf(answer, rdf);
-    ldns_pkt_push_answer(response, answer);
+    //error: cannot convert ‘ldns_rr_list*’ {aka ‘ldns_struct_rr_list*’} to ‘ldns_rr*’ {aka ‘ldns_struct_rr*’} in initialization
+    //can't be fixed
+    // const ldns_rr *question = ldns_pkt_question(request);
+    //
+    // ldns_pkt_push_question(response, question);
+    //
+    // // Resolve DNS records (this part is not implemented)
+    //
+    // // Add a DNS answer (replace with actual resolution)
+    // ldns_rr* answer = ldns_rr_new();
+    // ldns_rr_set_type(answer, LDNS_RR_TYPE_A);
+    // ldns_rr_set_class(answer, LDNS_RR_CLASS_IN);
+    // ldns_rr_set_ttl(answer, 60);
+    // ldns_rr_set_owner(answer, ldns_rr_owner(question));
+    // ldns_rdf* rdf = ldns_rdf_new_frm_data(LDNS_RDF_TYPE_A, 4, (const uint8_t[]){192, 168, 1, 1});
+    // ldns_rr_push_rdf(answer, rdf);
+    // ldns_pkt_push_answer(response, answer);
 
     return response;
 }
+
+ldns_pkt * ldns_pkt_new_frm_wire(uint8_t * str, ssize_t ssize);
+
+uint8_t * ldns_pkt_data(ldns_pkt * response, size_t * response_len);
 
 int main() {
     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);

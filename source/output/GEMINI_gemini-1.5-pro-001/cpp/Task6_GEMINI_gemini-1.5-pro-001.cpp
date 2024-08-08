@@ -3,7 +3,8 @@
 
 using namespace std;
 
-double findUniq(const vector<double> &arr) {
-    sort(arr.begin(), arr.end());
-    return arr[0] == arr[1] ? arr[arr.size()-1] : arr[0];
+double findUniq(const vector<double>& arr) {
+    vector<double> temp = arr; // Create a copy
+    sort(temp.begin(), temp.end());
+    return temp[0] == temp[1] ? temp[temp.size() - 1] : temp[0];
 }

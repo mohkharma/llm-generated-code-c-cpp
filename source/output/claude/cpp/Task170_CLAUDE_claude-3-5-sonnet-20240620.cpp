@@ -1,8 +1,11 @@
 
+#include <algorithm>
+#include <vector>
+
 class Solution {
 public:
-    int countRangeSum(vector<int>& nums, int lower, int upper) {
-        vector<long long> prefixSum(nums.size() + 1, 0);
+    int countRangeSum(std::vector<int>& nums, int lower, int upper) {
+        std::vector<long long> prefixSum(nums.size() + 1, 0);
         for (int i = 0; i < nums.size(); i++) {
             prefixSum[i + 1] = prefixSum[i] + nums[i];
         }
@@ -10,7 +13,7 @@ public:
     }
     
 private:
-    int mergeSort(vector<long long>& arr, int left, int right, int lower, int upper) {
+    int mergeSort(std::vector<long long>& arr, int left, int right, int lower, int upper) {
         if (left >= right) {
             return 0;
         }

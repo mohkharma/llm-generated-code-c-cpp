@@ -7,4 +7,4 @@ public:
         std::sort(arr.begin(), arr.end());
         return (arr[0] == arr[1]) ? arr.back() : arr[0];
     }
-}
+};

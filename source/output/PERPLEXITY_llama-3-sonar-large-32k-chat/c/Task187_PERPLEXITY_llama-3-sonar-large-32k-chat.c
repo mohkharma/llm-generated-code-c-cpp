@@ -1,1 +1,0 @@
-// C does not have built-in support for threads and synchronization, so we cannot provide a solution in C.

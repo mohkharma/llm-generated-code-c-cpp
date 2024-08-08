@@ -7,6 +7,9 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
+//error: no matching function for call to ‘find(std::vector<int>::iterator, std::vector<int>::iterator, int&)’
+#include <algorithm>
+
 #define PORT 5555
 #define MAX_CLIENTS 10
 #define BUFFER_SIZE 1024
@@ -30,7 +33,9 @@ void handle_client(int client_socket) {
             }
         }
     }
-    
+    // error: no matching function for call to ‘find(std::vector<int>::iterator, std::vector<int>::iterator, int&)’.
+    // Regeneration failed to fixed the issue. fixed manually by including #include <algorithm>
+
     auto it = std::find(clients.begin(), clients.end(), client_socket);
     if (it != clients.end()) {
         clients.erase(it);

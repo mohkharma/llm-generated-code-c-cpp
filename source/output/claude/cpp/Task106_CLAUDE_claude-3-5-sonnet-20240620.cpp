@@ -51,7 +51,10 @@ vector<int> encrypt(pair<int, int> pk, string plaintext) {
     int n = pk.second;
     vector<int> cipher;
     for (char c : plaintext) {
-        cipher.push_back(pow(int(c), key) % n);
+        //error: invalid operands of types ‘__gnu_cxx::__promote<double>::__type’ {aka ‘double’} and ‘int’ to binary ‘operator%’
+        // cipher.push_back(pow(int(c), key) % n);
+        cipher.push_back(static_cast<int>(fmod(pow(static_cast<double>(c), key), n)));
+
     }
     return cipher;
 }
@@ -61,7 +64,10 @@ string decrypt(pair<int, int> pk, vector<int> ciphertext) {
     int n = pk.second;
     string plain;
     for (int c : ciphertext) {
-        plain += char(pow(c, key) % n);
+        //error: invalid operands of types ‘__gnu_cxx::__promote<double>::__type’ {aka ‘double’} and ‘int’ to binary ‘operator%’
+        // plain += char(pow(c, key) % n);
+        plain += static_cast<char>(fmod(pow(static_cast<double>(c), key), n));
+
     }
     return plain;
 }

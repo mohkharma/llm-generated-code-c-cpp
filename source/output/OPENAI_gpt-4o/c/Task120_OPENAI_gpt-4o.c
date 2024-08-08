@@ -1,1 +1,0 @@
-// comment: Include the code above and use a C-based web framework like kcgi to create a web application with similar functionality.

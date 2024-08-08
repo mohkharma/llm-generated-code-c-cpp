@@ -1,6 +1,10 @@
 #include <iostream>
+#include <netdb.h>
+#include <unistd.h>
+#include <bits/socket.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
+#include <sys/socket.h>
 
 int main() {
     // Define the remote server and port

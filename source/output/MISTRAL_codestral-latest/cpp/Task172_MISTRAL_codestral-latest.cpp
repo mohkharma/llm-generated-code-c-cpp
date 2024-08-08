@@ -4,7 +4,7 @@
 bool repeatedSubstringPattern(std::string s) {
     int n = s.length();
     for (int i = 1; i <= n / 2; i++) {
-        if (n % i == 0 && std::string(i, s[0]).repeat(n / i) == s) {
+        if (n % i == 0 && std::string(n / i, s[0]) == std::string(n, s[0]).substr(0, n)) {
             return true;
         }
     }

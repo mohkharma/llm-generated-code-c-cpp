@@ -1,4 +1,5 @@
 // C++: Server to upload files using Boost.Beast and Boost.Asio
+#include <fstream>
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/beast/version.hpp>
@@ -6,7 +7,6 @@
 #include <boost/filesystem.hpp>
 #include <iostream>
 #include <string>
-//compilation error, dependancies
 namespace beast = boost::beast;
 namespace http = beast::http;
 namespace net = boost::asio;        

@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
+#include <algorithm>  // Add this line
 
 #define PORT 5555
 #define MAX_CLIENTS 10

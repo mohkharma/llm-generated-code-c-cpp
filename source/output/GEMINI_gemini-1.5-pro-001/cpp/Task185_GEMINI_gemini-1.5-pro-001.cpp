@@ -1,10 +1,12 @@
+#include <vector>
+
 class Solution {
 public:
-    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
         int m = nums1.size(), n = nums2.size();
         int p1 = 0, p2 = 0;
         int i = 0, j = 0;
-        vector<int> nums;
+        std::vector<int> nums;
         while (i < m && j < n) {
             if (nums1[i] < nums2[j]) {
                 nums.push_back(nums1[i++]);

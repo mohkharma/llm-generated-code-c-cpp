@@ -1,4 +1,3 @@
-code here:
 #include <mutex>
 
 class BankAccount {

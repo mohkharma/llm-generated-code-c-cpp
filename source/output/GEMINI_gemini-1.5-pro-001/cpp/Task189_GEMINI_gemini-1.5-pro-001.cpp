@@ -1,10 +1,15 @@
+#include <mutex>
+#include <condition_variable>
+#include <functional>
+#include <thread>
+
 class ZeroEvenOdd {
 public:
   ZeroEvenOdd(int n) : n(n), count(0) {}
 
-  void zero(function<void(int)> printNumber) {
+  void zero(std::function<void(int)> printNumber) {
     for (int i = 0; i < n; i++) {
-      unique_lock<mutex> lock(m);
+      std::unique_lock<std::mutex> lock(m);
       cv.wait(lock, [this] { return count % 2 == 0; });
       printNumber(0);
       count++;
@@ -15,9 +20,9 @@ public:
     }
   }
 
-  void even(function<void(int)> printNumber) {
+  void even(std::function<void(int)> printNumber) {
     for (int i = 2; i <= n; i += 2) {
-      unique_lock<mutex> lock(m);
+      std::unique_lock<std::mutex> lock(m);
       cv.wait(lock, [this] { return count % 2 == 1; });
       printNumber(i);
       count++;
@@ -28,9 +33,9 @@ public:
     }
   }
 
-  void odd(function<void(int)> printNumber) {
+  void odd(std::function<void(int)> printNumber) {
     for (int i = 1; i <= n; i += 2) {
-      unique_lock<mutex> lock(m);
+      std::unique_lock<std::mutex> lock(m);
       cv.wait(lock, [this] { return count % 2 == 1; });
       printNumber(i);
       count++;
@@ -44,6 +49,6 @@ public:
 private:
   int n;
   int count;
-  mutex m;
-  condition_variable cv;
+  std::mutex m;
+  std::condition_variable cv;
 };

@@ -1,7 +1,11 @@
 
+#include <climits>
+#include <stdexcept>
+#include <vector>
+
 class Solution {
 public:
-    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
         if (nums1.size() > nums2.size()) {
             return findMedianSortedArrays(nums2, nums1);
         }
@@ -22,9 +26,9 @@ public:
             
             if (maxLeftX <= minRightY && maxLeftY <= minRightX) {
                 if ((m + n) % 2 == 0) {
-                    return (max(maxLeftX, maxLeftY) + min(minRightX, minRightY)) / 2.0;
+                    return (std::max(maxLeftX, maxLeftY) + std::min(minRightX, minRightY)) / 2.0;
                 } else {
-                    return max(maxLeftX, maxLeftY);
+                    return std::max(maxLeftX, maxLeftY);
                 }
             } else if (maxLeftX > minRightY) {
                 high = partitionX - 1;
@@ -33,6 +37,6 @@ public:
             }
         }
         
-        throw invalid_argument("Input arrays are not sorted");
+        throw std::invalid_argument("Input arrays are not sorted");
     }
 };

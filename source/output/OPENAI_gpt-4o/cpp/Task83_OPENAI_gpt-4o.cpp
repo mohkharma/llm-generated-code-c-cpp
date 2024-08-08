@@ -4,7 +4,7 @@
 #include <openssl/aes.h>
 #include <openssl/rand.h>
 #include <openssl/evp.h>
-//compilation error, dependancies
+
 std::vector<unsigned char> encrypt(const std::vector<unsigned char>& key, const std::vector<unsigned char>& plaintext) {
     std::vector<unsigned char> ciphertext(plaintext.size() + AES_BLOCK_SIZE);
     unsigned char iv[AES_BLOCK_SIZE];

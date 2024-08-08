@@ -1,25 +1,20 @@
 #include <iostream>
-#include <stdexcept>
 #include <vector>
-//compilation error, error: 'vector' does not name a type and other errors
-//add include to  //needs import to <stdexcept>, <vector>, <iostream>
+#include <stdexcept>
+
+using namespace std;
+
 class MountainArray {
 private:
-    //change defintion below
-    //vector<int> arr;
-    std::vector<int> arr;
+    vector<int> arr;
     int calls;
 
 public:
-    //change defintion below
-    //vector<int> arr;
-    MountainArray(std::vector<int> arr) : arr(arr), calls(0) {
-    }
+    MountainArray(vector<int> arr) : arr(arr), calls(0) {}
 
     int get(int index) {
         calls++;
-        //needs inport for #include <stdexcept>
-        if (calls > 100) throw std::runtime_error("Too many calls");
+        if (calls > 100) throw runtime_error("Too many calls");
         return arr[index];
     }
 
@@ -66,13 +61,8 @@ private:
 };
 
 int main() {
-    //change defintion below
-    //vector<int> arr;
-    std::vector<int> vec = {1, 2, 3, 4, 5, 3, 1};
+    vector<int> vec = {1, 2, 3, 4, 5, 3, 1};
     MountainArray mountainArr(vec);
     Solution sol;
-    //change defintion below
-    //    cout << sol.findInMountainArray(3, mountainArr) << endl;  // Output: 2
-
-    std::cout << sol.findInMountainArray(3, mountainArr) << std::endl; // Output: 2
+    cout << sol.findInMountainArray(3, mountainArr) << endl;  // Output: 2
 }

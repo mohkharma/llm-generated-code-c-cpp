@@ -3,13 +3,17 @@
 #include <string>
 #include <vector>
 #include <json/json.h>
-//compilation error, dependancies
+
 int main(int argc, char *argv[]) {
+    if (argc < 3) {
+        std::cerr << "Usage: " << argv[0] << " <domainComponent> <username>" << std::endl;
+        return 1;
+    }
+
     std::string domainComponent = argv[1];
     std::string username = argv[2];
-
     std::string query = "(uid=" + username + ")";
-    
+
     LDAP *ld;
     LDAPMessage *result, *entry;
     int ldap_version = LDAP_VERSION3;
@@ -21,14 +25,19 @@ int main(int argc, char *argv[]) {
 
     ldap_set_option(ld, LDAP_OPT_PROTOCOL_VERSION, &ldap_version);
 
-    if (ldap_simple_bind_s(ld, nullptr, nullptr) != LDAP_SUCCESS) {
-        std::cerr << "LDAP bind failed" << std::endl;
+    // Use ldap_sasl_bind_s for a simple bind (anonymous in this case)
+    int rc = ldap_sasl_bind_s(ld, nullptr, LDAP_SASL_SIMPLE, nullptr, nullptr, nullptr, nullptr);
+    if (rc != LDAP_SUCCESS) {
+        std::cerr << "LDAP bind failed: " << ldap_err2string(rc) << std::endl;
+        ldap_unbind_ext_s(ld, nullptr, nullptr);
         return 1;
     }
 
     std::string base_dn = "dc=" + domainComponent;
-    if (ldap_search_ext_s(ld, base_dn.c_str(), LDAP_SCOPE_SUBTREE, query.c_str(), nullptr, 0, nullptr, nullptr, nullptr, LDAP_NO_LIMIT, &result) != LDAP_SUCCESS) {
-        std::cerr << "LDAP search failed" << std::endl;
+    rc = ldap_search_ext_s(ld, base_dn.c_str(), LDAP_SCOPE_SUBTREE, query.c_str(), nullptr, 0, nullptr, nullptr, nullptr, LDAP_NO_LIMIT, &result);
+    if (rc != LDAP_SUCCESS) {
+        std::cerr << "LDAP search failed: " << ldap_err2string(rc) << std::endl;
+        ldap_unbind_ext_s(ld, nullptr, nullptr);
         return 1;
     }
 

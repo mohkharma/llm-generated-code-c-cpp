@@ -12,6 +12,12 @@ public:
     time_t createdAt;
     time_t lastAccessed;
 
+    //error: no matching function for call to ‘Session::Session()’. Missing default constructor add the below default constructor
+    Session() {
+        sessionId = generateUUID();
+        createdAt = time(nullptr);
+        lastAccessed = createdAt;
+    }
     Session(const std::string& userId) : userId(userId) {
         sessionId = generateUUID();
         createdAt = time(nullptr);

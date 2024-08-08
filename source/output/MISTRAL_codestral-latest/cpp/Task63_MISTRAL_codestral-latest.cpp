@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <base64.h>
+#include <cpp-base64/base64.h>
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;

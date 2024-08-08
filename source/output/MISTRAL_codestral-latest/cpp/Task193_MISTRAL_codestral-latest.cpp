@@ -2,9 +2,11 @@
 using namespace std;
 
 bool xorGame(vector<int>& nums) {
-    int xor = 0;
+    // "error: expected unqualified-id before ‘xor’ token. reserved keyword"
+    int xor1 = 0;
+    // int xor2 = 0;
     for (int num : nums) {
-        xor ^= num;
+        xor1 ^= num;
     }
-    return xor != 0 && nums.size() % 2 == 1;
+    return xor1 != 0 && nums.size() % 2 == 1;
 }

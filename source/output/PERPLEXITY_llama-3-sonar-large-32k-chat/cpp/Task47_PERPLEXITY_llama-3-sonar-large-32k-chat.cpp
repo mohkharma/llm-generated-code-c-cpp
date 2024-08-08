@@ -1,10 +1,13 @@
-// C++ does not support web scraping and database operations in a single file.
-// You would need to use external libraries like libcurl and sqlite3.
-// Here is a basic example using libcurl and sqlite3:
 #include <curl/curl.h>
 #include <sqlite3.h>
 #include <string>
 #include <iostream>
+
+//fixed by regeneration of response
+static size_t writeMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp) {
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
 
 int main() {
     // Send a GET request

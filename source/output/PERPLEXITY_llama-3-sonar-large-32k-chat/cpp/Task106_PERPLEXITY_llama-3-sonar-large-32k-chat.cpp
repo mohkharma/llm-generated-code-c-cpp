@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -58,7 +59,8 @@ public:
     static vector<int> encrypt(pair<int, int> publicKey, string plaintext) {
         vector<int> cipher;
         for (char c : plaintext) {
-            cipher.push_back(pow(c, publicKey.first) % publicKey.second);
+            //error: invalid operands of types ‘__gnu_cxx::__promote<double>::__type’ {aka ‘double’} and ‘int’ to binary ‘operator%’
+            cipher.push_back(static_cast<int>(pow(c, publicKey.first)) % publicKey.second);
         }
         return cipher;
     }
@@ -66,7 +68,8 @@ public:
     static string decrypt(pair<int, int> privateKey, vector<int> ciphertext) {
         string plain;
         for (int c : ciphertext) {
-            plain += char(pow(c, privateKey.first) % privateKey.second);
+            //error: invalid operands of types ‘__gnu_cxx::__promote<double>::__type’ {aka ‘double’} and ‘int’ to binary ‘operator%’
+            plain += char(static_cast<int>(pow(c, privateKey.first)) % privateKey.second);
         }
         return plain;
     }

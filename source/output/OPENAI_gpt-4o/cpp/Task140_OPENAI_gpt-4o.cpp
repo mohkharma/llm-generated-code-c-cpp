@@ -1,7 +1,10 @@
 #include <iostream>
 
 using namespace std;
-//compilation error, fixed
+
+//error: expected ‘)’ before ‘operator’.
+// use of reserved keywords. just rename the variable to a valid name
+// double calculate(double a, double b, char operator) {
 double calculate(double a, double b, char operator1) {
     switch (operator1) {
         case '+':
@@ -20,8 +23,6 @@ double calculate(double a, double b, char operator1) {
 
 int main() {
     double a, b;
-    // error: expected type-specifier before ';' token
-    // char operator;
     char operator1;
 
     cout << "Enter first number: ";

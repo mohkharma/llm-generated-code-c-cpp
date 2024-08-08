@@ -3,6 +3,10 @@
 class Solution {
 public:
     bool solution(std::string str, std::string ending) {
-      return str.ends_with(ending);
+        if (ending.size() > str.size()) {
+            return false;
+        }
+
+        return str.substr(str.length() - ending.length()) == ending;
     }
 };

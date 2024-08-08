@@ -1,6 +1,7 @@
 // CPP
 #include <openssl/evp.h>
 #include <fstream>
+#include <openssl/pem.h>
 
 EVP_PKEY* generateKey() {
     EVP_PKEY_CTX *ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, NULL);

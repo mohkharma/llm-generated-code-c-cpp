@@ -4,7 +4,7 @@
 #include <openssl/aes.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>
-//compilation error, dependancies
+
 std::string encrypt(const std::string &message, const std::string &secretKey) {
     unsigned char key[32], iv[32];
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();

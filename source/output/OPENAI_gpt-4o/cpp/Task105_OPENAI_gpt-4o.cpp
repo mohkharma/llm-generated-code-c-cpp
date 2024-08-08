@@ -3,7 +3,7 @@
 #include <openssl/err.h>
 #include <netdb.h>
 #include <unistd.h>
-//compilation error, dependancies
+
 void connect(const char* hostname, int port) {
     SSL_library_init();
     SSL_CTX *ctx = SSL_CTX_new(SSLv23_client_method());

@@ -2,7 +2,9 @@
 // This example uses the libcurl library to download the file and the system() function to execute it.
 
 #include <curl/curl.h>
-#include <stdio.h>
+// error: ‘system’ was not declared in this scope
+#include <cstdio>
+#include <cstdlib>
 
 size_t write_data(void *ptr, size_t size, size_t nmeb, FILE *stream) {
     size_t written = fwrite(ptr, size, nmeb, stream);

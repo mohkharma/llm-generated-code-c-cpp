@@ -2,26 +2,31 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <algorithm> // Include for std::remove; error: cannot convert ‘std::vector<int>::iterator’ to ‘const char*’
 #include <arpa/inet.h>
 #include <unistd.h>
-//compilation error, dependancies
+
 std::vector<int> clients;
 std::mutex clients_mutex;
 
 void handle_client(int client_socket) {
     char buffer[1024];
     while (true) {
-        int bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
+        int bytes_received = recv(client_socket, buffer, sizeof(buffer) - 1, 0);
         if (bytes_received <= 0) {
             close(client_socket);
-            std::lock_guard<std::mutex> lock(clients_mutex);
-            clients.erase(std::remove(clients.begin(), clients.end(), client_socket), clients.end());
+            {
+                std::lock_guard<std::mutex> lock(clients_mutex);
+                //error: cannot convert ‘std::vector<int>::iterator’ to ‘const char*’
+                // fixed by including #include <algorithm>
+                clients.erase(std::remove(clients.begin(), clients.end(), client_socket), clients.end());
+            }
             return;
         }
-        
+
         buffer[bytes_received] = '\0';
         std::cout << "Received: " << buffer << std::endl;
-        
+
         std::lock_guard<std::mutex> lock(clients_mutex);
         for (const auto& client : clients) {
             if (client != client_socket) {
@@ -32,8 +37,7 @@ void handle_client(int client_socket) {
 }
 
 int main() {
-    int server_socket;
-    server_socket = socket(AF_INET, SOCK_STREAM, 0);
+    int server_socket = socket(AF_INET, SOCK_STREAM, 0);
     sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(5555);
@@ -45,10 +49,16 @@ int main() {
 
     while (true) {
         int client_socket = accept(server_socket, nullptr, nullptr);
+        if (client_socket < 0) {
+            std::cerr << "Failed to accept connection" << std::endl;
+            continue;
+        }
+
         {
             std::lock_guard<std::mutex> lock(clients_mutex);
             clients.push_back(client_socket);
         }
+
         std::thread(handle_client, client_socket).detach();
     }
 

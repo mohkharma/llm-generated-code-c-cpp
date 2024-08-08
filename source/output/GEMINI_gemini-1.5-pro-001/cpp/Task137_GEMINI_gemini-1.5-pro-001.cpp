@@ -4,16 +4,22 @@
 
 using namespace std;
 
-unordered_map<string, unordered_map<string, object>> products = {
-    {"001", {{"name", "Apple"}, {"price", 1.00}, {"stock", 100}}},
-    {"002", {{"name", "Banana"}, {"price", 0.50}, {"stock", 50}}},
-    {"003", {{"name", "Orange"}, {"price", 1.20}, {"stock", 75}}}
+struct Product {
+    string name;
+    double price;
+    int stock;
+};
+
+unordered_map<string, Product> products = {
+    {"001", {"Apple", 1.00, 100}},
+    {"002", {"Banana", 0.50, 50}},
+    {"003", {"Orange", 1.20, 75}}
 };
 
 string getProductDetails(const string& productId) {
     auto product = products.find(productId);
     if (product != products.end()) {
-        return "Product Name: " + product->second["name"].get<string>() + "\nPrice: $" + to_string(product->second["price"].get<double>()) + "\nStock: " + to_string(product->second["stock"].get<int>());
+        return "Product Name: " + product->second.name + "\nPrice: $" + to_string(product->second.price) + "\nStock: " + to_string(product->second.stock);
     } else {
         return "Product not found.";
     }

@@ -1,3 +1,4 @@
+#include <functional>
 #include <semaphore.h>
 
 class H2O {
@@ -11,13 +12,13 @@ public:
         sem_init(&oSem, 0, 0);
     }
 
-    void hydrogen(function<void()> releaseHydrogen) {
+    void hydrogen(std::function<void()> releaseHydrogen) {
         sem_wait(&hSem);
         releaseHydrogen();
         sem_post(&oSem);
     }
 
-    void oxygen(function<void()> releaseOxygen) {
+    void oxygen(std::function<void()> releaseOxygen) {
         sem_wait(&oSem);
         sem_wait(&oSem);
         releaseOxygen();

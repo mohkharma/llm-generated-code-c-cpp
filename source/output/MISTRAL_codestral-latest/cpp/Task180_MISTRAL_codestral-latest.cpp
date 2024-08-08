@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -11,7 +12,9 @@ public:
     }
 
     void reparent(Node* parent) {
-        children.erase(std::remove(children.begin(), children.end(), parent), children.end());
+        // error: cannot convert ‘std::vector<Node*>::iterator’ to ‘const char*’
+        // children.erase(std::remove(children.begin(), children.end(), parent), children.end());
+        children.erase(std::remove_if(children.begin(), children.end(), [parent](Node* child) { return child == parent; }), children.end());
         for (Node* child : children) {
             child->reparent(this);
         }

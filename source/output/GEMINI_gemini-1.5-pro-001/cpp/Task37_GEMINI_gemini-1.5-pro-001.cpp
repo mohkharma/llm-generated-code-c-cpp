@@ -23,7 +23,10 @@ int main() {
 
     rc = sqlite3_exec(db, query, [](void *data, int argc, char **argv, char **azColName) -> int {
         for (int i = 0; i < argc; i++) {
-            cout << azColName[i] << ": " << argv[i] ? argv[i] : "NULL" << endl;
+            //error: invalid operands of types ‘const char [5]’ and ‘<unresolved overloaded function type>’ to binary ‘operator<<’
+            //add boxing
+            // cout << azColName[i] << ": " << argv[i] ? argv[i] : "NULL" << endl;
+            cout << azColName[i] << ": " << (argv[i] ? argv[i] : "NULL" )<< endl;
         }
         cout << endl;
         return 0;

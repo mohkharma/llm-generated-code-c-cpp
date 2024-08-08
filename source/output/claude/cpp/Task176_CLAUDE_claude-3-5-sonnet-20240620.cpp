@@ -1,7 +1,9 @@
 
+#include <vector>
+
 class ProductOfNumbers {
 private:
-    vector<int> products;
+    std::vector<int> products;
 
 public:
     ProductOfNumbers() {

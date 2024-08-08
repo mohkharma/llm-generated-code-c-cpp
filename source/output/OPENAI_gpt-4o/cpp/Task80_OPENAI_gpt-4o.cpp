@@ -1,7 +1,7 @@
 #include <iostream>
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
-//compilation error, dependancies
+
 boost::asio::ssl::stream<boost::asio::ip::tcp::socket> create_ssl_client_socket(const std::string& host, const std::string& port) {
     boost::asio::io_context io_context;
     boost::asio::ip::tcp::resolver resolver(io_context);

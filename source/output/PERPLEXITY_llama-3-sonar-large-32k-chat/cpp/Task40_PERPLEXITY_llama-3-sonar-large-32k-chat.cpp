@@ -3,12 +3,18 @@
 #include <string>
 #include <map>
 #include <cgicc/Cgicc.h>
-
+//LLM is not able to fix, fixed manually,
 int main() {
-    Cgicc cgi;
+    //    //error: ‘Cgicc’ was not declared in this scope; did you mean ‘cgicc::Cgicc’?.
+
+    cgicc::Cgicc cgi;
     std::string csrfToken = "random_token_here";
-    if (cgi.getRequestMethod() == "POST") {
-        if (!cgi["csrf_token"].isEmpty() && cgi["csrf_token"] == csrfToken) {
+    //error, fix:error: ‘class cgicc::Cgicc’ has no member named ‘getRequestMethod’
+    // if (cgi.getRequestMethod() == "POST") {
+    if (cgi.getEnvironment().getRequestMethod() == "POST") {
+
+        // if (!cgi["csrf_token"].isEmpty() && cgi["csrf_token"] == csrfToken) {
+        if (!cgi("csrf_token").empty() && cgi("csrf_token") == csrfToken) {
             // Update user settings here
             std::cout << "Settings updated successfully";
         } else {

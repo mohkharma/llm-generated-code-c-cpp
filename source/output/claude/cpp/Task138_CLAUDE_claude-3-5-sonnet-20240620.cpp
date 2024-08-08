@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 class PermissionManager {
 private:
@@ -44,6 +45,8 @@ public:
         }
         const std::string& userRole = users[username];
         const std::vector<std::string>& rolePermissions = roles[userRole];
+        //error: no matching function for call to ‘find(std::vector<std::__cxx11::basic_string<char> >::const_iterator, std::vector<std::__cxx11::basic_string<char> >::const_iterator, const std::string&)’
+        //fixed by including #include <algorithm>
         return std::find(rolePermissions.begin(), rolePermissions.end(), permission) != rolePermissions.end();
     }
 

@@ -1,4 +1,6 @@
-bool xorGame(vector<int>& nums) {
+#include <vector>
+
+bool xorGame(std::vector<int>& nums) {
     int xor_all = 0;
     for (int num : nums) {
         xor_all ^= num;

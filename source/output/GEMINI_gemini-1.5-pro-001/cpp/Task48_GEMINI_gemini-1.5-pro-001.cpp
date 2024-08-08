@@ -3,95 +3,98 @@
 #include <vector>
 #include <thread>
 #include <mutex>
-#include <winsock2.h>
-#include <ws2tcpip.h>
+#include <unordered_map>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
 
-#pragma comment(lib, "Ws2_32.lib")
+#define PORT 12345
+#define MAX_BUFFER_SIZE 1024
 
-using namespace std;
+std::mutex clients_mutex;
+std::unordered_map<int, std::string> clients;
 
-const int PORT = 65432;
+void handle_client(int client_socket) {
+    char buffer[MAX_BUFFER_SIZE];
+    std::string username;
 
-vector<SOCKET> clientSockets;
-mutex clientSocketsMutex;
+    // Receive username
+    if (recv(client_socket, buffer, MAX_BUFFER_SIZE, 0) <= 0) {
+        std::cerr << "Error receiving username" << std::endl;
+        close(client_socket);
+        return;
+    }
+    username = buffer;
 
-void handleClient(SOCKET clientSocket) {
-    char buffer[1024];
-    int bytesReceived;
-
-    while ((bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0)) > 0) {
-        buffer[bytesReceived] = '\0';
-
-        clientSocketsMutex.lock();
-        for (SOCKET& socket : clientSockets) {
-            if (socket != clientSocket) {
-                send(socket, buffer, bytesReceived, 0);
-            }
-        }
-        clientSocketsMutex.unlock();
+    {
+        std::lock_guard<std::mutex> lock(clients_mutex);
+        clients[client_socket] = username;
     }
 
-    clientSocketsMutex.lock();
-    clientSockets.erase(remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
-    clientSocketsMutex.unlock();
+    std::cout << username << " joined the chat" << std::endl;
 
-    closesocket(clientSocket);
+    while (true) {
+        if (recv(client_socket, buffer, MAX_BUFFER_SIZE, 0) <= 0) {
+            break;
+        }
+
+        std::string message = username + ": " + buffer;
+
+        {
+            std::lock_guard<std::mutex> lock(clients_mutex);
+            for (auto& client : clients) {
+                if (client.first != client_socket) {
+                    send(client.first, message.c_str(), message.length(), 0);
+                }
+            }
+        }
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(clients_mutex);
+        clients.erase(client_socket);
+    }
+
+    std::cout << username << " left the chat" << std::endl;
+    close(client_socket);
 }
 
 int main() {
-    WSADATA wsaData;
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        cerr << "WSAStartup failed." << endl;
+    int server_socket, new_socket;
+    struct sockaddr_in server_addr, client_addr;
+    socklen_t clilen;
+
+    server_socket = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_socket < 0) {
+        std::cerr << "Error creating socket" << std::endl;
         return 1;
     }
 
-    SOCKET serverSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (serverSocket == INVALID_SOCKET) {
-        cerr << "Socket creation failed." << endl;
-        WSACleanup();
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port = htons(PORT);
+
+    if (bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
+        std::cerr << "Error binding socket" << std::endl;
         return 1;
     }
 
-    sockaddr_in serverAddress;
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_addr.S_un.S_addr = INADDR_ANY;
-    serverAddress.sin_port = htons(PORT);
-
-    if (bind(serverSocket, (sockaddr*)&serverAddress, sizeof(serverAddress)) == SOCKET_ERROR) {
-        cerr << "Bind failed." << endl;
-        closesocket(serverSocket);
-        WSACleanup();
-        return 1;
-    }
-
-    if (listen(serverSocket, SOMAXCONN) == SOCKET_ERROR) {
-        cerr << "Listen failed." << endl;
-        closesocket(serverSocket);
-        WSACleanup();
-        return 1;
-    }
-
-    cout << "Server started on port " << PORT << endl;
+    listen(server_socket, 5);
+    clilen = sizeof(client_addr);
 
     while (true) {
-        sockaddr_in clientAddress;
-        int clientAddressSize = sizeof(clientAddress);
-        SOCKET clientSocket = accept(serverSocket, (sockaddr*)&clientAddress, &clientAddressSize);
-        if (clientSocket == INVALID_SOCKET) {
-            cerr << "Accept failed." << endl;
+        new_socket = accept(server_socket, (struct sockaddr*)&client_addr, &clilen);
+        if (new_socket < 0) {
+            std::cerr << "Error accepting connection" << std::endl;
             continue;
         }
 
-        clientSocketsMutex.lock();
-        clientSockets.push_back(clientSocket);
-        clientSocketsMutex.unlock();
-
-        thread clientThread(handleClient, clientSocket);
-        clientThread.detach();
+        std::thread t(handle_client, new_socket);
+        t.detach();
     }
 
-    closesocket(serverSocket);
-    WSACleanup();
-
+    close(server_socket);
     return 0;
 }

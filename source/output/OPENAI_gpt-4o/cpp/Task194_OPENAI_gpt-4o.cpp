@@ -3,30 +3,25 @@
 #include <string>
 #include <cstdlib>
 #include <algorithm>
-#include <iostream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <algorithm>
-
-//compilation error, error: 'words' was not declared in this scope; did you mean 'word'?
-
 
 using namespace std;
+
+//error: ‘words’ was not declared in this scope; did you mean ‘word’?
+//moved the below line from the main function to the gloable scope.
+vector<string> words = {"acckzz", "ccbazz", "eiowzz", "abcczz"};
 
 class Master {
 private:
     string secret;
-    //add defintion of words here to fix error: 'words' was not declared in this scope; did you mean 'word'?
-    vector<string> words;
 
 public:
     int guess_count;
 
-    Master(string sec, vector<string> word_list) : secret(sec), words(word_list), guess_count(0) {}
+    Master(string sec) : secret(sec), guess_count(0) {}
 
     int guess(string word) {
         guess_count++;
+        //error: ‘words’ was not declared in this scope; did you mean ‘word’?
         if (find(words.begin(), words.end(), word) == words.end()) {
             return -1;
         }
@@ -72,12 +67,11 @@ void findSecretWord(vector<string>& words, Master& master, int allowedGuesses) {
 }
 
 int main() {
-    srand(time(0));  // Seed the random number generator
-
     string secret = "acckzz";
-    vector<string> words = {"acckzz", "ccbazz", "eiowzz", "abcczz"};
+    //error: ‘words’ was not declared in this scope; did you mean ‘word’?
+
     int allowedGuesses = 10;
-    Master master(secret, words);
+    Master master(secret);
     findSecretWord(words, master, allowedGuesses);
 
     return 0;

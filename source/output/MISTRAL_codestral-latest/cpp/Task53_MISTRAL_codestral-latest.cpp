@@ -1,22 +1,25 @@
-// C++
-#include <string>
 #include <unordered_map>
+#include <string>
+#include <openssl/rand.h>
 
-class Session {
+class SessionManager {
 public:
-    Session(const std::string& userId) : userId(userId), isActive(true) {}
+    std::string createSession(const std::string& userData) {
+        unsigned char sessionId[16];
+        RAND_bytes(sessionId, sizeof(sessionId));
+        std::string sessionIdStr(reinterpret_cast<char*>(sessionId), sizeof(sessionId));
+        sessions_[sessionIdStr] = userData;
+        return sessionIdStr;
+    }
 
-    // Getters and setters for userId and isActive
+    bool validateSession(const std::string& sessionId) {
+        return sessions_.find(sessionId) != sessions_.end();
+    }
+
+    void terminateSession(const std::string& sessionId) {
+        sessions_.erase(sessionId);
+    }
 
 private:
-    std::string userId;
-    bool isActive;
+    std::unordered_map<std::string, std::string> sessions_;
 };
-
-// Example usage:
-int main() {
-    std::unordered_map<std::string, Session> userSessions;
-    std::string userId = "123";
-    userSessions[userId] = Session(userId);
-    return 0;
-}

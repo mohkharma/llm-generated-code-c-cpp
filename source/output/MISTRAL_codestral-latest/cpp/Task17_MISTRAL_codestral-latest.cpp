@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 std::string toJadenCase(std::string phrase) {
     std::istringstream iss(phrase);

@@ -1,3 +1,4 @@
+#include <functional>
 #include <semaphore.h>
 #include <iostream>
 

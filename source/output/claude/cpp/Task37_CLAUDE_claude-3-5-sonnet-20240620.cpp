@@ -1,8 +1,9 @@
 
 #include <iostream>
 #include <string>
-#include <mysql.h>
-
+//fatal error: mysql.h: No such file or directory
+// #include <mysql.h>
+#include <mysql/mysql.h>
 void get_user_info(const std::string& username) {
     MYSQL* conn;
     MYSQL_RES* res;

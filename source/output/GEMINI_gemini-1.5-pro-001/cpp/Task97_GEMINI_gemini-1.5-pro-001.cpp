@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-#include <pugixml.cpp>
+//fatal error: pugixml.cpp: No such file or directory.
+// #include <pugixml.cpp>
+#include <pugixml.hpp>
 
 using namespace std;
 

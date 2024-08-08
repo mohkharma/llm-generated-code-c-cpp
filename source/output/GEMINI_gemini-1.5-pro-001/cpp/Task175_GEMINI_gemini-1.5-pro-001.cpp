@@ -1,7 +1,9 @@
+#include <vector>
+
 class MountainArray {
 public:
-    vector<int> array;
-    MountainArray(vector<int>& arr) : array(arr) {}
+    std::vector<int> array;
+    MountainArray(std::vector<int>& arr) : array(arr) {}
     int get(int index) {
         return array[index];
     }

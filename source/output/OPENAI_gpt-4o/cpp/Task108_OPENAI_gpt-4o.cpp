@@ -3,7 +3,7 @@
 #include <xmlrpc-c/base.hpp>
 #include <xmlrpc-c/registry.hpp>
 #include <xmlrpc-c/server_abyss.hpp>
-//compilation error, dependancies
+
 class RemoteObject {
 public:
     RemoteObject() : value(0) {}

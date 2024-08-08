@@ -1,8 +1,19 @@
+//error: ‘bsoncxx::builder::stream’ has not been declared
+// #include <iostream>
+// #include <mongocxx/client.hpp>
+// #include <mongocxx/instance.hpp>
+// #include <bsoncxx/json.hpp>
+
 #include <iostream>
 #include <mongocxx/client.hpp>
 #include <mongocxx/instance.hpp>
+#include <mongocxx/uri.hpp>
 #include <bsoncxx/json.hpp>
-//compilation error, dependancies
+#include <bsoncxx/builder/stream/document.hpp>
+#include <mongocxx/client.hpp>
+#include <mongocxx/instance.hpp>
+#include <mongocxx/uri.hpp>
+#include <bsoncxx/builder/stream/document.hpp>
 int main() {
     // Initialize MongoDB
     mongocxx::instance instance{};
@@ -10,9 +21,17 @@ int main() {
     auto db = client["mydatabase"];
     auto collection = db["mycollection"];
 
+    //error: ‘bsoncxx::builder::stream’ has not been declared
+
     // Create
-    bsoncxx::document::value document = bsoncxx::builder::stream::document{}
-        << "name" << "John"
+    // bsoncxx::document::value document = bsoncxx::builder::stream::document{}
+    // << "name" << "John"
+    // << "age" << 30
+    // << "city" << "New York"
+    // << bsoncxx::builder::stream::finalize;
+    // bsoncxx::document::value document = bsoncxx::builder::stream::document{}
+    bsoncxx::builder::stream::document document{};
+      document   << "name" << "John"
         << "age" << 30
         << "city" << "New York"
         << bsoncxx::builder::stream::finalize;

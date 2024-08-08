@@ -4,7 +4,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
-//compilation error, dependancies
+
 using namespace std;
 
 void cpp_server() {

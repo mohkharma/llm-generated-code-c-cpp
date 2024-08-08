@@ -1,8 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <string>
+#include <openssl/evp.h>
 #include <openssl/md5.h>
 #include <openssl/sha.h>
+#include <openssl/types.h>
 
 using namespace std;
 

@@ -1,6 +1,5 @@
-// C++
 #include <iostream>
-#include <conio.h>
+#include <curses.h>
 
 int main() {
     char password[30];
@@ -9,7 +8,7 @@ int main() {
 
     std::cout << "Enter password: ";
     while (1) {
-        a = _getch();
+        a = getch();
         if (a == '\r') {
             password[i] = '\0';
             break;

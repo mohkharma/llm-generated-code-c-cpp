@@ -1,11 +1,14 @@
+#include <algorithm>
+#include <vector>
+
 class Solution {
 public:
-    int reversePairs(vector<int>& nums) {
+    int reversePairs(std::vector<int>& nums) {
         return mergeSort(nums, 0, nums.size() - 1);
     }
 
 private:
-    int mergeSort(vector<int>& nums, int start, int end) {
+    int mergeSort(std::vector<int>& nums, int start, int end) {
         if (start >= end) {
             return 0;
         }

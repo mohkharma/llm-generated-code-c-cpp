@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <chrono>
+#include <iomanip>
 #include <openssl/sha.h>
 
 std::string generateToken(const std::string& username, const std::string& password) {

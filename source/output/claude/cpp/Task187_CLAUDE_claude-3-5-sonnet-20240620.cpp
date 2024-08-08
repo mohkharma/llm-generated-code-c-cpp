@@ -16,14 +16,14 @@ public:
         pthread_barrier_init(&barrier, NULL, 3);
     }
 
-    void hydrogen(function<void()> releaseHydrogen) {
+    void hydrogen(std::function<void()> releaseHydrogen) {
         sem_wait(&hydrogen_sem);
         pthread_barrier_wait(&barrier);
         releaseHydrogen();
         sem_post(&hydrogen_sem);
     }
 
-    void oxygen(function<void()> releaseOxygen) {
+    void oxygen(std::function<void()> releaseOxygen) {
         sem_wait(&oxygen_sem);
         pthread_barrier_wait(&barrier);
         releaseOxygen();

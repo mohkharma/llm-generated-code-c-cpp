@@ -10,7 +10,8 @@
 int main() {
     try {
         xercesc::XMLPlatformUtils::Initialize();
-        XercesDOMParser* parser = new XercesDOMParser();
+        // XercesDOMParser* parser = new XercesDOMParser();
+        xercesc_3_2::XercesDOMParser* parser = new xercesc_3_2::XercesDOMParser();
         parser->parse("xml_string.xml"); // replace with your XML string
         xercesc::DOMDocument* doc = parser->adoptDocument();
         xercesc::DOMElement* root = doc->getDocumentElement();

@@ -1,44 +1,26 @@
 #include <iostream>
 #include <string>
-#include <cppcms/application.h>
-#include <cppcms/service.h>
-#include <cppcms/http_response.h>
-#include <cppcms/http_request.h>
+#include <cstring>
 
-class hello : public cppcms::application {
-public:
-    hello(cppcms::service &srv) :
-        cppcms::application(srv)
-    {}
-
-    void index() {
-        if (request().request_method() == "POST") {
-            response().out() <<
-                "<html>\n"
-                "<body>\n"
-                "    <h1>You entered: " << request().post("user_input") << "</h1>\n"
-                "    <a href=\"/\">Go back</a>\n"
-                "</body>\n"
-                "</html>\n";
-        } else {
-            response().out() <<
-                "<html>\n"
-                "<body>\n"
-                "    <form method=\"post\" action=\"/\">\n"
-                "        <input type=\"text\" name=\"user_input\">\n"
-                "        <input type=\"submit\" value=\"Submit\">\n"
-                "    </form>\n"
-                "</body>\n"
-                "</html>\n";
-        }
+int main() {
+    char *query_string = getenv("QUERY_STRING");
+    if (query_string == nullptr) {
+        std::cout << "Content-type: text/html\n\n";
+        std::cout << "<html><body><h1>Hello, world!</h1><form method='get' action=''>Name: <input type='text' name='name'><input type='submit' value='Submit'></form></body></html>";
+        return 0;
     }
-};
 
-int main(int argc, char ** argv) {
-    cppcms::service srv(argc, argv);
-    srv.applications_pool().mount(
-        cppcms::create_pool<hello>()
-    );
-    srv.run();
+    // Parse query string
+    std::string query(query_string);
+    size_t pos = query.find("name=");
+    if (pos != std::string::npos) {
+        std::string name = query.substr(pos + 5);
+        std::cout << "Content-type: text/html\n\n";
+        std::cout << "<html><body>Hello, " << name << "!</body></html>";
+    } else {
+        std::cout << "Content-type: text/html\n\n";
+        std::cout << "<html><body>Invalid input</body></html>";
+    }
+
     return 0;
 }

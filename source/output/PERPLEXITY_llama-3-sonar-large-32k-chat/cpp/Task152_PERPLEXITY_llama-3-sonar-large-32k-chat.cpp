@@ -2,7 +2,7 @@
 #include <string>
 
 using namespace std;
-
+//error: ‘int* HashTable::slots’ is private within this context, fixed by regeneration
 class HashTable {
 private:
     int size;
@@ -15,8 +15,13 @@ public:
         this->slots = new int[size];
         this->data = new string[size];
         for (int i = 0; i < size; i++) {
-            slots[i] = 0;
+            slots[i] = 0; // Initialize slots to 0
         }
+    }
+
+    ~HashTable() {
+        delete[] slots; // Free memory
+        delete[] data;  // Free memory
     }
 
     void put(int key, string value) {
@@ -72,6 +77,21 @@ public:
         }
         return value;
     }
+
+    // Getter for slots (for demonstration purposes)
+    int* getSlots() {
+        return slots;
+    }
+
+    // Getter for data (for demonstration purposes)
+    string* getData() {
+        return data;
+    }
+
+    // Getter for size
+    int getSize() const {
+        return size;
+    }
 };
 
 int main() {
@@ -86,13 +106,14 @@ int main() {
     h.put(55, "pig");
     h.put(20, "chicken");
 
-    for (int i = 0; i < 11; i++) {
-        cout << h.slots[i] << " ";
+    // Accessing the slots and data through getter methods
+    for (int i = 0; i < h.getSize(); i++) {
+        cout << h.getSlots()[i] << " "; // Access slots using getter
     }
     cout << endl;
 
-    for (int i = 0; i < 11; i++) {
-        cout << h.data[i] << " ";
+    for (int i = 0; i < h.getSize(); i++) {
+        cout << h.getData()[i] << " "; // Access data using getter
     }
     cout << endl;
 

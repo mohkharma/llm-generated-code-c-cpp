@@ -1,6 +1,8 @@
+#include <vector>
+
 class ProductOfNumbers {
 private:
-    vector<int> products;
+    std::vector<int> products;
 
 public:
     ProductOfNumbers() {
@@ -9,7 +11,7 @@ public:
 
     void add(int num) {
         if (num == 0) {
-            products = vector<int>(1, 1);
+            products = std::vector<int>(1, 1);
         } else {
             products.push_back(products.back() * num);
         }

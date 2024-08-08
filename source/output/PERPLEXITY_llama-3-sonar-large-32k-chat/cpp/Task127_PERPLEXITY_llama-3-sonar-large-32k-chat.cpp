@@ -11,7 +11,9 @@ int main() {
         std::ofstream dstFile(dstDir + "/" + filename, std::ios::binary);
 
         if (!srcFile) {
-            throw std::std::runtime_error("Error: File " + filename + " not found in " + srcDir);
+            // error: ‘std::std’ has not been declared
+            // throw std::std::runtime_error("Error: File " + filename + " not found in " + srcDir);
+            throw std::runtime_error("Error: File " + filename + " not found in " + srcDir);
         }
 
         dstFile << srcFile.rdbuf();

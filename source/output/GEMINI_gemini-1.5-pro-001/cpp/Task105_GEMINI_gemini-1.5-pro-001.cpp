@@ -29,8 +29,8 @@ int main() {
         SSL_CTX_free(ctx);
         return 1;
     }
-
-    std::cout << "Connected to " << SSL_get_peer_certificate(ssl)->subject_name << std::endl;
+//error: invalid use of incomplete typedef 'X509' {aka 'struct x509_st'}. print statment is commented
+    // std::cout << "Connected to " << SSL_get_peer_certificate(ssl)->subject_name << std::endl;
     std::cout << "SSL/TLS version: " << SSL_get_version(ssl) << std::endl;
     std::cout << "Cipher suite: " << SSL_get_cipher(ssl) << std::endl;
 

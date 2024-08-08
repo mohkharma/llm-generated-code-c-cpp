@@ -7,6 +7,10 @@ public:
     std::string username;
     std::string password;
 
+    //error: no matching function for call to ‘User::User()’
+    // Default constructor
+    User() : username(""), password("") {}
+
     User(std::string username, std::string password) {
         this->username = username;
         this->password = password;

@@ -1,8 +1,10 @@
 // C++
 #include <iostream>
 #include <sqlite3.h>
-#include <libcurl/curl.h>
+//fatal error: libcurl/curl.h: No such file or directory
+// #include <libcurl/curl.h>
 #include <gumbo.h>
+#include <curl/curl.h>
 
 static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);

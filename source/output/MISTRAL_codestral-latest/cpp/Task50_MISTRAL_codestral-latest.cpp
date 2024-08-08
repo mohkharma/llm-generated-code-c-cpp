@@ -11,6 +11,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <thread>
 #include <vector>
 
 namespace beast = boost::beast;

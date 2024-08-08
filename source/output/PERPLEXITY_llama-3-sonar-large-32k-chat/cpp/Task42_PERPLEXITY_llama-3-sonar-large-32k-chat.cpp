@@ -1,4 +1,3 @@
-code here:
 #include <iostream>
 #include <string>
 #include <vector>
@@ -27,7 +26,10 @@ int main() {
     std::cin >> username;
     std::cout << "Enter password: ";
     std::cin >> password;
-    for (const auto& user : users) {
+    //error: passing ‘const User’ as ‘this’ argument discards qualifiers [-fpermissive]
+    //remove the constant qualifier from user object defintion.
+    // for (const auto& user : users) {
+    for (auto& user : users) {
         if (user.authenticate(username, password)) {
             std::cout << "Authentication successful!" << std::endl;
             return 0;

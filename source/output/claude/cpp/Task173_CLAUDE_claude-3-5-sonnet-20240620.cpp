@@ -1,12 +1,15 @@
 
+#include <string>
+#include <unordered_set>
+
 class Solution {
 public:
-    string longestDupSubstring(string s) {
+    std::string longestDupSubstring(std::string  s) {
         int left = 0, right = s.length();
-        string result = "";
+        std::string result = "";
         while (left < right) {
             int mid = left + (right - left) / 2;
-            string candidate = rabinKarp(s, mid);
+            std::string candidate = rabinKarp(s, mid);
             if (!candidate.empty()) {
                 left = mid + 1;
                 result = candidate;
@@ -18,14 +21,14 @@ public:
     }
 
 private:
-    string rabinKarp(const string& s, int length) {
+    std::string rabinKarp(const std::string& s, int length) {
         long long q = (1LL << 31) - 1;
         long long h = 0;
         for (int i = 0; i < length; i++) {
             h = (h * 26 + s[i] - 'a') % q;
         }
 
-        unordered_set<long long> seen;
+        std::unordered_set<long long> seen;
         seen.insert(h);
         long long aL = 1;
         for (int i = 0; i < length; i++) {

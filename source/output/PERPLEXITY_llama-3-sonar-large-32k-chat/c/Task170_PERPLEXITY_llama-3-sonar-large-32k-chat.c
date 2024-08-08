@@ -1,1 +1,0 @@
-// This problem is not suitable for C language as it does not support dynamic memory allocation for arrays.

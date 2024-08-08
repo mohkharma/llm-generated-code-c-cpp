@@ -1,4 +1,6 @@
 
+#include <vector>
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -9,7 +11,7 @@ struct ListNode {
 
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
+    ListNode* mergeKLists(std::vector<ListNode*>& lists) {
         if (lists.empty()) {
             return nullptr;
         }
@@ -18,7 +20,7 @@ public:
     }
     
 private:
-    ListNode* mergeKListsHelper(vector<ListNode*>& lists, int start, int end) {
+    ListNode* mergeKListsHelper(std::vector<ListNode*>& lists, int start, int end) {
         if (start == end) {
             return lists[start];
         }

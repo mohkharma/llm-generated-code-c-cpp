@@ -27,7 +27,10 @@ pqxx::connection* createConnection() {
 int main() {
     pqxx::connection* conn = createConnection();
     if (conn) {
-        conn->disconnect();
+        //error: ‘class pqxx::connection’ has no member named ‘disconnect’
+        // Connection is automatically closed when the object is deleted
+//fixed by regeneration
+        // conn->disconnect();
         delete conn;
     }
     return 0;

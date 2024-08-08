@@ -4,7 +4,7 @@
 #include <openssl/sha.h>
 #include <openssl/x509.h>
 #include <openssl/pem.h>
-//compilation error, dependancies
+
 std::string get_cert_hash(const std::string &cert_path) {
     std::ifstream file(cert_path, std::ios::binary);
     std::stringstream buffer;
