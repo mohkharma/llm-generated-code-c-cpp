@@ -34,7 +34,7 @@ void processFile(const std::string& filePath, std::mutex& mutex, std::condition_
     processingFiles.erase(filePath);
 }
 
-int main1() {
+int main() {
     std::mutex mutex;
     std::condition_variable cv;
     std::unordered_map<std::string, std::future<void>> processingFiles;

@@ -28,7 +28,7 @@ void handle_post(http_request request) {
         .wait();
 }
 
-int main() {
+int main1() {
     http_listener listener(U("http://localhost:8080/add_user"));
     listener.support(methods::POST, handle_post);
 

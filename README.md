@@ -8,3 +8,7 @@ Then Run:
 ```
 python compiler.py
 ```
+
+
+242  build-wrapper-linux-x86-64 --out-dir bw-output cmake --build cmake-build-debug\n
+243  sonar-scanner
