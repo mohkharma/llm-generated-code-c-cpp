@@ -11,9 +11,9 @@ std::string createPhoneNumber(int arr[10]) {
              arr[9]);
     return std::string(buffer);
 }
-
-int main() {
-    int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-    std::cout << createPhoneNumber(arr) << std::endl;
-    return 0;
-}
+//
+// int main() {
+//     int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+//     std::cout << createPhoneNumber(arr) << std::endl;
+//     return 0;
+// }

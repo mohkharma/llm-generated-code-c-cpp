@@ -16,7 +16,7 @@ find_package(httplib CONFIG REQUIRED)
 find_package(bson-1.0 CONFIG REQUIRED)
 #target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
 add_executable(a1
-        tests/gemini/Task1_Test.cpp
+        tests/llama-3/Task2_Test.cpp
 )
 #
 #add_executable(Task1_Test
