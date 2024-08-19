@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
-#include "../../source/output/gemini/cpp/Task1_GEMINI_gemini-1.5-pro-001.cpp"  // Include the header for the function
-// #include "../../source/output/codestral/cpp/Task1_MISTRAL_codestral-latest.cpp"  // Include the header for the function
-// #include "../../source/output/claude/c/Task1_CLAUDE_claude-3-5-sonnet-20240620.cpp"  // Include the header for the function
+// #include "../../source/output/gemini/c/Task1_GEMINI_gemini-1.5-pro-001.c"  // Include the header for the function
+#include "../../source/output/codestral/cpp/Task1_MISTRAL_codestral-latest.cpp"  // Include the header for the function
+// #include "../../source/output/claude/c/Task1_CLAUDE_claude-3-5-sonnet-20240620"  // Include the header for the function
 // #include "../../source/output/gpt4o/cpp/Task1_OPENAI_gpt-4o.cpp"  // Include the header for the function
 // #include "../../source/output/llama-3/cpp/Task1_PERPLEXITY_llama-3-sonar-large-32k-chat.cpp"  // Include the header for the function
 
@@ -10,20 +10,19 @@
 
 // Helper function to run a test case
 void run_test_case(int stops[][2], int num_stops, int expected) {
-    // Convert stops to vector of pairs
-    std::vector<std::pair<int, int>> busStops;
+    // Convert stops to vector of vectors
+    std::vector<std::vector<int>> busStops;
     for (int i = 0; i < num_stops; ++i) {
         busStops.push_back({stops[i][0], stops[i][1]});
     }
 
-    // Call the original numberOfPeopleOnBus function
-    int result = number(busStops);
+    // Call the original countPassengers function
+    int result = countPassengers(busStops);
 
     // Validate the result
     assert(result == expected);
     printf("Test passed with result: %d\n", result);
 }
-
 
 int main() {
     // Test Case 1: Basic scenario with a few stops

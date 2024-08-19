@@ -1,6 +1,8 @@
+#cmake_minimum_required(VERSION 3.10)
 cmake_minimum_required(VERSION 3.28)
 project(cpp)
 
+#set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 include_directories(/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/)
 include_directories(/home/kali/CLionProjects/mysql-connector-cpp/driver/)
@@ -13,10 +15,14 @@ find_package(cpprestsdk REQUIRED)
 find_package(httplib CONFIG REQUIRED)
 find_package(bson-1.0 CONFIG REQUIRED)
 #target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
-
-
-add_executable(Task1_ClaudeTest
-        tests/claude/Task1_ClaudeTest.cpp)
+add_executable(a1
+        tests/gemini/Task1_Test.cpp
+)
+#
+#add_executable(Task1_Test
+#        source/output/gpt4o/cpp/Task1_OPENAI_gpt-4o.cpp
+#        tests/gpt4o/Task1_Test.cpp
+#)
 #add_executable(gpt4oTask0         source/output/OPENAI_gpt-4o/cpp/Task0_OPENAI_gpt-4o.cpp
 #        source/output/MISTRAL_codestral-latest/cpp/Task0_MISTRAL_codestral-latest.cpp
 #        tests/claude/Task1_Test.cpp)
