@@ -14,9 +14,9 @@ int getSum(int a, int b) {
     }
     return sum;
 }
-
-int main() {
-    int result = getSum(1, 0); // Example usage
-    cout << result << endl;
-    return 0;
-}
+//
+// int main() {
+//     int result = getSum(1, 0); // Example usage
+//     cout << result << endl;
+//     return 0;
+// }

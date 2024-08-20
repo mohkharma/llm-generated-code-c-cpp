@@ -11,12 +11,12 @@ int sumBetween(int a, int b) {
     return sum;
 }
 
-int main() {
-    cout << sumBetween(1, 0) << endl;
-    cout << sumBetween(1, 2) << endl;
-    cout << sumBetween(0, 1) << endl;
-    cout << sumBetween(1, 1) << endl;
-    cout << sumBetween(-1, 0) << endl;
-    cout << sumBetween(-1, 2) << endl;
-    return 0;
-}
+// int main() {
+//     cout << sumBetween(1, 0) << endl;
+//     cout << sumBetween(1, 2) << endl;
+//     cout << sumBetween(0, 1) << endl;
+//     cout << sumBetween(1, 1) << endl;
+//     cout << sumBetween(-1, 0) << endl;
+//     cout << sumBetween(-1, 2) << endl;
+//     return 0;
+// }
