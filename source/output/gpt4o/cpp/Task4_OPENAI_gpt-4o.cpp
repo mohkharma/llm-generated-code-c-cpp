@@ -12,11 +12,11 @@ bool isIsogram(string s) {
     }
     return true;
 }
-
-int main() {
-    cout << boolalpha;
-    cout << isIsogram("Dermatoglyphics") << endl;  // True
-    cout << isIsogram("aba") << endl;              // False
-    cout << isIsogram("moOse") << endl;            // False
-    return 0;
-}
+//
+// int main() {
+//     cout << boolalpha;
+//     cout << isIsogram("Dermatoglyphics") << endl;  // True
+//     cout << isIsogram("aba") << endl;              // False
+//     cout << isIsogram("moOse") << endl;            // False
+//     return 0;
+// }

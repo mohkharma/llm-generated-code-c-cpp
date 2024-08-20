@@ -19,8 +19,8 @@ bool isPangram(const std::string& s) {
     return true;
 }
 
-int main() {
-    std::cout << std::boolalpha << isPangram("The quick brown fox jumps over the lazy dog") << std::endl;  // true
-    std::cout << std::boolalpha << isPangram("Hello World") << std::endl;  // false
-    return 0;
-}
+// int main() {
+//     std::cout << std::boolalpha << isPangram("The quick brown fox jumps over the lazy dog") << std::endl;  // true
+//     std::cout << std::boolalpha << isPangram("Hello World") << std::endl;  // false
+//     return 0;
+// }

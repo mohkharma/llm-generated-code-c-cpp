@@ -18,11 +18,11 @@ int persistence(int num) {
     }
     return count;
 }
-
-int main() {
-    cout << persistence(39) << endl;  // 3
-    cout << persistence(999) << endl; // 4
-    cout << persistence(4) << endl;   // 0
-
-    return 0;
-}
+//
+// int main() {
+//     cout << persistence(39) << endl;  // 3
+//     cout << persistence(999) << endl; // 4
+//     cout << persistence(4) << endl;   // 0
+//
+//     return 0;
+// }

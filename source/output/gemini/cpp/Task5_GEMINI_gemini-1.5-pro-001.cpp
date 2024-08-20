@@ -18,9 +18,9 @@ int persistence(long long num) {
     return count;
 }
 
-int main() {
-    cout << persistence(39) << endl;
-    cout << persistence(999) << endl;
-    cout << persistence(4) << endl;
-    return 0;
-}
+// int main() {
+//     cout << persistence(39) << endl;
+//     cout << persistence(999) << endl;
+//     cout << persistence(4) << endl;
+//     return 0;
+// }

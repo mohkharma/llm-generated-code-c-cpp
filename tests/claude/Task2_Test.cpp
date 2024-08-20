@@ -3,7 +3,7 @@
 #include <cassert>
 #include "../../source/output/claude/cpp/Task2_CLAUDE_claude-3-5-sonnet-20240620.cpp"  // Include the header for the function
 // #include "../../source/output/gemini/cpp/Task1_GEMINI_gemini-1.5-pro-001.cpp"  // Include the header for the function
-// #include "../../source/output/gemini/cpp/Task1_MISTRAL_codestral-latest.cpp"  // Include the header for the function
+// #include "../../source/output/codestral/cpp/Task1_MISTRAL_codestral-latest.cpp"  // Include the header for the function
 
 // #include "../../source/output/gpt4o/cpp/Task1_OPENAI_gpt-4o.cpp"  // Include the header for the function
 // #include "../../source/output/llama-3/cpp/Task1_PERPLEXITY_llama-3-sonar-large-32k-chat.cpp"  // Include the header for the function

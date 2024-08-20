@@ -11,9 +11,9 @@ bool isPangram(const std::string& s) {
     }
     return alphabetSet.size() == 26;
 }
-
-int main() {
-    std::string s = "The quick brown fox jumps over the lazy dog";
-    std::cout << (isPangram(s) ? "true" : "false") << std::endl;  // Output: true
-    return 0;
-}
+//
+// int main() {
+//     std::string s = "The quick brown fox jumps over the lazy dog";
+//     std::cout << (isPangram(s) ? "true" : "false") << std::endl;  // Output: true
+//     return 0;
+// }

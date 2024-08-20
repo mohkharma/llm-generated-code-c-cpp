@@ -14,10 +14,10 @@ int persistence(long long num) {
     
     return 1 + persistence(product);
 }
-
-int main() {
-    std::cout << persistence(39) << std::endl;  // Output: 3
-    std::cout << persistence(999) << std::endl; // Output: 4
-    std::cout << persistence(4) << std::endl;   // Output: 0
-    return 0;
-}
+//
+// int main() {
+//     std::cout << persistence(39) << std::endl;  // Output: 3
+//     std::cout << persistence(999) << std::endl; // Output: 4
+//     std::cout << persistence(4) << std::endl;   // Output: 0
+//     return 0;
+// }
