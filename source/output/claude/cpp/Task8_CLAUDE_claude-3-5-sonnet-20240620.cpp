@@ -11,8 +11,8 @@ char findMissingLetter(std::vector<char> chars) {
     return ' ';
 }
 
-int main() {
-    std::cout << findMissingLetter({'a','b','c','d','f'}) << std::endl;  // Output: e
-    std::cout << findMissingLetter({'O','Q','R','S'}) << std::endl;  // Output: P
-    return 0;
-}
+// int main() {
+//     std::cout << findMissingLetter({'a','b','c','d','f'}) << std::endl;  // Output: e
+//     std::cout << findMissingLetter({'O','Q','R','S'}) << std::endl;  // Output: P
+//     return 0;
+// }

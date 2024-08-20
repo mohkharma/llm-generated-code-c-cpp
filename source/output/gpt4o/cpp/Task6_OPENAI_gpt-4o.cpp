@@ -9,8 +9,8 @@ double findUniq(const std::vector<double>& arr) {
     return arr[0];
 }
 
-int main() {
-    std::cout << findUniq({ 1, 1, 1, 2, 1, 1 }) << std::endl; // => 2
-    std::cout << findUniq({ 0, 0, 0.55, 0, 0 }) << std::endl; // => 0.55
-    return 0;
-}
+// int main() {
+//     std::cout << findUniq({ 1, 1, 1, 2, 1, 1 }) << std::endl; // => 2
+//     std::cout << findUniq({ 0, 0, 0.55, 0, 0 }) << std::endl; // => 0.55
+//     return 0;
+// }

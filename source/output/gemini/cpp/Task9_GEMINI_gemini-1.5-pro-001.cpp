@@ -3,7 +3,7 @@
 using namespace std;
 class Solution {
 public:
-    string oddOrEven(vector<int> arr) {
+    static string oddOrEven(vector<int> arr) {
       int sum = 0;
       for(int i : arr) {
         sum += i;

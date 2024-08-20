@@ -9,8 +9,8 @@ char findMissingLetter(char array[], int size) {
     throw std::invalid_argument("No missing letter found");
 }
 
-int main() {
-    std::cout << findMissingLetter(new char[]{ 'a', 'b', 'c', 'd', 'f' }, 5) << std::endl; // e
-    std::cout << findMissingLetter(new char[]{ 'O', 'Q', 'R', 'S' }, 4) << std::endl; // P
-    return 0;
-}
+// int main() {
+//     std::cout << findMissingLetter(new char[]{ 'a', 'b', 'c', 'd', 'f' }, 5) << std::endl; // e
+//     std::cout << findMissingLetter(new char[]{ 'O', 'Q', 'R', 'S' }, 4) << std::endl; // P
+//     return 0;
+// }
