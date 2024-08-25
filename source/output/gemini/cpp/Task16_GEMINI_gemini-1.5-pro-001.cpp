@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    bool solution(std::string str, std::string ending) {
+   static  bool solution(std::string str, std::string ending) {
         if (ending.size() > str.size()) {
             return false;
         }

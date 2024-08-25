@@ -20,8 +20,8 @@ string toJadenCase(string phrase) {
     }
     return jadenCase;
 }
-
-int main() {
-    cout << toJadenCase("How can mirrors be real if our eyes aren't real") << endl;
-    return 0;
-}
+//
+// int main() {
+//     cout << toJadenCase("How can mirrors be real if our eyes aren't real") << endl;
+//     return 0;
+// }

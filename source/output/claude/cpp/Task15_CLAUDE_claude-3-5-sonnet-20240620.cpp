@@ -13,16 +13,16 @@ std::vector<std::string> towerBuilder(int nFloors) {
     return tower;
 }
 
-int main() {
-    auto tower3 = towerBuilder(3);
-    for (const auto& floor : tower3) {
-        std::cout << floor << std::endl;
-    }
-    std::cout << std::endl;
-
-    auto tower6 = towerBuilder(6);
-    for (const auto& floor : tower6) {
-        std::cout << floor << std::endl;
-    }
-    return 0;
-}
+// int main() {
+//     auto tower3 = towerBuilder(3);
+//     for (const auto& floor : tower3) {
+//         std::cout << floor << std::endl;
+//     }
+//     std::cout << std::endl;
+//
+//     auto tower6 = towerBuilder(6);
+//     for (const auto& floor : tower6) {
+//         std::cout << floor << std::endl;
+//     }
+//     return 0;
+// }

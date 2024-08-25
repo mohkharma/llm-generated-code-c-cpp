@@ -8,9 +8,9 @@ bool solution(const std::string& str, const std::string& ending) {
         return false;
     }
 }
-
-int main() {
-    std::cout << solution("abc", "bc") << std::endl;  // returns true
-    std::cout << solution("abc", "d") << std::endl;   // returns false
-    return 0;
-}
+//
+// int main() {
+//     std::cout << solution("abc", "bc") << std::endl;  // returns true
+//     std::cout << solution("abc", "d") << std::endl;   // returns false
+//     return 0;
+// }

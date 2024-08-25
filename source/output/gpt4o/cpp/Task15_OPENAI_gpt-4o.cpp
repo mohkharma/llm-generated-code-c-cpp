@@ -11,11 +11,11 @@ std::vector<std::string> buildTower(int nFloors) {
     }
     return tower;
 }
-
-int main() {
-    std::vector<std::string> tower = buildTower(6);
-    for (const auto& floor : tower) {
-        std::cout << floor << std::endl;
-    }
-    return 0;
-}
+//
+// int main() {
+//     std::vector<std::string> tower = buildTower(6);
+//     for (const auto& floor : tower) {
+//         std::cout << floor << std::endl;
+//     }
+//     return 0;
+// }

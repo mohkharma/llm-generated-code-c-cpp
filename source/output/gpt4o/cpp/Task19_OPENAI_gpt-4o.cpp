@@ -19,11 +19,11 @@ std::string spinWords(const std::string &sentence) {
     }
     return oss.str();
 }
-
-int main() {
-    std::vector<std::string> examples = {"Hey fellow warriors", "This is a test", "This is another test"};
-    for (const auto& example : examples) {
-        std::cout << spinWords(example) << std::endl;
-    }
-    return 0;
-}
+//
+// int main() {
+//     std::vector<std::string> examples = {"Hey fellow warriors", "This is a test", "This is another test"};
+//     for (const auto& example : examples) {
+//         std::cout << spinWords(example) << std::endl;
+//     }
+//     return 0;
+// }

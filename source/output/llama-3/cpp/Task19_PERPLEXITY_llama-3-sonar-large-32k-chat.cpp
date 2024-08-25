@@ -28,10 +28,10 @@ std::string reverseWords(std::string s) {
     word.pop_back();
     return word;
 }
-
-int main() {
-    std::cout << reverseWords("Hey fellow warriors") << std::endl;
-    std::cout << reverseWords("This is a test") << std::endl;
-    std::cout << reverseWords("This is another test") << std::endl;
-    return 0;
-}
+//
+// int main() {
+//     std::cout << reverseWords("Hey fellow warriors") << std::endl;
+//     std::cout << reverseWords("This is a test") << std::endl;
+//     std::cout << reverseWords("This is another test") << std::endl;
+//     return 0;
+// }
