@@ -14,9 +14,9 @@ bool isValidWalk(std::vector<char> walk) {
     }
     return x == 0 && y == 0;
 }
-
-int main() {
-    std::vector<char> walk = {'n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's'};
-    std::cout << std::boolalpha << isValidWalk(walk) << std::endl; // Output: true
-    return 0;
-}
+//
+// int main() {
+//     std::vector<char> walk = {'n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's'};
+//     std::cout << std::boolalpha << isValidWalk(walk) << std::endl; // Output: true
+//     return 0;
+// }

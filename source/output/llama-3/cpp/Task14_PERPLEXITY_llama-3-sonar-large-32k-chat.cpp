@@ -17,9 +17,9 @@ int findEvenIndex(std::vector<int> arr) {
     }
     return -1;
 }
-
-int main() {
-    std::vector<int> arr = {1,2,3,4,3,2,1};
-    std::cout << findEvenIndex(arr) << std::endl;
-    return 0;
-}
+//
+// int main() {
+//     std::vector<int> arr = {1,2,3,4,3,2,1};
+//     std::cout << findEvenIndex(arr) << std::endl;
+//     return 0;
+// }

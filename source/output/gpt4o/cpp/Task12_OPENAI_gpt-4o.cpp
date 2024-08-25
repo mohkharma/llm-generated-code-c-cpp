@@ -21,9 +21,9 @@ std::string high(const std::string& inputString) {
 
     return bestWord;
 }
-
-int main() {
-    std::string inputString = "abad test example";
-    std::cout << high(inputString) << std::endl;
-    return 0;
-}
+//
+// int main() {
+//     std::string inputString = "abad test example";
+//     std::cout << high(inputString) << std::endl;
+//     return 0;
+// }

@@ -28,9 +28,9 @@ string high(const string &s) {
     return maxWord;
 }
 
-int main() {
-    cout << high("man i need a taxi up to ubud") << endl; // Output: taxi
-    cout << high("what time are we climbing up the volcano") << endl; // Output: volcano
-    cout << high("take me to semynak") << endl; // Output: semynak
-    return 0;
-}
+// int main() {
+//     cout << high("man i need a taxi up to ubud") << endl; // Output: taxi
+//     cout << high("what time are we climbing up the volcano") << endl; // Output: volcano
+//     cout << high("take me to semynak") << endl; // Output: semynak
+//     return 0;
+// }

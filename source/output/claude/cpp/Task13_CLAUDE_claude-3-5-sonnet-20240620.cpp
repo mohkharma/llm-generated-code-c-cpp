@@ -20,11 +20,11 @@ bool isValidWalk(std::vector<char> walk) {
     return x == 0 && y == 0;
 }
 
-int main() {
-    std::cout << std::boolalpha;
-    std::cout << isValidWalk({'n','s','n','s','n','s','n','s','n','s'}) << std::endl;  // true
-    std::cout << isValidWalk({'w','e','w','e','w','e','w','e','w','e','w','e'}) << std::endl;  // false
-    std::cout << isValidWalk({'w'}) << std::endl;  // false
-    std::cout << isValidWalk({'n','n','n','s','n','s','n','s','n','s'}) << std::endl;  // false
-    return 0;
-}
+// int main() {
+//     std::cout << std::boolalpha;
+//     std::cout << isValidWalk({'n','s','n','s','n','s','n','s','n','s'}) << std::endl;  // true
+//     std::cout << isValidWalk({'w','e','w','e','w','e','w','e','w','e','w','e'}) << std::endl;  // false
+//     std::cout << isValidWalk({'w'}) << std::endl;  // false
+//     std::cout << isValidWalk({'n','n','n','s','n','s','n','s','n','s'}) << std::endl;  // false
+//     return 0;
+// }

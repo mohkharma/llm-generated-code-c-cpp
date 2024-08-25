@@ -9,8 +9,8 @@ int nbYear(int p0, double percent, int aug, int p) {
     return years;
 }
 
-int main() {
-    std::cout << nbYear(1500, 5, 100, 5000) << std::endl;
-    std::cout << nbYear(1500000, 2.5, 10000, 2000000) << std::endl;
-    return 0;
-}
+// int main() {
+//     std::cout << nbYear(1500, 5, 100, 5000) << std::endl;
+//     std::cout << nbYear(1500000, 2.5, 10000, 2000000) << std::endl;
+//     return 0;
+// }

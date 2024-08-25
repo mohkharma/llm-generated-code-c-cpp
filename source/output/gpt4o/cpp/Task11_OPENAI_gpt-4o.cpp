@@ -10,7 +10,7 @@ int nb_year(int p0, double percent, int aug, int p) {
     return year;
 }
 
-int main() {
-    cout << nb_year(1000, 2, 50, 1200) << endl;  // Example usage
-    return 0;
-}
+// int main() {
+//     cout << nb_year(1000, 2, 50, 1200) << endl;  // Example usage
+//     return 0;
+// }

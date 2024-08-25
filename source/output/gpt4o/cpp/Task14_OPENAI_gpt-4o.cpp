@@ -12,10 +12,10 @@ int findEvenIndex(const std::vector<int>& arr) {
     }
     return -1;
 }
-
-int main() {
-    std::cout << findEvenIndex({1, 2, 3, 4, 3, 2, 1}) << std::endl;  // Output should be 3
-    std::cout << findEvenIndex({1, 100, 50, -51, 1, 1}) << std::endl;  // Output should be 1
-    std::cout << findEvenIndex({20, 10, -80, 10, 10, 15, 35}) << std::endl;  // Output should be 0
-    return 0;
-}
+//
+// int main() {
+//     std::cout << findEvenIndex({1, 2, 3, 4, 3, 2, 1}) << std::endl;  // Output should be 3
+//     std::cout << findEvenIndex({1, 100, 50, -51, 1, 1}) << std::endl;  // Output should be 1
+//     std::cout << findEvenIndex({20, 10, -80, 10, 10, 15, 35}) << std::endl;  // Output should be 0
+//     return 0;
+// }
