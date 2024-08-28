@@ -11,11 +11,11 @@ int dig_pow(int n, int p) {
     }
     return sum % n == 0 ? sum / n : -1;
 }
-
-int main() {
-    cout << dig_pow(89, 1) << endl;     // Output: 1
-    cout << dig_pow(92, 1) << endl;     // Output: -1
-    cout << dig_pow(695, 2) << endl;    // Output: 2
-    cout << dig_pow(46288, 3) << endl;  // Output: 51
-    return 0;
-}
+//
+// int main() {
+//     cout << dig_pow(89, 1) << endl;     // Output: 1
+//     cout << dig_pow(92, 1) << endl;     // Output: -1
+//     cout << dig_pow(695, 2) << endl;    // Output: 2
+//     cout << dig_pow(46288, 3) << endl;  // Output: 51
+//     return 0;
+// }
