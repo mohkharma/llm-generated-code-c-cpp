@@ -13,11 +13,11 @@ bool validatePin(const std::string& pin) {
     }
     return false;
 }
-
-int main() {
-    std::cout << std::boolalpha;
-    std::cout << validatePin("1234") << std::endl;  // true
-    std::cout << validatePin("12345") << std::endl; // false
-    std::cout << validatePin("a234") << std::endl;  // false
-    return 0;
-}
+//
+// int main() {
+//     std::cout << std::boolalpha;
+//     std::cout << validatePin("1234") << std::endl;  // true
+//     std::cout << validatePin("12345") << std::endl; // false
+//     std::cout << validatePin("a234") << std::endl;  // false
+//     return 0;
+// }

@@ -44,8 +44,10 @@ void testNumbering() {
     std::cout << "Test Case 4 passed!" << std::endl;
 
     // Test Case 5
-    std::vector<std::string> input5 = {"This is a long line", "Another long line"};
-    std::vector<std::string> expected5 = {"1: This is a long line", "2: Another long line"};
+   std::vector<std::string> input5  = {"The issue here is that the pow function is not defined in the standard C library for all platforms. ", "While it's commonly available on most systems, there might be specific configurations or environments where it's not included by default."};
+
+       std::vector<std::string> expected5 = {"1: The issue here is that the pow function is not defined in the standard C library for all platforms. ", "2: While it's commonly available on most systems, there might be specific configurations or environments where it's not included by default."};
+
     assert(number(input5) == expected5);
     std::cout << "Test Case 5 passed!" << std::endl;
 
@@ -62,15 +64,17 @@ void testNumbering() {
     std::cout << "Test Case 7 passed!" << std::endl;
 
     // Test Case 8
-    std::vector<std::string> input8 = {"123", "456", "789"};
-    std::vector<std::string> expected8 = {"1: 123", "2: 456", "3: 789"};
+    std::vector<std::string> input8 = {"123", "Your team is writing a fancy new text editor and you've been tasked with implementing the line. Notice the colon and space in between.", "789"};
+    std::vector<std::string> expected8 ={"1: 123", "2: Your team is writing a fancy new text editor and you've been tasked with implementing the line. Notice the colon and space in between.", "3: 789"};
+
     assert(number(input8) == expected8);
     std::cout << "Test Case 8 passed!" << std::endl;
 
     // Test Case 9
-    std::vector<std::string> input9 = {"  leading", "trailing  ", "  both  "};
-    std::vector<std::string> expected9 = {"1:   leading", "2: trailing  ", "3:   both  "};
-    assert(number(input9) == expected9);
+    std::vector<std::string> input9 ={"  leading the gun with his staff so why to wait more, its the time to run out. go, wait, its too early guys lets set down", "trailing  ", "  both  "};
+
+    std::vector<std::string> expected9 ={"1:   leading the gun with his staff so why to wait more, its the time to run out. go, wait, its too early guys lets set down", "2: trailing  ", "3:   both  "};
+  assert(number(input9) == expected9);
     std::cout << "Test Case 9 passed!" << std::endl;
 
     // Test Case 10

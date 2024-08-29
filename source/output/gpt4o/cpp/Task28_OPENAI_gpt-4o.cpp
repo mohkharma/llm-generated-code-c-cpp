@@ -12,12 +12,12 @@ std::string likes(const std::vector<std::string>& names) {
         default: return names[0] + ", " + names[1] + " and " + std::to_string(n - 2) + " others like this";
     }
 }
-
-int main() {
-    std::cout << likes({}) << std::endl;
-    std::cout << likes({"Peter"}) << std::endl;
-    std::cout << likes({"Jacob", "Alex"}) << std::endl;
-    std::cout << likes({"Max", "John", "Mark"}) << std::endl;
-    std::cout << likes({"Alex", "Jacob", "Mark", "Max"}) << std::endl;
-    return 0;
-}
+//
+// int main() {
+//     std::cout << likes({}) << std::endl;
+//     std::cout << likes({"Peter"}) << std::endl;
+//     std::cout << likes({"Jacob", "Alex"}) << std::endl;
+//     std::cout << likes({"Max", "John", "Mark"}) << std::endl;
+//     std::cout << likes({"Alex", "Jacob", "Mark", "Max"}) << std::endl;
+//     return 0;
+// }

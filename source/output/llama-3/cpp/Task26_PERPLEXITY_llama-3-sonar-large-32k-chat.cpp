@@ -17,8 +17,8 @@ int findOdd(vector<int> arr) {
     return -1;
 }
 
-int main() {
-    vector<int> arr = {1,2,2,3,3,3,4,3,3,3,2,2,1};
-    cout << findOdd(arr) << endl;
-    return 0;
-}
+// int main() {
+//     vector<int> arr = {1,2,2,3,3,3,4,3,3,3,2,2,1};
+//     cout << findOdd(arr) << endl;
+//     return 0;
+// }
