@@ -14,8 +14,8 @@ std::string longest(const std::string &s1, const std::string &s2) {
     return result;
 }
 
-int main() {
-    std::cout << longest("xyaabbbccccdefww", "xxxxyyyyabklmopq") << std::endl;
-    std::cout << longest("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz") << std::endl;
-    return 0;
-}
+// int main() {
+//     std::cout << longest("xyaabbbccccdefww", "xxxxyyyyabklmopq") << std::endl;
+//     std::cout << longest("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz") << std::endl;
+//     return 0;
+// }

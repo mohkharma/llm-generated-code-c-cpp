@@ -12,9 +12,9 @@ std::string longest(const std::string& a, const std::string& b) {
     std::sort(result.begin(), result.end());
     return result;
 }
-
-int main() {
-    std::cout << longest("xyaabbbccccdefww", "xxxxyyyyabklmopq") << std::endl;
-    std::cout << longest("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz") << std::endl;
-    return 0;
-}
+//
+// int main() {
+//     std::cout << longest("xyaabbbccccdefww", "xxxxyyyyabklmopq") << std::endl;
+//     std::cout << longest("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz") << std::endl;
+//     return 0;
+// }

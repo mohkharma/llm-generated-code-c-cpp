@@ -10,8 +10,8 @@ std::string longest(std::string s1, std::string s2) {
     std::sort(result.begin(), result.end());
     return result;
 }
-
-int main() {
-    std::cout << longest("xyaabbbccccdefww", "xxxxyyyyabklmopq");
-    return 0;
-}
+//
+// int main() {
+//     std::cout << longest("xyaabbbccccdefww", "xxxxyyyyabklmopq");
+//     return 0;
+// }

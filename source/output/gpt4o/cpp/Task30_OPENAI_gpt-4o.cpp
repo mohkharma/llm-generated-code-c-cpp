@@ -8,14 +8,14 @@ std::string longest(const std::string &s1, const std::string &s2) {
     std::string result(charSet.begin(), charSet.end());
     return result;
 }
-
-int main() {
-    std::string a = "xyaabbbccccdefww";
-    std::string b = "xxxxyyyyabklmopq";
-    std::cout << longest(a, b) << std::endl;
-
-    a = "abcdefghijklmnopqrstuvwxyz";
-    std::cout << longest(a, a) << std::endl;
-
-    return 0;
-}
+//
+// int main() {
+//     std::string a = "xyaabbbccccdefww";
+//     std::string b = "xxxxyyyyabklmopq";
+//     std::cout << longest(a, b) << std::endl;
+//
+//     a = "abcdefghijklmnopqrstuvwxyz";
+//     std::cout << longest(a, a) << std::endl;
+//
+//     return 0;
+// }
