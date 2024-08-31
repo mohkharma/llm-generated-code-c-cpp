@@ -1,6 +1,6 @@
 #include <iostream>
 
-int calculateYears(double principal, double desired, double interest, double tax) {
+int calculateYears(double principal, double interest, double tax,double desired) {
     int years = 0;
     while (principal < desired) {
         principal += (principal * interest) * (1 - tax);

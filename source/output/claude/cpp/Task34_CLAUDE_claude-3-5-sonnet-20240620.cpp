@@ -14,10 +14,10 @@ bool narcissistic(int num) {
     
     return sum == num;
 }
-
-int main() {
-    std::cout << std::boolalpha;
-    std::cout << narcissistic(153) << std::endl;  // true
-    std::cout << narcissistic(1652) << std::endl;  // false
-    return 0;
-}
+//
+// int main() {
+//     std::cout << std::boolalpha;
+//     std::cout << narcissistic(153) << std::endl;  // true
+//     std::cout << narcissistic(1652) << std::endl;  // false
+//     return 0;
+// }

@@ -20,10 +20,10 @@ int queueTime(std::vector<int> customers, int n) {
     }
     return totalTime;
 }
-
-int main() {
-    std::cout << queueTime({5, 3, 4}, 1) << std::endl; // should return 12
-    std::cout << queueTime({10, 2, 3, 3}, 2) << std::endl; // should return 10
-    std::cout << queueTime({2, 3, 10}, 2) << std::endl; // should return 12
-    return 0;
-}
+//
+// int main() {
+//     std::cout << queueTime({5, 3, 4}, 1) << std::endl; // should return 12
+//     std::cout << queueTime({10, 2, 3, 3}, 2) << std::endl; // should return 10
+//     std::cout << queueTime({2, 3, 10}, 2) << std::endl; // should return 12
+//     return 0;
+// }

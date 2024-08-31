@@ -10,8 +10,8 @@ int calculateYears(double principal, double interest, double tax, double desired
     }
     return years;
 }
-
-int main() {
-    // Test the function here
-    return 0;
-}
+//
+// int main() {
+//     // Test the function here
+//     return 0;
+// }

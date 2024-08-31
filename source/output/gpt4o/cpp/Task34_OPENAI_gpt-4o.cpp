@@ -14,9 +14,9 @@ bool isNarcissistic(int number) {
 
     return sum == number;
 }
-
-int main() {
-    std::cout << isNarcissistic(153) << std::endl;  // 1 (true)
-    std::cout << isNarcissistic(1652) << std::endl;  // 0 (false)
-    return 0;
-}
+//
+// int main() {
+//     std::cout << isNarcissistic(153) << std::endl;  // 1 (true)
+//     std::cout << isNarcissistic(1652) << std::endl;  // 0 (false)
+//     return 0;
+// }
