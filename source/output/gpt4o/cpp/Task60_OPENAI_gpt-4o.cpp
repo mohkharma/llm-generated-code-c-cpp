@@ -20,10 +20,10 @@ std::string expandedForm(int num) {
     }
     return final_result;
 }
-
-int main() {
-    std::cout << expandedForm(12) << std::endl;    // Should return "10 + 2"
-    std::cout << expandedForm(42) << std::endl;    // Should return "40 + 2"
-    std::cout << expandedForm(70304) << std::endl; // Should return "70000 + 300 + 4"
-    return 0;
-}
+//
+// int main() {
+//     std::cout << expandedForm(12) << std::endl;    // Should return "10 + 2"
+//     std::cout << expandedForm(42) << std::endl;    // Should return "40 + 2"
+//     std::cout << expandedForm(70304) << std::endl; // Should return "70000 + 300 + 4"
+//     return 0;
+// }

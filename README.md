@@ -8,7 +8,15 @@ Then Run:
 ```
 python compiler.py
 ```
+```
 
+find ./ -type f > list
+```
+```
+build-wrapper-linux-x86-64 --out-dir bw-output cmake --build cmake-build-debug
+cd bw-output
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+cd ..
+sonar-scanner
+```
 
-242  build-wrapper-linux-x86-64 --out-dir bw-output cmake --build cmake-build-debug\n
-243  sonar-scanner

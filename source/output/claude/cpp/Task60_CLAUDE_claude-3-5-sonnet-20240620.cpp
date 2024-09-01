@@ -25,10 +25,10 @@ std::string expanded_form(long long num) {
     
     return result;
 }
-
-int main() {
-    std::cout << expanded_form(12) << std::endl;    // Output: 10 + 2
-    std::cout << expanded_form(42) << std::endl;    // Output: 40 + 2
-    std::cout << expanded_form(70304) << std::endl; // Output: 70000 + 300 + 4
-    return 0;
-}
+//
+// int main() {
+//     std::cout << expanded_form(12) << std::endl;    // Output: 10 + 2
+//     std::cout << expanded_form(42) << std::endl;    // Output: 40 + 2
+//     std::cout << expanded_form(70304) << std::endl; // Output: 70000 + 300 + 4
+//     return 0;
+// }

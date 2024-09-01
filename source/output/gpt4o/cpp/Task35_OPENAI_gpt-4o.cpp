@@ -9,7 +9,7 @@ int numberOfPeople(const std::vector<std::pair<int, int>>& busStops) {
     }
     return totalPeople;
 }
-//
+
 // int main() {
 //     std::vector<std::pair<int, int>> busStops = {{10, 0}, {3, 5}, {5, 8}};
 //     std::cout << numberOfPeople(busStops) << std::endl; // Output: 5
