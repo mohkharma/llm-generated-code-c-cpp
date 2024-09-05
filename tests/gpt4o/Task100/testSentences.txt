@@ -1,0 +1,10 @@
+Hello, this is line 1.
+The quick brown fox jumps over the lazy dog.
+Email addresses include: test@example.com and sample@domain.org.
+This line has some random numbers: 1234567890.
+Let's search for some patterns in this file.
+The word 'Python' is on this line.
+Did you know 2 + 2 = 4?
+Is this line matching any pattern?
+A pattern may or may not exist here.
+Finally, the last line of the file!
