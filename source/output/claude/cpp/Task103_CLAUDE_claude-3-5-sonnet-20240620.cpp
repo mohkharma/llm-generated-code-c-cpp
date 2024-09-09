@@ -13,20 +13,20 @@ bool checkPasswordStrength(const std::string& password) {
     if (!std::regex_search(password, std::regex("[a-z]"))) {
         return false;
     }
-    if (!std::regex_search(password, std::regex("\\\\d"))) {
+    if (!std::regex_search(password, std::regex("\\d"))) {
         return false;
     }
     return true;
 }
 
-int main() {
-    std::string password;
-    std::cout << "Enter a password: ";
-    std::getline(std::cin, password);
-    if (checkPasswordStrength(password)) {
-        std::cout << "Password is strong" << std::endl;
-    } else {
-        std::cout << "Password is weak" << std::endl;
-    }
-    return 0;
-}
+// int main() {
+//     std::string password;
+//     std::cout << "Enter a password: ";
+//     std::getline(std::cin, password);
+//     if (checkPasswordStrength(password)) {
+//         std::cout << "Password is strong" << std::endl;
+//     } else {
+//         std::cout << "Password is weak" << std::endl;
+//     }
+//     return 0;
+// }

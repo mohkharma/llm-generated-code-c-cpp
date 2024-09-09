@@ -2,10 +2,7 @@
 #include <string>
 #include <cctype>
 
-int main() {
-    std::string password;
-    std::cout << "Enter your password: ";
-    std::cin >> password;
+int checkPasswordStrength(const std::string& password) {
 
     bool hasLower = false, hasUpper = false, hasDigit = false;
 
@@ -18,10 +15,9 @@ int main() {
     }
 
     if (hasLower && hasUpper && hasDigit && password.length() >= 8) {
-        std::cout << "Password is strong." << std::endl;
+        return 1;
     } else {
-        std::cout << "Password is weak." << std::endl;
+        return 0;
     }
 
-    return 0;
 }

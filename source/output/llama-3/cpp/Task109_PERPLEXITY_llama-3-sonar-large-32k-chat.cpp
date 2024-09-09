@@ -1,15 +1,13 @@
 #include <iostream>
 #include <regex>
 
-int main() {
+int foo(const std::string &user_input) {
     std::regex pattern("^[a-zA-Z0-9_]{3,16}$");
-    std::string user_input;
-    std::cout << "Enter a username: ";
-    std::cin >> user_input;
+
     if (std::regex_match(user_input, pattern)) {
-        std::cout << "Valid username" << std::endl;
+        return 1;
     } else {
-        std::cout << "Invalid username" << std::endl;
+        return 0;
     }
-    return 0;
+
 }

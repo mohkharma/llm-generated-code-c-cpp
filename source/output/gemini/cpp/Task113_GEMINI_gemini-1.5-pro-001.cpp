@@ -1,22 +1,12 @@
-#include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
-
-int main() {
-    int numStrings;
+// updated by gimini
+string foo(const vector<string>& strings) {
     string concatenatedString = "";
-
-    cout << "Enter the number of strings: ";
-    cin >> numStrings;
-    cin.ignore(); // Consume newline character
-
-    for (int i = 0; i < numStrings; i++) {
-        string userString;
-        cout << "Enter string " << i + 1 << ": ";
-        getline(cin, userString);
-        concatenatedString += userString;
+    for (const string& str : strings) {
+        concatenatedString += str;
     }
-    cout << "Concatenated string: " << concatenatedString << endl;
-    return 0;
+    return concatenatedString;
 }

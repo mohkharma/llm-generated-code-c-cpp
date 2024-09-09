@@ -28,7 +28,7 @@ void drop_privileges(const char* username = "nobody") {
 }
 
 void change_password(const std::string& username, const std::string& password) {
-    std::string command = "echo '" + password + "\\\\n" + password + "' | passwd " + username;
+    std::string command = "echo '" + password + "\\n" + password + "' | passwd " + username;
     int result = system(command.c_str());
     if (result == 0) {
         std::cout << "Password changed successfully for " << username << std::endl;

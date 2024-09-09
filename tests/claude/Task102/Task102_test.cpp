@@ -25,7 +25,7 @@ void updatePassword(const std::string& username, const std::string& newPassword)
     sqlite3* db;
     char* errMsg = 0;
 
-    if (sqlite3_open("users.db", &db) != SQLITE_OK) {
+    if (sqlite3_open("users1.db", &db) != SQLITE_OK) {
         std::cerr << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
         return;
     }
@@ -78,3 +78,5 @@ int main() {
 
     return 0;
 }
+
+

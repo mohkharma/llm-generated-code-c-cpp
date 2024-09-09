@@ -1,21 +1,15 @@
-
-#include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
-int main() {
+// override by cloude
+std::string foo(const std::string &s) {
     std::vector<std::string> strings;
-    std::string s;
-
-    while (true) {
-        std::cout << "Enter a string (or press Enter to finish): ";
-        std::getline(std::cin, s);
-        if (s.empty()) {
-            break;
-        }
-        strings.push_back(s);
+    std::istringstream iss(s);
+    std::string word;
+    while (iss >> word) {
+        strings.push_back(word);
     }
-
     std::string result;
     for (const auto& str : strings) {
         if (!result.empty()) {
@@ -23,8 +17,5 @@ int main() {
         }
         result += str;
     }
-
-    std::cout << "Concatenated string: " << result << std::endl;
-
-    return 0;
+    return result;
 }

@@ -3,6 +3,7 @@
 #include <xmlrpc-c/base.hpp>
 #include <xmlrpc-c/registry.hpp>
 #include <xmlrpc-c/server_abyss.hpp>
+// sudo apt install libxmlrpc-c++9-dev
 
 class AddMethod : public xmlrpc_c::method {
 public:
