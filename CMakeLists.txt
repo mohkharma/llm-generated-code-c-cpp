@@ -15,8 +15,8 @@ find_package(cpprestsdk REQUIRED)
 find_package(httplib CONFIG REQUIRED)
 find_package(bson-1.0 CONFIG REQUIRED)
 #target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
-add_executable(a1
-        tests/llama-3/Task60_Test.cpp
+add_executable(a222
+        tests/llama-3/Task31_Test.cpp
 )
 
 
