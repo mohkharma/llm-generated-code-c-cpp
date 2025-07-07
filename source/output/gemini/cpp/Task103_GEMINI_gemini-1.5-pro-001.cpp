@@ -23,15 +23,15 @@ bool checkPasswordStrength(const string& password) {
   return hasUpper && hasLower && hasDigit;
 }
 
-int main() {
-  string password;
-  cout << "Enter a password: ";
-  cin >> password;
-
-  if (checkPasswordStrength(password)) {
-    cout << "Strong password" << endl;
-  } else {
-    cout << "Weak password" << endl;
-  }
-  return 0;
-}
+// int main() {
+//   string password;
+//   cout << "Enter a password: ";
+//   cin >> password;
+//
+//   if (checkPasswordStrength(password)) {
+//     cout << "Strong password" << endl;
+//   } else {
+//     cout << "Weak password" << endl;
+//   }
+//   return 0;
+// }

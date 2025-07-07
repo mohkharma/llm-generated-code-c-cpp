@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main() {
+void solve() {
     ifstream file("file.txt");
     vector<vector<string>> content;
     string line;
@@ -28,6 +28,4 @@ int main() {
         }
         cout << endl;
     }
-
-    return 0;
 }

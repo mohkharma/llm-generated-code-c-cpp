@@ -1,29 +1,19 @@
-
 #include <iostream>
-#include <string>
+#include <cstring>
 
-const int BUFFER_SIZE = 100;
+#define BUFFER_SIZE 100
 
-int main() {
-    std::string buffer;
-    std::string userInput;
+void handleInput(const char* input) {
+    char buffer[BUFFER_SIZE];
+    size_t inputLength = strlen(input);
 
-    while (true) {
-        std::cout << "Enter text (or 'q' to quit): ";
-        std::getline(std::cin, userInput);
-
-        if (userInput == "q" || userInput == "Q") {
-            break;
-        }
-
-        if (buffer.length() + userInput.length() <= BUFFER_SIZE) {
-            buffer += userInput;
-            std::cout << "Buffer content: " << buffer << std::endl;
-        } else {
-            std::cout << "Error: Buffer overflow. Cannot add more than " << BUFFER_SIZE << " characters." << std::endl;
-        }
+    if (inputLength < BUFFER_SIZE) {
+        strncpy(buffer, input, BUFFER_SIZE - 1);
+        buffer[BUFFER_SIZE - 1] = '\0';
+        std::cout << "Input stored in buffer: " << buffer << std::endl;
+    } else {
+        strncpy(buffer, input, BUFFER_SIZE - 1);
+        buffer[BUFFER_SIZE - 1] = '\0';
+        std::cout << "Input truncated to fit buffer: " << buffer << std::endl;
     }
-
-    std::cout << "Final buffer content: " << buffer << std::endl;
-    return 0;
 }

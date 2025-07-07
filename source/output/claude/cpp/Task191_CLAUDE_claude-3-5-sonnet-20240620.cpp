@@ -27,11 +27,3 @@ public:
         return maxLength;
     }
 };
-
-int main() {
-    Solution solution;
-    std::cout << solution.longestValidParentheses("(()") << std::endl;  // Output: 2
-    std::cout << solution.longestValidParentheses(")()())") << std::endl;  // Output: 4
-    std::cout << solution.longestValidParentheses("") << std::endl;  // Output: 0
-    return 0;
-}

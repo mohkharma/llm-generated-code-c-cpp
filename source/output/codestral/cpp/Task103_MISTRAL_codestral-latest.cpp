@@ -17,14 +17,14 @@ bool checkPasswordStrength(const std::string& password) {
     return true;
 }
 
-int main() {
-    std::string password;
-    std::cout << "Enter a password: ";
-    std::getline(std::cin, password);
-    if (checkPasswordStrength(password)) {
-        std::cout << "Password is strong" << std::endl;
-    } else {
-        std::cout << "Password is weak" << std::endl;
-    }
-    return 0;
-}
+// int main() {
+//     std::string password;
+//     std::cout << "Enter a password: ";
+//     std::getline(std::cin, password);
+//     if (checkPasswordStrength(password)) {
+//         std::cout << "Password is strong" << std::endl;
+//     } else {
+//         std::cout << "Password is weak" << std::endl;
+//     }
+//     return 0;
+// }

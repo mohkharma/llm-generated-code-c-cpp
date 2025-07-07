@@ -11,10 +11,3 @@ std::string cleanPhoneNumber(const std::string& phoneNumber) {
     return cleaned;
 }
 
-int main() {
-    std::cout << cleanPhoneNumber("+1 (613)-995-0253") << std::endl;
-    std::cout << cleanPhoneNumber("613-995-0253") << std::endl;
-    std::cout << cleanPhoneNumber("1 613 995 0253") << std::endl;
-    std::cout << cleanPhoneNumber("613.995.0253") << std::endl;
-    return 0;
-}

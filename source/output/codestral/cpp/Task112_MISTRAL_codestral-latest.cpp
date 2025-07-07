@@ -9,14 +9,14 @@
 
 int main() {
     // Create a connection
-    mongocxx::uri uri("mongodb://localhost:27017");
+    mongocxx::uri uri("mongodb+srv://aboodbarghouti4:T7i9A8rCGAOF5iWS@cluster0.ww6rd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
     mongocxx::client client(uri);
 
     // Create a database
-    auto database = client["test-database"];
+    auto database = client["mydatabase"];
 
     // Create a collection
-    auto collection = database["test-collection"];
+    auto collection = database["mycollection"];
 
     // Insert a document
     bsoncxx::builder::stream::document document{};

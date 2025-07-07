@@ -10,17 +10,3 @@ std::string cleanNumber(std::string number) {
     return number;
 }
 
-int main() {
-    std::vector<std::string> numbers = {"+1 (613)-995-0253", "613-995-0253", "1 613 995 0253", "613.995.0253"};
-    std::vector<std::string> cleanedNumbers;
-
-    for (auto& number : numbers) {
-        cleanedNumbers.push_back(cleanNumber(number));
-    }
-
-    for (auto& cleanedNumber : cleanedNumbers) {
-        std::cout << cleanedNumber << std::endl;
-    }
-
-    return 0;
-}

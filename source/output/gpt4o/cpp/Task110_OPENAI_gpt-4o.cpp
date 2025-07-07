@@ -6,15 +6,12 @@ bool validateURL(const std::string &url) {
     return std::regex_match(url, pattern);
 }
 
-int main() {
-    std::string userURL;
-    std::cout << "Enter URL: ";
-    std::cin >> userURL;
+int foo(const std::string &userURL) {
 
     if (validateURL(userURL)) {
-        std::cout << "Valid URL\n";
+           return 1;
     } else {
-        std::cout << "Invalid URL\n";
+        return 0;
     }
 
     return 0;

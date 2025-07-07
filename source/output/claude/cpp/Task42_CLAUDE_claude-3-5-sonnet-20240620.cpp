@@ -44,10 +44,10 @@ bool login(const std::string& username, const std::string& password) {
     }
     return verify_password(it->second, password);
 }
-
-int main() {
-    register_user("alice", "password123");
-    std::cout << login("alice", "password123") << std::endl; // 1 (true)
-    std::cout << login("alice", "wrongpassword") << std::endl; // 0 (false)
-    return 0;
-}
+//
+// int main() {
+//     register_user("alice", "password123");
+//     std::cout << login("alice", "password123") << std::endl; // 1 (true)
+//     std::cout << login("alice", "wrongpassword") << std::endl; // 0 (false)
+//     return 0;
+// }

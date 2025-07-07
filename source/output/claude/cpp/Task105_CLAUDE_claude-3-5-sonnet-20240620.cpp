@@ -52,9 +52,9 @@ void create_ssl_connection(const std::string& host, int port) {
     SSL_CTX_free(ctx);
 }
 
-int main() {
-    initialize_openssl();
-    create_ssl_connection("www.example.com", 443);
-    cleanup_openssl();
-    return 0;
-}
+// int main() {
+//     initialize_openssl();
+//     create_ssl_connection("www.google.com", 443);
+//     cleanup_openssl();
+//     return 0;
+// }

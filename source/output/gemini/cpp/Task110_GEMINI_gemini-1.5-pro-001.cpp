@@ -11,16 +11,10 @@ bool isValidUrl(const string& url) {
   return regex_match(url, urlRegex);
 }
 
-int main() {
-  string url;
-  cout << "Enter a URL: ";
-  getline(cin, url);
-
+int foo(const string &url) {
   if (isValidUrl(url)) {
-    cout << "Valid URL" << endl;
+    return 1;
   } else {
-    cout << "Invalid URL" << endl;
+    return 0;
   }
-
-  return 0;
 }
