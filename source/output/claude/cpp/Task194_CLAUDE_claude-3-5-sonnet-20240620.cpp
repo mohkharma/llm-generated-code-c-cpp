@@ -65,12 +65,3 @@ private:
     }
 };
 
-int main() {
-    string secret = "acckzz";
-    vector<string> words = {"acckzz", "ccbazz", "eiowzz", "abcczz"};
-    Master master(secret);
-    Solution solution;
-    solution.findSecretWord(words, master);
-    cout << (master.getGuesses() <= 10 ? "You guessed the secret word correctly." : "Either you took too many guesses, or you did not find the secret word.") << endl;
-    return 0;
-}

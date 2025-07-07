@@ -39,22 +39,3 @@ void releaseOxygen() {
     std::cout << "O";
 }
 
-int main() {
-    H2O h2o;
-    std::string water = "HOH";
-    std::thread threads[water.length()];
-
-    for (size_t i = 0; i < water.length(); ++i) {
-        if (water[i] == 'H') {
-            threads[i] = std::thread(&H2O::hydrogen, &h2o, releaseHydrogen);
-        } else {
-            threads[i] = std::thread(&H2O::oxygen, &h2o, releaseOxygen);
-        }
-    }
-
-    for (auto& th : threads) {
-        th.join();
-    }
-
-    return 0;
-}

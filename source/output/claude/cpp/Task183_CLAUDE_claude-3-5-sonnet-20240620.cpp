@@ -20,11 +20,3 @@ long long largestSeriesProduct(const std::string& inputSequence, int span) {
     
     return maxProduct;
 }
-
-int main() {
-    std::string inputSequence = "63915";
-    int span = 3;
-    long long result = largestSeriesProduct(inputSequence, span);
-    std::cout << "The largest product of " << span << " adjacent digits in " << inputSequence << " is: " << result << std::endl;
-    return 0;
-}

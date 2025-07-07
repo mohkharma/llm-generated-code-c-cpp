@@ -29,14 +29,3 @@ int shortestSubarray(vector<int>& nums, int k) {
     return minLength == INT_MAX ? -1 : minLength;
 }
 
-int main() {
-    vector<int> nums1 = {1};
-    vector<int> nums2 = {1, 2};
-    vector<int> nums3 = {2, -1, 2};
-
-    cout << shortestSubarray(nums1, 1) << endl; // Output: 1
-    cout << shortestSubarray(nums2, 4) << endl; // Output: -1
-    cout << shortestSubarray(nums3, 3) << endl; // Output: 3
-
-    return 0;
-}

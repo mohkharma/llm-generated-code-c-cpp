@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main() {
+int solve() {
     ifstream file("file.txt");
     vector<vector<string>> lines;
     string line, word;

@@ -29,16 +29,3 @@ public:
     }
 };
 
-int main() {
-    Clock clock1(10, 30);
-    Clock clock2(10, 30);
-    std::cout << (clock1 == clock2) << std::endl;  // 1 (true)
-
-    clock1.addMinutes(30);
-    std::cout << clock1.hours << " " << clock1.minutes << std::endl;  // 11 0
-
-    clock1.subtractMinutes(60);
-    std::cout << clock1.hours << " " << clock1.minutes << std::endl;  // 10 0
-
-    return 0;
-}

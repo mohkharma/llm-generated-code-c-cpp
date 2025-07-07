@@ -15,9 +15,3 @@ int largestProduct(const std::string& inputStr, int span) {
     return maxProduct;
 }
 
-int main() {
-    std::string inputStr = "63915";
-    int span = 3;
-    std::cout << largestProduct(inputStr, span) << std::endl;
-    return 0;
-}

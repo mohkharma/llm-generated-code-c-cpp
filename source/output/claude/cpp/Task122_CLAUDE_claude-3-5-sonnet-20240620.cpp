@@ -43,7 +43,7 @@ void signup() {
     std::cout << "Signup successful!" << std::endl;
 }
 
-int main() {
+int run_signup() {
     OpenSSL_add_all_algorithms();
     signup();
     EVP_cleanup();

@@ -15,11 +15,3 @@ int rand10() {
         }
     }
 }
-
-int main() {
-    int n = 1;  // change this to test with different inputs
-    for (int i = 0; i < n; i++) {
-        std::cout << rand10() << " ";
-    }
-    return 0;
-}

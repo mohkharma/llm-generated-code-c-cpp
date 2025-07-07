@@ -17,14 +17,3 @@ std::string clean_phone_number(const std::string& phone) {
     }
 }
 
-int main() {
-    try {
-        std::cout << clean_phone_number("+1 (613)-995-0253") << std::endl;
-        std::cout << clean_phone_number("613-995-0253") << std::endl;
-        std::cout << clean_phone_number("1 613 995 0253") << std::endl;
-        std::cout << clean_phone_number("613.995.0253") << std::endl;
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-    return 0;
-}

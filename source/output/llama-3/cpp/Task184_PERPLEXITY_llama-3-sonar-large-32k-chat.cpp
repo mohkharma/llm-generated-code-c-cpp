@@ -31,6 +31,9 @@ public:
     void reset() {
         this->name = generateName();
     }
+    std::string getName() const {
+        return name;
+    }
 };
 
 std::set<std::string> Robot::usedNames;

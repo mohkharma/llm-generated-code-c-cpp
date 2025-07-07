@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main() {
+int  run_upload_program() {
     string filePath;
 
     cout << "Enter the path to the file you want to upload: ";

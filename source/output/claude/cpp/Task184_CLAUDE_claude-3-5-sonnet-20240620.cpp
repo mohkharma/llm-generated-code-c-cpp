@@ -50,10 +50,3 @@ std::mt19937 Robot::gen(Robot::rd());
 std::uniform_int_distribution<> Robot::dis_letter(0, 25);
 std::uniform_int_distribution<> Robot::dis_digit(0, 9);
 
-int main() {
-    Robot robot;
-    std::cout << robot.get_name() << std::endl;
-    robot.reset();
-    std::cout << robot.get_name() << std::endl;
-    return 0;
-}

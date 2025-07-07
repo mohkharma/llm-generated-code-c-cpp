@@ -16,17 +16,3 @@ int rand10() {
     }
 }
 
-int main() {
-    srand((unsigned)time(0));
-    int n;
-    std::cin >> n;
-    std::vector<int> results;
-    for (int i = 0; i < n; i++) {
-        results.push_back(rand10());
-    }
-    for (int num : results) {
-        std::cout << num << " ";
-    }
-    std::cout << std::endl;
-    return 0;
-}

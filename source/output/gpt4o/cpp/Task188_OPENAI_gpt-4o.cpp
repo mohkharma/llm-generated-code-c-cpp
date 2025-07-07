@@ -33,12 +33,3 @@ public:
     }
 };
 
-int main() {
-    int n = 2;
-    FooBar fooBar(n);
-    std::thread threadA(&FooBar::foo, &fooBar);
-    std::thread threadB(&FooBar::bar, &fooBar);
-    threadA.join();
-    threadB.join();
-    return 0;
-}

@@ -53,16 +53,3 @@ void printNumber(int x) {
     cout << x;
 }
 
-int main() {
-    ZeroEvenOdd zeroEvenOdd(5);
-
-    thread threadA(&ZeroEvenOdd::zero, &zeroEvenOdd, printNumber);
-    thread threadB(&ZeroEvenOdd::even, &zeroEvenOdd, printNumber);
-    thread threadC(&ZeroEvenOdd::odd, &zeroEvenOdd, printNumber);
-
-    threadA.join();
-    threadB.join();
-    threadC.join();
-
-    return 0;
-}

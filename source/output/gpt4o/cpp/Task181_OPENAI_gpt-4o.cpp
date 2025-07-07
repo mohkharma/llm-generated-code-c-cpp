@@ -39,12 +39,3 @@ public:
     }
 };
 
-int main() {
-    // Example usage
-    BankAccount account(1, 100);
-    std::cout << account.deposit(50) << std::endl;
-    std::cout << account.withdraw(30) << std::endl;
-    std::cout << account.close() << std::endl;
-
-    return 0;
-}

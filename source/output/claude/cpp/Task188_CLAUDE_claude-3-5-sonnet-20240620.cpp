@@ -37,19 +37,3 @@ public:
         }
     }
 };
-
-int main() {
-    int n = 2;
-    FooBar fooBar(n);
-
-    auto printFoo = [] { std::cout << "foo"; };
-    auto printBar = [] { std::cout << "bar"; };
-
-    std::thread t1(&FooBar::foo, &fooBar, printFoo);
-    std::thread t2(&FooBar::bar, &fooBar, printBar);
-
-    t1.join();
-    t2.join();
-
-    return 0;
-}
