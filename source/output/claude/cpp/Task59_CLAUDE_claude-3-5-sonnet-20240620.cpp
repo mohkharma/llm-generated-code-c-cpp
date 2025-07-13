@@ -16,9 +16,3 @@ std::string accum(const std::string &s) {
     return result;
 }
 
-int main() {
-    std::cout << accum("abcd") << std::endl;
-    std::cout << accum("RqaEzty") << std::endl;
-    std::cout << accum("cwAt") << std::endl;
-    return 0;
-}

@@ -15,9 +15,35 @@ find_package(cpprestsdk REQUIRED)
 find_package(httplib CONFIG REQUIRED)
 find_package(bson-1.0 CONFIG REQUIRED)
 #target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
-add_executable(a222
-        tests/llama-3/Task60_Test.cpp
-)
+
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+
+
+
+
+
+
+
+
+
+
+
+ add_executable(Task61_Test tests/llama-3/Task61_Test.cpp)
+
+
+
+find_package(tinyxml2 REQUIRED)
+
+target_link_libraries(Task61_Test PRIVATE tinyxml2::tinyxml2)
+
+
+
+
+
+
+
 
 
 add_library(Task62_OPENAI source/output/gpt4o/cpp/Task62_OPENAI_gpt-4o.cpp)
@@ -722,7 +748,8 @@ add_library(Task53_claude source/output/claude/cpp/Task53_CLAUDE_claude-3-5-sonn
 add_library(Task178_claude source/output/claude/cpp/Task178_CLAUDE_claude-3-5-sonnet-20240620.cpp)
 add_library(Task42_claude source/output/claude/cpp/Task42_CLAUDE_claude-3-5-sonnet-20240620.cpp)
 add_library(Task0_claude source/output/claude/cpp/Task0_CLAUDE_claude-3-5-sonnet-20240620.cpp)
-add_library(Task190_claude source/output/claude/cpp/Task190_CLAUDE_claude-3-5-sonnet-20240620.cpp)
+add_library(Task190_claude source/output/claude/cpp/Task190_CLAUDE_claude-3-5-sonnet-20240620.cpp
+        tests/claude/Task190/Task190_test.cpp)
 add_library(Task84_claude source/output/claude/cpp/Task84_CLAUDE_claude-3-5-sonnet-20240620.cpp)
 add_library(Task6_claude source/output/claude/cpp/Task6_CLAUDE_claude-3-5-sonnet-20240620.cpp)
 add_library(Task102_claude source/output/claude/cpp/Task102_CLAUDE_claude-3-5-sonnet-20240620.cpp)

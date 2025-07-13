@@ -73,32 +73,3 @@ void decryptFile(const string& inputFile, const string& outputFile, const vector
     inFile.close();
     outFile.close();
 }
-
-int main() {
-    vector<unsigned char> key = generateKey();
-    cout << "Generated key: ";
-    for (unsigned char c : key) {
-        printf("%02x", c);
-    }
-    cout << endl;
-
-    string inputFile;
-    cout << "Enter the file path to encrypt: ";
-    cin >> inputFile;
-
-    string encryptedFile = inputFile + ".encrypted";
-    encryptFile(inputFile, encryptedFile, key);
-    cout << "File encrypted: " << encryptedFile << endl;
-
-    char decryptChoice;
-    cout << "Do you want to decrypt the file? (y/n): ";
-    cin >> decryptChoice;
-
-    if (tolower(decryptChoice) == 'y') {
-        string decryptedFile = inputFile + ".decrypted";
-        decryptFile(encryptedFile, decryptedFile, key);
-        cout << "File decrypted: " << decryptedFile << endl;
-    }
-
-    return 0;
-}

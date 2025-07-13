@@ -38,11 +38,3 @@ void get_user_info(const std::string& username) {
     mysql_free_result(res);
     mysql_close(conn);
 }
-
-int main() {
-    std::string username;
-    std::cout << "Enter username: ";
-    std::cin >> username;
-    get_user_info(username);
-    return 0;
-}

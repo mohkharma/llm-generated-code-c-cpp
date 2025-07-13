@@ -6,7 +6,7 @@
 #include <openssl/err.h>
 #include <sys/socket.h>
 
-int main() {
+void secureConnect() {
     // Define the remote server and port
     const char* server = "https://www.google.com";
     const char* port = "1012";
@@ -45,5 +45,5 @@ int main() {
     close(sockfd);
     SSL_CTX_free(ctx);
     EVP_cleanup();
-    return 0;
 }
+

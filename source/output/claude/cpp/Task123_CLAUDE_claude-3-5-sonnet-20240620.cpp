@@ -84,39 +84,3 @@ public:
         }
     }
 };
-
-int main() {
-    SessionManager sessionManager;
-
-    // Create a session
-    std::string userId = "user123";
-    std::string sessionId = sessionManager.createSession(userId);
-    std::cout << "Session created for user " << userId << ": " << sessionId << std::endl;
-
-    // Get session
-    Session* session = sessionManager.getSession(sessionId);
-    if (session) {
-        std::cout << "Session found for user " << session->userId << std::endl;
-    } else {
-        std::cout << "Session not found" << std::endl;
-    }
-
-    //error: ‘std::this_thread’ has not been declared
-    //fixed by including #include <thread>
-    //
-    // Simulate session expiration
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-    sessionManager = SessionManager(1); // Set timeout to 1 second for demonstration
-    session = sessionManager.getSession(sessionId);
-    if (session) {
-        std::cout << "Session still active for user " << session->userId << std::endl;
-    } else {
-        std::cout << "Session expired" << std::endl;
-    }
-
-    // Cleanup expired sessions
-    sessionManager.cleanupExpiredSessions();
-    std::cout << "Expired sessions cleaned up" << std::endl;
-
-    return 0;
-}

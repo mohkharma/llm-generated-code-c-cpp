@@ -2,13 +2,7 @@
 #include <fstream>
 #include <string>
 
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cout << "Usage: ./FileReader <filename>" << std::endl;
-        return 1;
-    }
-
-    std::string filename = argv[1];
+void readFileAndPrintLines(const std::string& filename) {
     std::ifstream file(filename);
     if (file.is_open()) {
         std::string line;
@@ -19,6 +13,4 @@ int main(int argc, char* argv[]) {
     } else {
         std::cout << "Error: Unable to open the file." << std::endl;
     }
-
-    return 0;
 }

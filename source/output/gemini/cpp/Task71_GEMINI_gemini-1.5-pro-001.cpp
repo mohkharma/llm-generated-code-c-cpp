@@ -1,23 +1,13 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
-int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        cout << "Please provide an argument to be converted to an integer." << endl;
-        return 1;
-    }
-
+void convertToInteger(const std::string& userInput) {
     try {
-        string userInput = argv[1];
-        int convertedInteger = stoi(userInput);
-        cout << "Successfully converted '" << userInput << "' to integer: " << convertedInteger << endl;
+        int convertedInteger = std::stoi(userInput);
+        std::cout << "Successfully converted '" << userInput << "' to integer: " << convertedInteger << std::endl;
     } catch (const std::invalid_argument& e) {
-        cout << "Unable to convert '" << argv[1] << "' to an integer." << endl;
+        std::cout << "Unable to convert '" << userInput << "' to an integer." << std::endl;
     } catch (const std::out_of_range& e) {
-        cout << "Unable to convert '" << argv[1] << "' to an integer. Value out of range." << endl;
+        std::cout << "Unable to convert '" << userInput << "' to an integer. Value out of range." << std::endl;
     }
-
-    return 0;
 }

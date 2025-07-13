@@ -42,11 +42,3 @@ void retrieveFile(const std::string& filename) {
         std::cerr << "Error: Unable to initialize CURL." << std::endl;
     }
 }
-
-int main() {
-    std::string userFilename;
-    std::cout << "Enter the filename to retrieve: ";
-    std::getline(std::cin, userFilename);
-    retrieveFile(userFilename);
-    return 0;
-}

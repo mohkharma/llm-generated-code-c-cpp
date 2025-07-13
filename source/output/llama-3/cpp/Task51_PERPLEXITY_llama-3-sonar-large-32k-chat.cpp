@@ -15,12 +15,3 @@ std::string encrypt(const std::string& text, int shift) {
 
     return result;
 }
-
-int main() {
-    std::string text = "Hello, World!";
-    int shift = 3;
-    std::cout << "Text : " << text << std::endl;
-    std::cout << "Shift : " << shift << std::endl;
-    std::cout << "Cipher: " << encrypt(text, shift) << std::endl;
-    return 0;
-}

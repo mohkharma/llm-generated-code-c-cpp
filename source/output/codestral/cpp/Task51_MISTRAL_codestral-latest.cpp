@@ -14,10 +14,3 @@ std::string encryptString(const std::string& inputString, int key) {
     return encryptedString;
 }
 
-int main() {
-    std::string inputString = "HELLO WORLD";
-    int key = 3;
-    std::string encryptedString = encryptString(inputString, key);
-    std::cout << encryptedString << std::endl;
-    return 0;
-}

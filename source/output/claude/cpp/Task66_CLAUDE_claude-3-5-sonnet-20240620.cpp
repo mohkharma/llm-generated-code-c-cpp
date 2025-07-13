@@ -25,21 +25,3 @@ std::string executeCommand(const std::string& cmd) {
     }
     return result;
 }
-
-int main() {
-    std::string userInput;
-    while (true) {
-        std::cout << "Enter a bash command (or 'exit' to quit): ";
-        std::getline(std::cin, userInput);
-        if (userInput == "exit") {
-            break;
-        }
-        if (validateCommand(userInput)) {
-            std::string output = executeCommand(userInput);
-            std::cout << "Output: " << output << std::endl;
-        } else {
-            std::cout << "Invalid or potentially dangerous command. Please try again." << std::endl;
-        }
-    }
-    return 0;
-}

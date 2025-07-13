@@ -1,9 +1,8 @@
-
 #include <iostream>
 #include <string>
 #include "crow.h"
 
-int main()
+void runCrowApp()
 {
     crow::SimpleApp app;
 
@@ -24,5 +23,4 @@ int main()
     });
 
     app.port(8080).run();
-    return 0;
 }

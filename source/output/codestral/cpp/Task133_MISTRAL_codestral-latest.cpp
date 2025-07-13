@@ -14,9 +14,3 @@ std::string resetPassword(std::string currentPassword, std::string newPassword, 
         return "Password reset successful.";
     }
 }
-
-int main() {
-    // Test the function
-    std::cout << resetPassword("oldpassword", "newpassword", "newpassword") << std::endl;
-    return 0;
-}

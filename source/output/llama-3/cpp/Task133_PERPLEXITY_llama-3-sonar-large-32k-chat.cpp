@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main() {
+void resetPassword() {
     string username, oldPassword, newPassword, confirmPassword;
 
     cout << "Enter your username: ";
@@ -23,6 +23,6 @@ int main() {
     } else {
         cout << "New password and confirm password do not match. Try again!" << endl;
     }
-
-    return 0;
 }
+
+

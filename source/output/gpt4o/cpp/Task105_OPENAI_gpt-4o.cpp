@@ -33,8 +33,3 @@ void connect(const char* hostname, int port) {
     SSL_CTX_free(ctx);
     ERR_free_strings();
 }
-
-int main() {
-    connect("example.com", 443);
-    return 0;
-}

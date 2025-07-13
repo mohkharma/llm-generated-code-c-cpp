@@ -17,9 +17,3 @@ string encrypt(string text) {
     return result;
 }
 
-int main() {
-    string inputText = "HelloWorld";
-    string encryptedText = encrypt(inputText);
-    cout << encryptedText << endl;
-    return 0;
-}

@@ -8,3 +8,4 @@ bool XO(const std::string& str) {
     int o = std::count(s.begin(), s.end(), 'o');
     return x == o;
 }
+

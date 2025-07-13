@@ -55,11 +55,3 @@ void decryptFile(const std::string& filePath, int shift) {
     writer << decryptedText;
     writer.close();
 }
-
-int main() {
-    std::string filePath = "example.txt";
-    int shift = 3;
-    encryptFile(filePath, shift);
-    decryptFile(filePath, shift);
-    return 0;
-}

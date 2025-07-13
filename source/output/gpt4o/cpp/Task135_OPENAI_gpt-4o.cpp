@@ -32,11 +32,3 @@ class CSRFProtection {
         }
 };
 
-int main() {
-    CSRFProtection csrf;
-    std::string sessionId = "12345ABC";
-    std::string token = csrf.generateToken(sessionId);
-    std::cout << "Token: " << token << std::endl;
-    std::cout << "Validation: " << csrf.validateToken(token, sessionId) << std::endl;
-    return 0;
-}

@@ -18,7 +18,3 @@ std::string generate_token(size_t length = 32) {
   return token;
 }
 
-int main() {
-  std::cout << generate_token() << std::endl;
-  return 0;
-}

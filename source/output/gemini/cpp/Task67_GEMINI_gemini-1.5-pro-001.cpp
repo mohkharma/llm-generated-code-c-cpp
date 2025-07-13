@@ -43,23 +43,3 @@ Customer get_customer_info(const string& customerusername) {
 
     return customer;
 }
-
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        cerr << "Usage: " << argv[0] << " <customerusername>" << endl;
-        return 1;
-    }
-
-    string customerusername = argv[1];
-    Customer customer = get_customer_info(customerusername);
-
-    if (!customer.customerusername.empty()) {
-        cout << "Customer Username: " << customer.customerusername << endl;
-        cout << "Customer First Name: " << customer.customerfirstname << endl;
-        // Output other fields
-    } else {
-        cout << "No customer found with username: " << customerusername << endl;
-    }
-
-    return 0;
-}

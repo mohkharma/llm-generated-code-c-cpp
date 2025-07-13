@@ -23,8 +23,7 @@ public:
         createdAt = time(nullptr);
         lastAccessed = createdAt;
     }
-
-private:
+ public:
     std::string generateUUID() {
         static std::random_device rd;
         static std::mt19937 gen(rd());
@@ -43,7 +42,7 @@ private:
 };
 
 class SessionManager {
-private:
+public:
     std::unordered_map<std::string, Session> sessions;
     time_t sessionTimeout;
 
@@ -86,29 +85,3 @@ public:
         }
     }
 };
-
-int main() {
-    SessionManager sessionManager;
-
-    // Create a new session
-    std::string userId = "user123";
-    std::string sessionId = sessionManager.createSession(userId);
-    std::cout << "New session created: " << sessionId << std::endl;
-
-    // Get session
-    Session* session = sessionManager.getSession(sessionId);
-    if (session) {
-        std::cout << "Session found for user: " << session->userId << std::endl;
-    } else {
-        std::cout << "Session not found" << std::endl;
-    }
-
-    // Cleanup expired sessions
-    sessionManager.cleanupExpiredSessions();
-
-    // Destroy session
-    sessionManager.destroySession(sessionId);
-    std::cout << "Session destroyed" << std::endl;
-
-    return 0;
-}

@@ -12,8 +12,3 @@ std::string generateToken(int length) {
     return token;
 }
 
-int main() {
-    srand(time(0));
-    std::cout << "Random token is " << generateToken(10) << std::endl;
-    return 0;
-}

@@ -2,17 +2,15 @@
 #include <cstdlib>
 #include <array>
 #include <memory>
+#include <string>
 
-int main() {
-    std::string command;
-    std::cout << "Enter a bash command: ";
-    std::getline(std::cin, command);
-
+void runBashCommand(const std::string& command) {
     std::shared_ptr<FILE> pipe(popen(command.c_str(), "r"), pclose);
     if (!pipe) {
         std::cerr << "An error occurred during execution." << std::endl;
-        return 1;
+        return;
     }
+
     std::array<char, 128> buffer;
     std::string result;
     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
@@ -20,5 +18,4 @@ int main() {
     }
 
     std::cout << "Command output: " << result << std::endl;
-    return 0;
 }

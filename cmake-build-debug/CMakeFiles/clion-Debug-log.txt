@@ -1,23 +1,4 @@
 /home/kali/workingDirectory/programs/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/kali/workingDirectory/programs/clion-2024.1.4/bin/ninja/linux/x64/ninja -DCMAKE_TOOLCHAIN_FILE=/home/kali/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S /home/kali/CLionProjects/llm-generated-code-cpp -B /home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug
--- The C compiler identification is GNU 13.1.0
--- The CXX compiler identification is GNU 13.1.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE  
--- Found ZLIB: optimized;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libz.a;debug;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libz.a (found version "1.3.1")  
--- Found OpenSSL: /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcrypto.a (found version "3.3.1")  
--- Found Boost: /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost/BoostConfig.cmake (found version "1.85.0") found components: random system thread filesystem chrono atomic date_time regex 
--- Found httplib: /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/httplib.h (found version "0.16.0")
--- Configuring done (9.2s)
--- Generating done (8.9s)
+-- Configuring done (1.1s)
+-- Generating done (2.2s)
 -- Build files have been written to: /home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug

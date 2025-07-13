@@ -32,21 +32,3 @@ public:
         sessions.erase(sessionId);
     }
 };
-
-int main() {
-    SessionManager sessionManager;
-
-    // create a session
-    std::string sessionId = sessionManager.createSession("user1");
-    std::cout << "Session ID: " << sessionId << std::endl;
-
-    // get user id from session id
-    std::string userId = sessionManager.getUserId(sessionId);
-    std::cout << "User ID: " << userId << std::endl;
-
-    // invalidate session
-    sessionManager.invalidateSession(sessionId);
-    std::cout << "Session invalidated" << std::endl;
-
-    return 0;
-}

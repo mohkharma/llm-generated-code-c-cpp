@@ -1,7 +1,7 @@
 
 #include <crow.h>
 
-int main()
+int crow_main()
 {
     crow::SimpleApp app;
 

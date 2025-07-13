@@ -8,12 +8,3 @@ long long factorial(int n) {
         return n * factorial(n - 1);
     }
 }
-
-int main() {
-    int num;
-    std::cout << "Enter a number: ";
-    std::cin >> num;
-    long long result = factorial(num);
-    std::cout << "The factorial of " << num << " is " << result << std::endl;
-    return 0;
-}

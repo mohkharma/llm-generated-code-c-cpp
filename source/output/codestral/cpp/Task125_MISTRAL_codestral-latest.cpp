@@ -1,10 +1,8 @@
-// C++
-
 #include <iostream>
 #include <map>
 #include <string>
 
-int main() {
+void runResourceAccess() {
     std::map<std::string, std::string> resources = {
         {"A", "Resource A"},
         {"B", "Resource B"},
@@ -20,6 +18,4 @@ int main() {
     } else {
         std::cout << "Access denied. Invalid key." << std::endl;
     }
-
-    return 0;
 }

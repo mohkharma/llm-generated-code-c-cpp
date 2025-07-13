@@ -14,11 +14,3 @@ void redirect(const string &input) {
         cout << "Page not found" << endl;
     }
 }
-
-int main() {
-    string input;
-    cout << "Enter page to redirect to (home/about/contact): ";
-    cin >> input;
-    redirect(input);
-    return 0;
-}

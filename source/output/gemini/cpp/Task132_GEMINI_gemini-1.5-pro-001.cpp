@@ -37,9 +37,3 @@ void monitor_file_changes(const std::string& file_path) {
                    "': " + e.what());
     }
 }
-
-int main() {
-    std::string file_to_monitor = "/path/to/your/important_file.txt"; // Replace with actual path
-    monitor_file_changes(file_to_monitor);
-    return 0;
-}

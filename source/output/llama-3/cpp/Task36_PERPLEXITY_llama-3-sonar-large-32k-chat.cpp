@@ -2,12 +2,14 @@
 #include <fstream>
 #include <string>
 
-int main() {
+void readFileFromPrompt() {
     std::string filename;
     std::cout << "Enter file name: ";
     std::cin >> filename;
+
     std::ifstream file(filename);
     std::string line;
+
     if (file.is_open()) {
         while (std::getline(file, line)) {
             std::cout << line << std::endl;
@@ -16,5 +18,4 @@ int main() {
     } else {
         std::cout << "Unable to open file";
     }
-    return 0;
 }

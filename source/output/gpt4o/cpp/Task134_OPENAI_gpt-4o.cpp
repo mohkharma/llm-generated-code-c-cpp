@@ -55,24 +55,3 @@ RSA* load_key(const char* filename) {
     return rsa;
 }
 
-int main() {
-    RSA* rsa = RSA_generate_key(2048, RSA_F4, nullptr, nullptr);
-    save_key(rsa, "private_key.pem");
-
-    RSA* loaded_rsa = load_key("private_key.pem");
-
-    const BIGNUM* p = nullptr;
-    RSA_get0_factors(loaded_rsa, &p, nullptr);
-
-    if (p) {
-        char* key_str = BN_bn2hex(p);
-        std::cout << "Key: " << key_str << std::endl;
-        OPENSSL_free(key_str);
-    } else {
-        std::cerr << "Failed to retrieve RSA factor p." << std::endl;
-    }
-
-    RSA_free(rsa);
-    RSA_free(loaded_rsa);
-    return 0;
-}

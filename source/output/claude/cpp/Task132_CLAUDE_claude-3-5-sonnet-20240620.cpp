@@ -21,25 +21,3 @@ void logEvent(const std::string& eventType, const std::string& description) {
         std::cerr << "Unable to open log file!" << std::endl;
     }
 }
-
-int main() {
-    std::cout << "Security Event Monitoring System" << std::endl;
-
-    std::string eventType, description;
-    while (true) {
-        std::cout << "Enter event type (or 'q' to quit): ";
-        std::getline(std::cin, eventType);
-        if (eventType == "q" || eventType == "Q") {
-            break;
-        }
-
-        std::cout << "Enter event description: ";
-        std::getline(std::cin, description);
-
-        logEvent(eventType, description);
-        std::cout << "Event logged successfully." << std::endl;
-    }
-
-    std::cout << "Monitoring ended. Check 'security_events.log' for recorded events." << std::endl;
-    return 0;
-}

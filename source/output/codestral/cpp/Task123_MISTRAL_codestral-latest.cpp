@@ -15,12 +15,13 @@ class Session {
         void endSession() {
             this->isActive = false;
         }
+    int getUserId() const {
+            return userId;
+        }
+
+    bool getIsActive() const {
+            return isActive;
+        }
+
 };
 
-// Example usage:
-int main() {
-    Session userSession(123);
-    // ... user interacts with the system ...
-    userSession.endSession();
-    return 0;
-}

@@ -15,14 +15,3 @@ std::string accessResource(const std::string &user) {
         return "No resources available for this user role";
     }
 }
-
-int main() {
-    std::string userRole;
-    std::cout << "Enter user role (admin/user/guest): ";
-    std::cin >> userRole;
-
-    std::string result = accessResource(userRole);
-    std::cout << result << std::endl;
-
-    return 0;
-}

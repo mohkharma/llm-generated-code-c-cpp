@@ -20,10 +20,3 @@ class SensitiveData {
             return "Data not found";
         }
 };
-
-int main() {
-    SensitiveData sensitiveData;
-    sensitiveData.storeData("credit_card", "1234-5678-9012-3456");
-    std::cout << sensitiveData.retrieveData("credit_card") << std::endl;
-    return 0;
-}

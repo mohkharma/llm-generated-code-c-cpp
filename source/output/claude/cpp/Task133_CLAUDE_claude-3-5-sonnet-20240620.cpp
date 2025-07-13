@@ -25,10 +25,3 @@ std::string resetPassword(const std::string& username) {
     return newPassword;
 }
 
-int main() {
-    std::string username;
-    std::cout << "Enter username to reset password: ";
-    std::getline(std::cin, username);
-    resetPassword(username);
-    return 0;
-}

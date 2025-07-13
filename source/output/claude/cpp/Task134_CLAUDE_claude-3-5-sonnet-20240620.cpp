@@ -46,28 +46,3 @@ std::string decrypt_message(const std::vector<unsigned char>& encrypted, const s
 
     return std::string(reinterpret_cast<char*>(decrypted.data()));
 }
-
-int main() {
-    std::vector<unsigned char> key;
-
-    if (std::ifstream(KEY_FILE).good()) {
-        key = load_key(KEY_FILE);
-    } else {
-        key = generate_key();
-        save_key(key, KEY_FILE);
-    }
-
-    std::string message = "Hello, World!";
-    std::vector<unsigned char> encrypted = encrypt_message(message, key);
-    std::string decrypted = decrypt_message(encrypted, key);
-
-    std::cout << "Original: " << message << std::endl;
-    std::cout << "Encrypted: ";
-    for (unsigned char c : encrypted) {
-        std::cout << std::hex << static_cast<int>(c);
-    }
-    std::cout << std::endl;
-    std::cout << "Decrypted: " << decrypted << std::endl;
-
-    return 0;
-}

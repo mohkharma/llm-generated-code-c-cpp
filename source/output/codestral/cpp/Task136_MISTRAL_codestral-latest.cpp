@@ -43,9 +43,3 @@ public:
     }
 };
 
-int main() {
-    Authentication auth;
-    auth.registerUser("user1", "password1");
-    auth.login("user1", "password1");
-    return 0;
-}

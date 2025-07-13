@@ -27,16 +27,3 @@ std::string executeCommand(const std::string& command) {
         return "Error: " + std::string(e.what());
     }
 }
-
-int main() {
-    std::cout << "Enter a bash shell command: ";
-    std::string command;
-    std::getline(std::cin, command);
-    if (validateCommand(command)) {
-        std::string result = executeCommand(command);
-        std::cout << result;
-    } else {
-        std::cout << "Invalid command format or content";
-    }
-    return 0;
-}

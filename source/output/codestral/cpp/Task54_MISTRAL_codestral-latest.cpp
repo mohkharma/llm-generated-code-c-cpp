@@ -29,8 +29,3 @@ std::string login(const std::string& username, const std::string& password, cons
     }
 }
 
-// Example usage:
-int main() {
-    std::cout << login("user", "password", generate_otp()) << std::endl;
-    return 0;
-}

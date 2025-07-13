@@ -1,10 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 
-int main() {
+void copyFile(const std::string& sourcePath, const std::string& destPath) {
     try {
-        std::ifstream source("source_file.txt", std::ios::binary);
-        std::ofstream dest("destination_file.txt", std::ios::binary);
+        std::ifstream source(sourcePath, std::ios::binary);
+        std::ofstream dest(destPath, std::ios::binary);
 
         if (!source.is_open() || !dest.is_open()) {
             throw std::runtime_error("Failed to open files.");
@@ -12,11 +13,9 @@ int main() {
 
         dest << source.rdbuf();
 
-        source.close();
+         source.close();
         dest.close();
     } catch (const std::exception& e) {
         std::cout << "An error occurred: " << e.what() << '\n';
     }
-
-    return 0;
 }

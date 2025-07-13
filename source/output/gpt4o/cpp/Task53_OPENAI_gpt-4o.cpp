@@ -16,9 +16,3 @@ public:
         return "Session ID: " + sessionId + ", User ID: " + userId;
     }
 };
-
-int main() {
-    UserSession session("abc123", "user001");
-    std::cout << session.toString() << std::endl;
-    return 0;
-}

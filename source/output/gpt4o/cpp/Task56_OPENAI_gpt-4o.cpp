@@ -21,8 +21,3 @@ void generateToken() {
     std::cout << std::endl;
 }
 
-int main() {
-    sleep(5); // Waiting for 5 seconds
-    generateToken();
-    return 0;
-}

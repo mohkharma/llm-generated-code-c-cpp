@@ -37,21 +37,3 @@ void signup() {
     }
 }
 
-int main() {
-    int choice;
-    while (true) {
-        cout << "1. Signup" << endl;
-        cout << "2. Exit" << endl;
-        cout << "Enter choice: ";
-        cin >> choice;
-
-        if (choice == 1) {
-            signup();
-        } else if (choice == 2) {
-            break;
-        } else {
-            cout << "Invalid choice!" << endl;
-        }
-    }
-    return 0;
-}

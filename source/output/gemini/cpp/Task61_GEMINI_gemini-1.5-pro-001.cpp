@@ -14,10 +14,3 @@ string getRootElement(const string& xmlString) {
         return "";
     }
 }
-
-int main() {
-    string xmlString = "<note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>";
-    string rootElement = getRootElement(xmlString);
-    cout << rootElement << endl;
-    return 0;
-}

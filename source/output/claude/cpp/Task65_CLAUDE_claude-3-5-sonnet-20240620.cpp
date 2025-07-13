@@ -27,12 +27,3 @@ void readFile(const std::string& filename) {
         std::cout << "Error: Unable to read file '" << filename << "'" << std::endl;
     }
 }
-
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cout << "Usage: " << argv[0] << " <filename>" << std::endl;
-    } else {
-        readFile(argv[1]);
-    }
-    return 0;
-}

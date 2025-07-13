@@ -19,10 +19,3 @@ public:
         return userId;
     }
 };
-
-int main() {
-    UserSession session("User1");
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-    std::cout << "CPP: Session duration for " << session.getUserId() << ": " << session.getDuration() << " seconds" << std::endl;
-    return 0;
-}

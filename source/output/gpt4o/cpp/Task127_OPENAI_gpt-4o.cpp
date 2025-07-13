@@ -18,18 +18,3 @@ void copy_file(const std::string &source_path, const std::string &dest_path) {
     dest << source.rdbuf();
 }
 
-int main() {
-    std::string source_path = "/path/to/source/file.txt";
-    std::string dest_path = "/path/to/dest/tmp_file.txt";
-
-    try {
-        copy_file(source_path, dest_path);
-        std::cout << "File copied successfully." << std::endl;
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "An unexpected error occurred." << std::endl;
-    }
-
-    return 0;
-}

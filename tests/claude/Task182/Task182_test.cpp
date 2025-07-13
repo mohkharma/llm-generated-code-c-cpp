@@ -11,8 +11,7 @@ int main() {
         std::string input;
         std::string expected;
     };
-
-    TestCase tests[total] = {
+     TestCase tests[total] = {
         {"+1 (613)-995-0253", "6139950253"},
         {"613-995-0253", "6139950253"},
         {"1 613 995 0253", "6139950253"},
