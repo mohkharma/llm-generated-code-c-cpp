@@ -65,14 +65,3 @@ void findSecretWord(vector<string>& words, Master& master, int allowedGuesses) {
     }
     cout << "Either you took too many guesses, or you did not find the secret word." << endl;
 }
-
-int main() {
-    string secret = "acckzz";
-    //error: ‘words’ was not declared in this scope; did you mean ‘word’?
-
-    int allowedGuesses = 10;
-    Master master(secret);
-    findSecretWord(words, master, allowedGuesses);
-
-    return 0;
-}

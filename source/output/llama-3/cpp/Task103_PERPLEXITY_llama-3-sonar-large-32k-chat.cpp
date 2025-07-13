@@ -21,14 +21,14 @@ bool passwordStrength(const std::string& password) {
     return hasUpper && hasLower && hasDigit;
 }
 
-int main() {
-    std::string password;
-    std::cout << "Enter a password: ";
-    std::getline(std::cin, password);
-    if (passwordStrength(password)) {
-        std::cout << "Strong password" << std::endl;
-    } else {
-        std::cout << "Weak password" << std::endl;
-    }
-    return 0;
-}
+// int main() {
+//     std::string password;
+//     std::cout << "Enter a password: ";
+//     std::getline(std::cin, password);
+//     if (passwordStrength(password)) {
+//         std::cout << "Strong password" << std::endl;
+//     } else {
+//         std::cout << "Weak password" << std::endl;
+//     }
+//     return 0;
+// }

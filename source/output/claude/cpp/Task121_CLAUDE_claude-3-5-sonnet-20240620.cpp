@@ -20,8 +20,3 @@ void uploadFile() {
         std::cout << "File \'" << filename << "\' not found." << std::endl;
     }
 }
-
-int main() {
-    uploadFile();
-    return 0;
-}

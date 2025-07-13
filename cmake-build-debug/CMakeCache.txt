@@ -66,7 +66,7 @@ CMAKE_BUILD_TYPE:STRING=Debug
 CMAKE_COLOR_DIAGNOSTICS:BOOL=ON
 
 //CXX compiler
-CMAKE_CXX_COMPILER:STRING=/usr/bin/c++
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -92,7 +92,7 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:STRING=/usr/bin/cc
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -247,8 +247,8 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 
-//No help, variable specified on the command line.
-CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=/home/kali/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake
+//The CMake toolchain file
+CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -273,15 +273,6 @@ PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
-
-//The directory containing a CMake configuration file for Protobuf.
-Protobuf_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/protobuf
-
-//Path to a program.
-Protobuf_PROTOC_EXECUTABLE:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/tools/protobuf/protoc
-
-//The directory containing a CMake configuration file for Sqlpp11.
-Sqlpp11_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/sqlpp11
 
 //Automatically copy dependencies into the output directory for
 // executables.
@@ -337,9 +328,6 @@ Z_VCPKG_CL:FILEPATH=Z_VCPKG_CL-NOTFOUND
 //The directory which contains the installed libraries for each
 // triplet
 _VCPKG_INSTALLED_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed
-
-//The directory containing a CMake configuration file for absl.
-absl_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/absl
 
 //The directory containing a CMake configuration file for boost_algorithm.
 boost_algorithm_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_algorithm
@@ -507,15 +495,6 @@ boost_winapi_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/bo
 bson-1.0_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/bson-1.0
 
 //Value Computed by CMake
-c_c___BINARY_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug
-
-//Value Computed by CMake
-c_c___IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-c_c___SOURCE_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp
-
-//Value Computed by CMake
 cpp_BINARY_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug
 
 //Value Computed by CMake
@@ -526,9 +505,6 @@ cpp_SOURCE_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp
 
 //The directory containing a CMake configuration file for cpprestsdk.
 cpprestsdk_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/cpprestsdk
-
-//The directory containing a CMake configuration file for date.
-date_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/date
 
 //The directory containing a CMake configuration file for httplib.
 httplib_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/httplib
@@ -542,23 +518,11 @@ pkgcfg_lib__OPENSSL_dl:FILEPATH=/usr/lib/x86_64-linux-gnu/libdl.a
 //Path to a library.
 pkgcfg_lib__OPENSSL_ssl:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libssl.a
 
-//CMake built-in FindProtobuf.cmake module compatible
-protobuf_MODULE_COMPATIBLE:BOOL=OFF
-
-//Enable for verbose output
-protobuf_VERBOSE:BOOL=OFF
-
 //The directory containing a CMake configuration file for unofficial-brotli.
 unofficial-brotli_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/unofficial-brotli
 
-//The directory containing a CMake configuration file for unofficial-mysql-connector-cpp.
-unofficial-mysql-connector-cpp_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/unofficial-mysql-connector-cpp
-
 //The directory containing a CMake configuration file for unofficial-sqlite3.
 unofficial-sqlite3_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/unofficial-sqlite3
-
-//The directory containing a CMake configuration file for utf8_range.
-utf8_range_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/utf8_range
 
 
 ########################
@@ -716,8 +680,6 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost/BoostConfig.cmake][cfound components: random system thread filesystem chrono atomic date_time regex ][v1.85.0()]
 //Details about finding OpenSSL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcrypto.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][c ][v3.3.1()]
-//Details about finding Protobuf
-FIND_PACKAGE_MESSAGE_DETAILS_Protobuf:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/tools/protobuf/protoc][optimized;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libprotobuf.a;debug;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libprotobufd.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][v25.1.0()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding ZLIB
@@ -798,8 +760,4 @@ pkgcfg_lib__OPENSSL_dl-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib__OPENSSL_ssl
 pkgcfg_lib__OPENSSL_ssl-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
-//ADVANCED property for variable: protobuf_MODULE_COMPATIBLE
-protobuf_MODULE_COMPATIBLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: protobuf_VERBOSE
-protobuf_VERBOSE-ADVANCED:INTERNAL=1
 

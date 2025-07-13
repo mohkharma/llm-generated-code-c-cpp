@@ -45,16 +45,3 @@ const std::string Robot::UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const std::string Robot::DIGITS = "0123456789";
 std::mt19937 Robot::RANDOM(std::chrono::system_clock::now().time_since_epoch().count());
 
-// Test
-int main() {
-    std::set<std::string> names;
-    for (int i = 0; i < 1000; i++) {
-        // error: ‘std::string Robot::name’ is private within this context
-        // names.insert(Robot().name);
-        names.insert(Robot().getName());
-    }
-    if (names.size() != 1000) {
-        throw std::runtime_error("Names are not unique");
-    }
-    return 0;
-}

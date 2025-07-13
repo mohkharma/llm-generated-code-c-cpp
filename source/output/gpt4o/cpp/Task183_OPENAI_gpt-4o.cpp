@@ -17,9 +17,3 @@ int findLargestProduct(const std::string& sequence, int span) {
     return maxProduct;
 }
 
-int main() {
-    std::string sequence = "63915";
-    int span = 3;
-    std::cout << findLargestProduct(sequence, span) << std::endl;
-    return 0;
-}

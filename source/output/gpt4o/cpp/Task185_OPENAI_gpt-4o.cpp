@@ -30,14 +30,3 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
     }
 }
 
-int main() {
-    vector<int> nums1a = {1, 3};
-    vector<int> nums2a = {2};
-    cout << findMedianSortedArrays(nums1a, nums2a) << endl;
-    
-    vector<int> nums1b = {1, 2};
-    vector<int> nums2b = {3, 4};
-    cout << findMedianSortedArrays(nums1b, nums2b) << endl;
-    
-    return 0;
-}

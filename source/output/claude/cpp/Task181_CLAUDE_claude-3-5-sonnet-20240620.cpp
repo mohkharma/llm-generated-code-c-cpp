@@ -113,32 +113,3 @@ public:
         return &it->second;
     }
 };
-
-int main() {
-    Bank bank;
-    bank.openAccount("123", 1000);
-    bank.openAccount("456", 500);
-
-    std::thread thread1([&bank]() {
-        bank.deposit("123", 200);
-        bank.withdraw("456", 100);
-    });
-
-    std::thread thread2([&bank]() {
-        bank.withdraw("123", 300);
-        bank.deposit("456", 150);
-    });
-
-    thread1.join();
-    thread2.join();
-
-    BankAccount* account123 = bank.getAccount("123");
-    BankAccount* account456 = bank.getAccount("456");
-
-    if (account123 && account456) {
-        std::cout << "Account 123 balance: " << account123->getBalance() << std::endl;
-        std::cout << "Account 456 balance: " << account456->getBalance() << std::endl;
-    }
-
-    return 0;
-}

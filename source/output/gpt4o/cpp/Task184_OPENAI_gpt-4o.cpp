@@ -47,10 +47,3 @@ class Robot {
 std::unordered_set<std::string> Robot::usedNames;
 std::mt19937 Robot::gen(std::random_device{}());
 
-int main() {
-    Robot robot;
-    std::cout << robot.getName() << std::endl;
-    robot.reset();
-    std::cout << robot.getName() << std::endl;
-    return 0;
-}

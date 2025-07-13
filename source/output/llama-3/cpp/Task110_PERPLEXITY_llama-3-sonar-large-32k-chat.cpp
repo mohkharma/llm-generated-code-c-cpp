@@ -7,14 +7,11 @@ bool validateUrl(const std::string& url) {
     return std::regex_match(url, pattern);
 }
 
-int main() {
-    std::string url;
-    std::cout << "Enter a URL: ";
-    std::getline(std::cin, url);
+int foo(const std::string& url) {
+
     if (validateUrl(url)) {
-        std::cout << "URL is valid" << std::endl;
+        return 1;
     } else {
-        std::cout << "URL is not valid" << std::endl;
+        return 0;
     }
-    return 0;
 }

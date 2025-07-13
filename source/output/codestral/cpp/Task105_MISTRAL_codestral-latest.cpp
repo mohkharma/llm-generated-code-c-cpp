@@ -8,8 +8,8 @@
 
 int main() {
     // Define the remote server and port
-    const char* server = "www.example.com";
-    const char* port = "443";
+    const char* server = "https://www.google.com";
+    const char* port = "1012";
 
     // Initialize OpenSSL
     SSL_library_init();

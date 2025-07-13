@@ -36,12 +36,3 @@ public:
     }
 };
 
-int main() {
-    int n = 2;
-    FooBar fooBar(n);
-    thread threadA(&FooBar::foo, &fooBar);
-    thread threadB(&FooBar::bar, &fooBar);
-    threadA.join();
-    threadB.join();
-    return 0;
-}

@@ -31,14 +31,3 @@ public:
         return *this;
     }
 };
-
-int main() {
-    Clock clock(10, 30);
-    std::cout << clock << std::endl;  // 10:30
-    clock.add(60);
-    std::cout << clock << std::endl;  // 11:30
-    clock.subtract(90);
-    std::cout << clock << std::endl;  // 10:00
-    std::cout << (clock == Clock(10, 0)) << std::endl;  // 1 (true)
-    return 0;
-}

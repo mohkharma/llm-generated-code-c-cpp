@@ -4,7 +4,7 @@
 #include <vector>
 #include <sstream>
 
-int main() {
+int solve() {
     std::ifstream file("file.txt");
     std::vector<std::vector<std::string>> lines;
     std::string line, word;

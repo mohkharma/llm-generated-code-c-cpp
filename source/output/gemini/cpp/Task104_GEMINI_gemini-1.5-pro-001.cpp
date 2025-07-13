@@ -1,19 +1,22 @@
+#include <cstring>
 #include <iostream>
-#include <string>
 
-using namespace std;
-
-const int BUFFER_SIZE = 1024;
-
-int main() {
-    char buffer[BUFFER_SIZE];
-
-    cout << "Enter your input (max " << BUFFER_SIZE << " characters): ";
-    cin.getline(buffer, BUFFER_SIZE);
-
-    string inputData(buffer);
-
-    cout << "\nYou entered:\n" << inputData << endl;
-
-    return 0;
+// Function to handle user input into a fixed-size buffer in C++
+int handleUserInputCPP(char* buffer, int bufferSize) {
+    std::cin.getline(buffer, bufferSize);
+    return std::strlen(buffer);
 }
+
+// int main() {
+//     char buffer[100];
+//     int length;
+//
+//     // Example usage:
+//     length = handleUserInputCPP(buffer, sizeof(buffer));
+//     std::cout << "Input in C++: " << buffer << std::endl;
+//
+//     length = handleUserInputC(buffer, sizeof(buffer));
+//     printf("Input in C: %s\n", buffer);
+//
+//     return 0;
+// }

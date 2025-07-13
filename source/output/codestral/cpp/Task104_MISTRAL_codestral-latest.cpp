@@ -1,15 +1,11 @@
-// C++
 #include <iostream>
-#include <string>
+#include <cstring>
 
-int main() {
-    const int bufferSize = 10;
-    std::string userInput;
-    std::cout << "Enter a string: ";
-    std::getline(std::cin, userInput);
-    if (userInput.length() > bufferSize) {
-        userInput = userInput.substr(0, bufferSize);
-    }
-    std::cout << "Truncated input: " << userInput;
-    return 0;
+const int BUFFER_SIZE = 10;
+
+char* handleInput(const char* input) {
+    static char buffer[BUFFER_SIZE];
+    std::strncpy(buffer, input, BUFFER_SIZE - 1);
+    buffer[BUFFER_SIZE - 1] = '\0';
+    return buffer;
 }

@@ -1,3 +1,4 @@
+
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -23,11 +24,3 @@ public:
     }
 };
 
-int main() {
-    MedianFinder medianFinder;
-    medianFinder.addNum(1);
-    medianFinder.addNum(2);
-    std::cout << medianFinder.findMedian() << std::endl; // 1.5
-    medianFinder.addNum(3);
-    std::cout << medianFinder.findMedian() << std::endl; // 2.0
-}

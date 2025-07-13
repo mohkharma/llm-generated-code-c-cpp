@@ -37,14 +37,3 @@ void printList(ListNode* node) {
     }
     std::cout << std::endl;
 }
-
-int main() {
-    std::vector<ListNode*> lists;
-    lists.push_back(new ListNode(1, new ListNode(4, new ListNode(5))));
-    lists.push_back(new ListNode(1, new ListNode(3, new ListNode(4))));
-    lists.push_back(new ListNode(2, new ListNode(6)));
-    
-    ListNode* merged = mergeKLists(lists);
-    printList(merged);
-    return 0;
-}

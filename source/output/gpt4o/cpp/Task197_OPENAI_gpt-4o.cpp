@@ -25,14 +25,3 @@ public:
         return {x, y};
     }
 };
-
-int main() {
-    Solution sol(1.0, 0.0, 0.0);
-    auto point1 = sol.randPoint();
-    auto point2 = sol.randPoint();
-    auto point3 = sol.randPoint();
-    std::cout << "Point1: [" << point1.first << ", " << point1.second << "]\n";
-    std::cout << "Point2: [" << point2.first << ", " << point2.second << "]\n";
-    std::cout << "Point3: [" << point3.first << ", " << point3.second << "]\n";
-    return 0;
-}
