@@ -32,14 +32,3 @@ void encrypt_data(const std::string &data, const std::string &key, std::string &
 
     EVP_CIPHER_CTX_free(ctx);
 }
-
-int main() {
-    std::string key = "sixteen byte key";
-    std::string data = "Hello, World!";
-    std::string encrypted_data;
-
-    encrypt_data(data, key, encrypted_data);
-
-    std::cout << std::hex << encrypted_data << std::endl;
-    return 0;
-}

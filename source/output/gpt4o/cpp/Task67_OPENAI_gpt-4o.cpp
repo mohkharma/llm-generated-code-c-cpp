@@ -18,13 +18,3 @@ void get_customer_info(const std::string &username) {
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 }
-
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <customerusername>" << std::endl;
-        return 1;
-    }
-    std::string username = argv[1];
-    get_customer_info(username);
-    return 0;
-}

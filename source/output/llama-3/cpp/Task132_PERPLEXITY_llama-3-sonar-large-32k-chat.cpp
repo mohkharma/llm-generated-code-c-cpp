@@ -26,7 +26,3 @@ void monitorEvents() {
     }
 }
 
-int main() {
-    monitorEvents();
-    return 0;
-}

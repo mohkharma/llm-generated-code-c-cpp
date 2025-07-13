@@ -2,27 +2,23 @@
 #include <string>
 #include <cctype>
 
-using namespace std;
+void redirect_page(std::istream& in, std::ostream& out) {
+    std::string choice;
 
-int main() {
-    string choice;
-
-    cout << "Enter your destination (A, B, or C): ";
-    cin >> choice;
+    out << "Enter your destination (A, B, or C): ";
+    in >> choice;
 
     for (char &c : choice) {
-        c = toupper(c);
+        c = std::toupper(c);
     }
 
     if (choice == "A") {
-        cout << "Redirecting to page A..." << endl;
+        out << "Redirecting to page A..." << std::endl;
     } else if (choice == "B") {
-        cout << "Redirecting to page B..." << endl;
+        out << "Redirecting to page B..." << std::endl;
     } else if (choice == "C") {
-        cout << "Redirecting to page C..." << endl;
+        out << "Redirecting to page C..." << std::endl;
     } else {
-        cout << "Invalid choice. Please enter A, B, or C." << endl;
+        out << "Invalid choice. Please enter A, B, or C." << std::endl;
     }
-
-    return 0;
 }

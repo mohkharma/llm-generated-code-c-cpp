@@ -1,26 +1,47 @@
-// C++ does not have a built-in XML parsing library, so we'll use the Xerces-C++ library
-// This code assumes you have the Xerces-C++ library installed and linked
-
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
+#include <xercesc/util/XMLString.hpp>
+#include <xercesc/framework/MemBufInputSource.hpp>
 
-#include <iostream>
+#include <string>
+#include <stdexcept>
 
-int main() {
+using namespace xercesc;
+
+std::string getRootElement(const std::string& xmlContent) {
     try {
-        xercesc::XMLPlatformUtils::Initialize();
-        // XercesDOMParser* parser = new XercesDOMParser();
-        xercesc_3_2::XercesDOMParser* parser = new xercesc_3_2::XercesDOMParser();
-        parser->parse("xml_string.xml"); // replace with your XML string
-        xercesc::DOMDocument* doc = parser->adoptDocument();
-        xercesc::DOMElement* root = doc->getDocumentElement();
-        std::cout << root->getTagName() << std::endl;
-        delete parser;
-        xercesc::XMLPlatformUtils::Terminate();
-    } catch (const xercesc::XMLException& e) {
-        std::cerr << "Error: " << e.getMessage() << std::endl;
-        return 1;
+        XMLPlatformUtils::Initialize();
+    } catch (const XMLException& e) {
+        throw std::runtime_error("Xerces initialization failed.");
     }
-    return 0;
+
+    std::string result;
+
+    try {
+        XercesDOMParser parser;
+        MemBufInputSource memBuf(
+            reinterpret_cast<const XMLByte*>(xmlContent.c_str()),
+            xmlContent.length(),
+            "xml_buffer",
+            false
+        );
+        parser.parse(memBuf);
+        DOMDocument* doc = parser.getDocument();
+        DOMElement* root = doc->getDocumentElement();
+
+        if (!root)
+            throw std::runtime_error("No root element found");
+
+        char* tagName = XMLString::transcode(root->getTagName());
+        result = tagName;
+        XMLString::release(&tagName);
+
+    } catch (...) {
+        XMLPlatformUtils::Terminate();
+        throw;  // rethrow to be caught by the test
+    }
+
+    XMLPlatformUtils::Terminate();
+    return result;
 }

@@ -18,11 +18,3 @@ public:
         }
     }
 };
-
-int main() {
-    std::cout << "Enter serialized data (in key-value format, e.g., key1:value1:key2:value2): ";
-    std::string data;
-    std::getline(std::cin, data);
-    DeserializeData::deserializeData(data);
-    return 0;
-}

@@ -14,9 +14,3 @@ public:
         return data;
     }
 };
-
-int main() {
-    SensitiveData data("1234-5678-9012-3456");
-    std::cout << data.getData() << std::endl;
-    return 0;
-}

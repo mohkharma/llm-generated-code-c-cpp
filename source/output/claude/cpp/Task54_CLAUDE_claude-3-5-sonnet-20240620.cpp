@@ -26,6 +26,7 @@ bool verifyOTP(const std::string& userOTP, const std::string& generatedOTP) {
     return userOTP == generatedOTP;
 }
 
+
 void login() {
     std::string username, password;
     
@@ -50,9 +51,4 @@ void login() {
     } else {
         std::cout << "Invalid username or password." << std::endl;
     }
-}
-
-int main() {
-    login();
-    return 0;
 }

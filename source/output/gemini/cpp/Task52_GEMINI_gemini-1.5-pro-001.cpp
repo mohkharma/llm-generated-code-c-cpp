@@ -110,31 +110,3 @@ bool decryptFile(const string& inputFile, const string& outputFile, const vector
     EVP_CIPHER_CTX_free(ctx);
     return true;
 }
-
-int main() {
-    // Generate a random encryption key
-    vector<unsigned char> key = generateKey();
-
-    // File paths
-    string inputFile = "test.txt";
-    string encryptedFile = "encrypted.txt";
-    string decryptedFile = "decrypted.txt";
-
-    // Encrypt the file
-    if (encryptFile(inputFile, encryptedFile, key)) {
-        cout << "File encrypted successfully." << endl;
-    } else {
-        cerr << "Encryption failed." << endl;
-        return 1;
-    }
-
-    // Decrypt the file
-    if (decryptFile(encryptedFile, decryptedFile, key)) {
-        cout << "File decrypted successfully." << endl;
-    } else {
-        cerr << "Decryption failed." << endl;
-        return 1;
-    }
-
-    return 0;
-}

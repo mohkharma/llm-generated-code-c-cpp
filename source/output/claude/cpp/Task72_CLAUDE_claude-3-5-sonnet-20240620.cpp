@@ -24,18 +24,3 @@ std::vector<unsigned char> encrypt_data(const std::string& data, const std::vect
 
     return encrypted_data;
 }
-
-int main() {
-    std::vector<unsigned char> key(32);
-    RAND_bytes(key.data(), key.size());
-
-    std::string data = "This is a secret message.";
-    std::vector<unsigned char> encrypted = encrypt_data(data, key);
-
-    for (unsigned char c : encrypted) {
-        std::cout << std::hex << (int)c << " ";
-    }
-    std::cout << std::endl;
-
-    return 0;
-}

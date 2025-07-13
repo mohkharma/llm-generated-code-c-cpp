@@ -27,13 +27,3 @@ public:
         }
     }
 };
-
-int main() {
-    SecurityEventLogger logger;
-    logger.logEvent("User login");
-    logger.logEvent("File accessed");
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    logger.logEvent("User logout");
-    logger.showEvents();
-    return 0;
-}

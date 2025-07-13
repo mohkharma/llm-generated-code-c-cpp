@@ -16,8 +16,3 @@ std::string generate_token(int length = 32) {
     return token;
 }
 
-int main() {
-    std::string auth_token = generate_token();
-    std::cout << "Generated authentication token: " << auth_token << std::endl;
-    return 0;
-}

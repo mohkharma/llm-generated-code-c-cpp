@@ -19,19 +19,3 @@ string readFile(const string& filename) {
         return "";
     }
 }
-
-int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        cerr << "Usage: " << argv[0] << " <filename>" << endl;
-        return 1;
-    }
-
-    string filename = argv[1];
-    string fileContent = readFile(filename);
-
-    if (!fileContent.empty()) {
-        cout << fileContent;
-    }
-
-    return 0;
-}

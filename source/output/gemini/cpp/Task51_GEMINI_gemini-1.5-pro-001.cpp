@@ -19,11 +19,3 @@ string encrypt(string text, int key) {
     }
     return result;
 }
-
-int main() {
-    string inputString = "Hello, world 123!";
-    int encryptionKey = 3;
-    string encryptedString = encrypt(inputString, encryptionKey);
-    cout << "Encrypted: " << encryptedString << endl;
-    return 0;
-}

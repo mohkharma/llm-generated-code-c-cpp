@@ -45,18 +45,3 @@ bool download_file(const string& url, const string& filename) {
     }
 }
 
-int main() {
-    string filename;
-    cout << "Enter the file name to download: ";
-    cin >> filename;
-
-    string url = "https://example.com/files/" + filename; // Replace with actual server URL
-
-    if (download_file(url, filename)) {
-        cout << "File '" << filename << "' downloaded successfully." << endl;
-    } else {
-        cerr << "Error downloading file." << endl;
-    }
-
-    return 0;
-}

@@ -8,11 +8,3 @@ long long factorial(int n) {
     }
     return fact;
 }
-
-int main() {
-    int num;
-    cout << "Enter a number: ";
-    cin >> num;
-    cout << "The factorial of " << num << " is " << factorial(num) << endl;
-    return 0;
-}

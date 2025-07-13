@@ -1,9 +1,8 @@
-// C++
 #include <iostream>
 #include <fstream>
 #include <string>
 
-int main() {
+void readFileFromInput() {
     std::string fileName;
     std::cout << "Enter file name: ";
     std::getline(std::cin, fileName);
@@ -18,6 +17,4 @@ int main() {
     } else {
         std::cout << "Unable to open file";
     }
-
-    return 0;
 }

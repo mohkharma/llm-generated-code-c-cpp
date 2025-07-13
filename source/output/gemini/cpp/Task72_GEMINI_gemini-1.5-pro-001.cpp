@@ -45,31 +45,3 @@ vector<unsigned char> encryptData(const unsigned char *plaintext, int plaintext_
   EVP_CIPHER_CTX_free(ctx);
   return ciphertext;
 }
-
-int main() {
-  // Static Initialization Vector (IV) - Must be 16 bytes
-  unsigned char iv[] = "ThisIsMyStaticIV";
-
-  // Encryption Key - Must be 16, 24, or 32 bytes
-  unsigned char key[] = "ThisIsMySecretKey";
-
-  // Data to be encrypted
-  string data = "This is some secret data.";
-  cout << "Original Data: " << data << endl;
-
-  // Convert data to unsigned char array
-  unsigned char *plaintext = (unsigned char *)data.c_str();
-  int plaintext_len = data.size();
-
-  // Encrypt the data
-  vector<unsigned char> ciphertext = encryptData(plaintext, plaintext_len, key, iv);
-
-  // Print encrypted data in hexadecimal format
-  cout << "Encrypted Data (Hex): ";
-  for (unsigned char c : ciphertext) {
-    cout << hex << (int)c;
-  }
-  cout << endl;
-
-  return 0;
-}

@@ -13,10 +13,3 @@ std::string accum(const std::string &s) {
     }
     return result;
 }
-
-int main() {
-    std::cout << accum("abcd") << std::endl;   // Output: A-Bb-Ccc-Dddd
-    std::cout << accum("RqaEzty") << std::endl; // Output: R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy
-    std::cout << accum("cwAt") << std::endl;  // Output: C-Ww-Aaa-Tttt
-    return 0;
-}

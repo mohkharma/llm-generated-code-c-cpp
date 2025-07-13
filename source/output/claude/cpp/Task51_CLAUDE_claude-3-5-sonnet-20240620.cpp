@@ -16,18 +16,3 @@ string encrypt(string text, int shift) {
     }
     return result;
 }
-
-int main() {
-    string text;
-    int shift;
-    
-    cout << "Enter text to encrypt: ";
-    getline(cin, text);
-    cout << "Enter shift value: ";
-    cin >> shift;
-    
-    string encryptedText = encrypt(text, shift);
-    cout << "Encrypted text: " << encryptedText << endl;
-    
-    return 0;
-}

@@ -27,10 +27,3 @@ void retrieveFile(const std::string& fileName) {
     close(clientSocket);
 }
 
-int main() {
-    std::cout << "Enter the file name: ";
-    std::string fileName;
-    std::cin >> fileName;
-    retrieveFile(fileName);
-    return 0;
-}

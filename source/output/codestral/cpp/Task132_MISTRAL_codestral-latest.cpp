@@ -3,7 +3,7 @@
 #include <chrono>
 #include <thread>
 
-int main() {
+void logSecurityEvents() {
     std::ofstream logFile("security.log", std::ios::app);
 
     while (true) {
@@ -15,5 +15,5 @@ int main() {
     }
 
     logFile.close();
-    return 0;
 }
+

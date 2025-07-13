@@ -16,9 +16,3 @@ std::string generateToken(const std::string& username, const std::string& passwo
     return ss.str();
 }
 
-int main() {
-    std::string username = "john";
-    std::string password = "password123";
-    std::cout << "Token: " << generateToken(username, password) << std::endl;
-    return 0;
-}

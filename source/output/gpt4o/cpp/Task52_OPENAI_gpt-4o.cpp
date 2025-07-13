@@ -54,20 +54,3 @@ void decryptFile(const std::vector<unsigned char>& key, const std::string& infil
     ofs.close();
 }
 
-int main() {
-    std::string keyfile = "filekey.key";
-    std::string infile = "test.txt";
-    std::string encryptedFile = "test.encrypted";
-    std::string decryptedFile = "test.decrypted";
-
-    std::vector<unsigned char> key(16);
-    RAND_bytes(key.data(), 16);
-    saveKey(key, keyfile);
-
-    encryptFile(key, infile, encryptedFile);
-
-    std::vector<unsigned char> loadedKey = loadKey(keyfile);
-    decryptFile(loadedKey, encryptedFile, decryptedFile);
-
-    return 0;
-}

@@ -25,12 +25,3 @@ public:
         }
     }
 };
-
-int main() {
-    SessionManager manager;
-    manager.createSession(1, "John");
-    manager.createSession(2, "Alice");
-    std::cout << manager.getUsername(1) << std::endl;  // Output: John
-    manager.deleteSession(2);
-    return 0;
-}

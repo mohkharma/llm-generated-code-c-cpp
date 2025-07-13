@@ -14,16 +14,3 @@ public:
         return os;
     }
 };
-
-int main() {
-    std::ifstream ifs("userData.dat");
-    if (!ifs) {
-        std::cerr << "Error opening file for reading\n";
-        return 1;
-    }
-    UserData userData;
-    ifs >> userData;
-    ifs.close();
-    std::cout << userData << std::endl;
-    return 0;
-}

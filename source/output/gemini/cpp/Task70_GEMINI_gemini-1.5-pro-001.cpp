@@ -2,27 +2,16 @@
 #include <fstream>
 #include <string>
 
-using namespace std;
-
-int main(int argc, char* argv[]) {
-  if (argc < 2) {
-    cerr << "Error: Please provide the file path as a command-line argument." << endl;
-    return 1;
-  }
-
-  string filePath = argv[1];
-  ifstream file(filePath);
+void readFileLines(const std::string& filePath) {
+  std::ifstream file(filePath);
 
   if (file.is_open()) {
-    string line;
-    while (getline(file, line)) {
-      cout << line << endl;
+    std::string line;
+    while (std::getline(file, line)) {
+      std::cout << line << std::endl;
     }
     file.close();
   } else {
-    cerr << "Error: Unable to open file: " << filePath << endl;
-    return 1;
+    std::cerr << "Error: Unable to open file: " << filePath << std::endl;
   }
-
-  return 0;
 }

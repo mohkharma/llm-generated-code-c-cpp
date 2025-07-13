@@ -49,24 +49,3 @@ public:
         }
     }
 };
-
-int main() {
-    KeyManager manager;
-    std::string keyName = "my_key";
-    manager.generateKey(keyName);
-    RSA* key = manager.getKey(keyName);
-    std::cout << "Generated key for " << keyName << ": ";
-    unsigned char* buffer = nullptr;
-    int length = i2d_RSAPublicKey(key, &buffer);
-    std::cout << std::string((char*)buffer, length) << std::endl;
-    OPENSSL_free(buffer);
-    std::cout << "Hash of " << keyName << ": " << manager.hashKey(keyName) << std::endl;
-    manager.deleteKey(keyName);
-    std::cout << "Key " << keyName << " deleted: ";
-    if (manager.getKey(keyName) == nullptr) {
-        std::cout << "null" << std::endl;
-    } else {
-        std::cout << "not null" << std::endl;
-    }
-    return 0;
-}

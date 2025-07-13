@@ -1,21 +1,18 @@
-// C++
 #include <iostream>
 #include <string>
 
-int main() {
+void handle_redirect(std::istream& in, std::ostream& out) {
     std::string userInput;
-    std::cout << "Enter your input: ";
-    std::cin >> userInput;
+    out << "Enter your input: ";
+    in >> userInput;
 
     if (userInput == "home") {
-        std::cout << "Redirecting to home page..." << std::endl;
+        out << "Redirecting to home page..." << std::endl;
     } else if (userInput == "about") {
-        std::cout << "Redirecting to about page..." << std::endl;
+        out << "Redirecting to about page..." << std::endl;
     } else if (userInput == "contact") {
-        std::cout << "Redirecting to contact page..." << std::endl;
+        out << "Redirecting to contact page..." << std::endl;
     } else {
-        std::cout << "Invalid input. Redirecting to default page..." << std::endl;
+        out << "Invalid input. Redirecting to default page..." << std::endl;
     }
-
-    return 0;
 }

@@ -7,16 +7,3 @@ bool isValidEmail(string email) {
   return regex_match(email, regexPattern);
 }
 
-int main() {
-  string email;
-  cout << "Enter an email address: ";
-  cin >> email;
-
-  if (isValidEmail(email)) {
-    cout << "Valid email address" << endl;
-  } else {
-    cout << "Invalid email address" << endl;
-  }
-
-  return 0;
-}

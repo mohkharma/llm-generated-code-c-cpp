@@ -29,7 +29,3 @@ void resetPassword() {
     }
 }
 
-int main() {
-    resetPassword();
-    return 0;
-}

@@ -34,11 +34,3 @@ std::string fetchFile(const std::string& fileName) {
     return readBuffer;
 }
 
-int main() {
-    std::string fileName;
-    std::cout << "Enter file name: ";
-    std::cin >> fileName;
-    std::string fileContent = fetchFile(fileName);
-    std::cout << fileContent << std::endl;
-    return 0;
-}

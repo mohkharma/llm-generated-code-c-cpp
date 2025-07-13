@@ -14,9 +14,3 @@ std::string get_root_element(const std::string& xml_string) {
         return "Error parsing XML";
     }
 }
-
-int main() {
-    std::string xml_str = "<root><child1>Content</child1><child2 attr=\"value\"/></root>";
-    std::cout << get_root_element(xml_str) << std::endl;
-    return 0;
-}

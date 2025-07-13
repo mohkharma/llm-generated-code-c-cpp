@@ -1,4 +1,3 @@
-// Task195_Test.cpp
 
 #include <iostream>
 #include <vector>

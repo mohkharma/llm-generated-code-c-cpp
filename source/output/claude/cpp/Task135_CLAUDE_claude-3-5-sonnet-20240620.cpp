@@ -74,21 +74,3 @@ public:
         });
     }
 };
-
-int main() {
-    http_listener listener("http://localhost:8080");
-    CSRFProtectionHandler handler;
-
-    listener.support(methods::GET, std::bind(&CSRFProtectionHandler::handle_get, &handler, std::placeholders::_1));
-    listener.support(methods::POST, std::bind(&CSRFProtectionHandler::handle_post, &handler, std::placeholders::_1));
-
-    try {
-        listener.open().wait();
-        std::cout << "Listening for requests at: " << listener.uri().to_string() << std::endl;
-        while (true);
-    } catch (const std::exception &e) {
-        std::cout << "Error: " << e.what() << std::endl;
-    }
-
-    return 0;
-}

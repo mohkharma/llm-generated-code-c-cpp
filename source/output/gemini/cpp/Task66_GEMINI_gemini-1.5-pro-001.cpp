@@ -3,32 +3,23 @@
 #include <vector>
 #include <cstdio>
 #include <memory>
+#include <stdexcept>
 
-using namespace std;
-
-int main() {
-  string command;
-  cout << "Enter a bash command: ";
-  getline(cin, command);
-
+void executeBashCommand(const std::string& command) {
   try {
-    // Execute the command and capture output
-    unique_ptr<FILE, decltype(&pclose)> pipe(popen(command.c_str(), "r"), pclose);
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command.c_str(), "r"), pclose);
     if (!pipe) {
-      throw runtime_error("popen() failed!");
+      throw std::runtime_error("popen() failed!");
     }
+
     char buffer[128];
-    string result;
+    std::string result;
     while (fgets(buffer, sizeof(buffer), pipe.get()) != nullptr) {
       result += buffer;
     }
 
-    cout << result;
-
-  } catch (const runtime_error& e) {
-    cerr << "Error executing command: " << e.what() << endl;
-    return 1; // Indicate an error occurred
+    std::cout << result;
+  } catch (const std::runtime_error& e) {
+    std::cerr << "Error executing command: " << e.what() << std::endl;
   }
-
-  return 0; // Indicate successful execution
 }

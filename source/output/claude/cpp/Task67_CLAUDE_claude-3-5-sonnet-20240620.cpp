@@ -37,27 +37,3 @@ CustomerInfo* getCustomerInfo(const std::string& username) {
 
     return customer;
 }
-
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cout << "Usage: " << argv[0] << " <customerusername>" << std::endl;
-        return 1;
-    }
-
-    std::string username = argv[1];
-    CustomerInfo* customerInfo = getCustomerInfo(username);
-
-    if (customerInfo) {
-        std::cout << "Customer Information:" << std::endl;
-        std::cout << "ID: " << customerInfo->id << std::endl;
-        std::cout << "Username: " << customerInfo->username << std::endl;
-        std::cout << "Name: " << customerInfo->name << std::endl;
-        std::cout << "Email: " << customerInfo->email << std::endl;
-        std::cout << "Phone: " << customerInfo->phone << std::endl;
-        delete customerInfo;
-    } else {
-        std::cout << "Customer not found." << std::endl;
-    }
-
-    return 0;
-}

@@ -1,9 +1,8 @@
-// C++ code
 #include <iostream>
 #include <map>
 #include <string>
 
-int main() {
+void authenticateUser() {
     std::map<std::string, std::string> users;
     users["admin"] = "password";
     users["user"] = "password";
@@ -19,5 +18,4 @@ int main() {
     } else {
         std::cout << "Invalid username or password" << std::endl;
     }
-    return 0;
 }

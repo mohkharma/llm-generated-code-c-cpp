@@ -13,14 +13,3 @@ nlohmann::json getRootElement(const std::string& jsonString) {
         return nullptr;
     }
 }
-
-int main() {
-    std::string jsonString = "{\"name\": \"John\", \"age\": 30, \"city\": \"New York\"}";
-    nlohmann::json rootElement = getRootElement(jsonString);
-
-    if (!rootElement.is_null()) {
-        std::cout << rootElement.dump(4) << std::endl;
-    }
-
-    return 0;
-}

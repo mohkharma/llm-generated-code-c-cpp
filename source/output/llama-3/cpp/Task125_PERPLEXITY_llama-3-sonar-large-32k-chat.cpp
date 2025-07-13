@@ -13,10 +13,3 @@ void accessResource(std::string resource) {
     }
 }
 
-int main() {
-    std::string resource;
-    std::cout << "Enter the resource you want to access: ";
-    std::cin >> resource;
-    accessResource(resource);
-    return 0;
-}

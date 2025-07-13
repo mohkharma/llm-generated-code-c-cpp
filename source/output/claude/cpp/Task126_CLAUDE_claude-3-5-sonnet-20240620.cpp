@@ -1,17 +1,16 @@
-
 #include <iostream>
 #include <string>
 #include <cstdlib>
 
-int main() {
-    std::cout << "Select a destination:" << std::endl;
-    std::cout << "1. Google" << std::endl;
-    std::cout << "2. YouTube" << std::endl;
-    std::cout << "3. Wikipedia" << std::endl;
+void redirect_user(std::istream& in, std::ostream& out) {
+    out << "Select a destination:" << std::endl;
+    out << "1. Google" << std::endl;
+    out << "2. YouTube" << std::endl;
+    out << "3. Wikipedia" << std::endl;
 
+    out << "Enter your choice (1-3): ";
     std::string choice;
-    std::cout << "Enter your choice (1-3): ";
-    std::cin >> choice;
+    in >> choice;
 
     std::string url;
     if (choice == "1") {
@@ -21,18 +20,19 @@ int main() {
     } else if (choice == "3") {
         url = "https://www.wikipedia.org";
     } else {
-        std::cout << "Invalid choice. Please try again." << std::endl;
-        return 1;
+        out << "Invalid choice. Please try again." << std::endl;
+        return;
     }
 
-    #ifdef _WIN32
-        std::string command = "start " + url;
-    #elif __APPLE__
-        std::string command = "open " + url;
-    #else
-        std::string command = "xdg-open " + url;
-    #endif
+     out << url << std::endl;
+
+#ifdef _WIN32
+    std::string command = "start " + url;
+#elif __APPLE__
+    std::string command = "open " + url;
+#else
+    std::string command = "xdg-open " + url;
+#endif
 
     system(command.c_str());
-    return 0;
 }

@@ -31,8 +31,3 @@ void processFile(const string& sourceFilePath) {
     }
 }
 
-int main() {
-    string sourceFilePath = "/path/to/your/source/file";
-    processFile(sourceFilePath);
-    return 0;
-}

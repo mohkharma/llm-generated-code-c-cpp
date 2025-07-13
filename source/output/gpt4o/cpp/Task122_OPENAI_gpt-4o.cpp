@@ -16,13 +16,3 @@ void signup(std::string username, std::string password) {
     database.push_back(User(username, password));
     std::cout << "User signed up successfully" << std::endl;
 }
-
-int main() {
-    std::string username, password;
-    std::cout << "Enter username: ";
-    std::cin >> username;
-    std::cout << "Enter password: ";
-    std::cin >> password;
-    signup(username, password);
-    return 0;
-}

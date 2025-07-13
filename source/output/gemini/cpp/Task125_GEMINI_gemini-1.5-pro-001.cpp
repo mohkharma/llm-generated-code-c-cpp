@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main() {
+void runRoleAccess() {
     unordered_map<string, vector<string>> roles = {
         {"admin", {"resource1", "resource2", "resource3"}},
         {"editor", {"resource2", "resource3"}},
@@ -24,6 +24,4 @@ int main() {
     } else {
         cout << "Invalid role." << endl;
     }
-
-    return 0;
 }

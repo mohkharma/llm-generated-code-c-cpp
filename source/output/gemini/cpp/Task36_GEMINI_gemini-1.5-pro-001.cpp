@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main() {
+void readFileInteractive() {
     string filename;
     cout << "Enter the file name: ";
     cin >> filename;
@@ -20,6 +20,4 @@ int main() {
     } else {
         cout << "Error: File not found." << endl;
     }
-
-    return 0;
 }

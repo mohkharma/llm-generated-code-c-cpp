@@ -52,25 +52,3 @@ public:
         }
     }
 };
-
-int main() {
-    SessionManager session_manager;
-
-    // Create a new session
-    string session_id = session_manager.createSession("user1");
-    cout << "Session created for user1 with ID: " << session_id << endl;
-
-    // Get the session
-    Session* session = session_manager.getSession(session_id);
-    if (session != nullptr && session->isValid()) {
-        cout << "Session is valid for user: " << session->username << endl;
-    } else {
-        cout << "Session is not valid" << endl;
-    }
-
-    // Delete the session
-    session_manager.deleteSession(session_id);
-    cout << "Session with ID " << session_id << " deleted" << endl;
-
-    return 0;
-}

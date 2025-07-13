@@ -1,18 +1,13 @@
 #include <iostream>
-#include <cstdlib>
+#include <string>
 
-int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        std::cout << "No input provided. Please provide a command line argument." << std::endl;
-        return 1;
-    }
+void printIntegerFromString(const std::string& input) {
     try {
-        int num = std::stoi(argv[1]);
+        int num = std::stoi(input);
         std::cout << "The integer value is: " << num << std::endl;
-    } catch (std::invalid_argument const &e) {
+    } catch (const std::invalid_argument&) {
         std::cout << "Invalid input. Please enter a valid integer." << std::endl;
-    } catch (std::out_of_range const &e) {
+    } catch (const std::out_of_range&) {
         std::cout << "Invalid input. Please enter a valid integer." << std::endl;
     }
-    return 0;
 }
