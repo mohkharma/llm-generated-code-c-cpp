@@ -22,21 +22,32 @@ set(Boost_USE_STATIC_RUNTIME OFF)
 
 
 
+find_package(CURL REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GUMBO REQUIRED gumbo)
+include_directories(${CURL_INCLUDE_DIRS} ${GUMBO_INCLUDE_DIRS})
+link_directories(${GUMBO_LIBRARY_DIRS})
+
+find_library(UUID_LIB uuid)
 
 
+add_executable(Task61_Test tests/llama-3/Task99/Task99_Test.cpp)
 
-
-
-
-
-
- add_executable(Task61_Test tests/llama-3/Task61_Test.cpp)
-
+if(UUID_LIB)
+ message(STATUS "Found uuid library: ${UUID_LIB}")
+ target_link_libraries(Task61_Test PRIVATE ${UUID_LIB})
+else()
+ message(FATAL_ERROR "uuid library not found!")
+endif()
 
 
 find_package(tinyxml2 REQUIRED)
 
-target_link_libraries(Task61_Test PRIVATE tinyxml2::tinyxml2)
+target_link_libraries(Task61_Test
+        PRIVATE tinyxml2::tinyxml2
+        ${CURL_LIBRARIES}
+        /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libgumbo.a
+)
 
 
 
