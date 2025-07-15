@@ -1,53 +1,56 @@
-#cmake_minimum_required(VERSION 3.10)
-cmake_minimum_required(VERSION 3.28)
-project(cpp)
+cmake_minimum_required(VERSION 3.10)
+project(Task61_Test_Project)
 
-#set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
-include_directories(/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/)
-include_directories(/home/kali/CLionProjects/mysql-connector-cpp/driver/)
-include_directories(/home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/linux/ /home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/)
-#include_directories(/usr/include/)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Your include directories, adjust paths as needed
+include_directories(
+        /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/
+        /home/kali/CLionProjects/mysql-connector-cpp/driver/
+        /home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/linux/
+        /home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/
+)
+
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
+find_package(SQLite3 REQUIRED)
+find_package(OpenSSL REQUIRED)
 find_package(cpprestsdk REQUIRED)
-#target_link_libraries(main PRIVATE cpprestsdk::cpprest)
 
-find_package(httplib CONFIG REQUIRED)
-find_package(bson-1.0 CONFIG REQUIRED)
-#target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
-
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-
-
-
-find_package(CURL REQUIRED)
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(GUMBO REQUIRED gumbo)
-include_directories(${CURL_INCLUDE_DIRS} ${GUMBO_INCLUDE_DIRS})
-link_directories(${GUMBO_LIBRARY_DIRS})
-
-find_library(UUID_LIB uuid)
-
-
-add_executable(Task61_Test tests/llama-3/Task99/Task99_Test.cpp)
-
-if(UUID_LIB)
- message(STATUS "Found uuid library: ${UUID_LIB}")
- target_link_libraries(Task61_Test PRIVATE ${UUID_LIB})
+find_library(MYSQLCLIENT_LIB mysqlclient)
+if (NOT MYSQLCLIENT_LIB)
+    message(FATAL_ERROR "MySQL client library not found")
 else()
- message(FATAL_ERROR "uuid library not found!")
+    message(STATUS "Found MySQL client library: ${MYSQLCLIENT_LIB}")
 endif()
 
+# Find Poco libraries (you can add other components if needed)
+find_package(Poco REQUIRED COMPONENTS Net Foundation Util)
+link_directories(
+        /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib
+)
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIRS})
 
-find_package(tinyxml2 REQUIRED)
+
+add_executable(Task61_Test tests/gemini/Task64_Test.cpp )
 
 target_link_libraries(Task61_Test
-        PRIVATE tinyxml2::tinyxml2
+        SQLite::SQLite3
+        ${MYSQLCLIENT_LIB}
+        jsoncpp
+        cpprestsdk::cpprest
+        OpenSSL::SSL
+        OpenSSL::Crypto
+        Poco::Net
+        Poco::Foundation
+        Poco::Util
         ${CURL_LIBRARIES}
-        /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libgumbo.a
 )
+
+
+
+
 
 
 
