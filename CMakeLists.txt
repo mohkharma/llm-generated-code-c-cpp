@@ -1,39 +1,74 @@
-#cmake_minimum_required(VERSION 3.10)
-cmake_minimum_required(VERSION 3.28)
-project(cpp)
+cmake_minimum_required(VERSION 3.10)
+project(Task61_Test_Project)
 
-#set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
-include_directories(/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/)
-include_directories(/home/kali/CLionProjects/mysql-connector-cpp/driver/)
-include_directories(/home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/linux/ /home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/)
-#include_directories(/usr/include/)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Your include directories, adjust paths as needed
+include_directories(
+        /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/
+        /home/kali/CLionProjects/mysql-connector-cpp/driver/
+        /home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/linux/
+        /home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/
+)
+
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
+find_package(SQLite3 REQUIRED)
+find_package(OpenSSL REQUIRED)
 find_package(cpprestsdk REQUIRED)
-#target_link_libraries(main PRIVATE cpprestsdk::cpprest)
 
-#target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
+find_library(MYSQLCLIENT_LIB mysqlclient)
+if (NOT MYSQLCLIENT_LIB)
+    message(FATAL_ERROR "MySQL client library not found")
+else()
+    message(STATUS "Found MySQL client library: ${MYSQLCLIENT_LIB}")
+endif()
 
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
+# Find Poco libraries (you can add other components if needed)
+find_package(Poco REQUIRED COMPONENTS Net Foundation Util)
+link_directories(
+        /home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib
+)
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIRS})
+
+
+find_package(pugixml REQUIRED)
+
+find_library(LDAP_LIB ldap-2.5 PATHS /lib/x86_64-linux-gnu NO_DEFAULT_PATH)
+
+if (NOT LDAP_LIB)
+    message(FATAL_ERROR "LDAP library not found!")
+else()
+    message(STATUS "Found LDAP library: ${LDAP_LIB}")
+endif()
+
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(PISTACHE REQUIRED libpistache)
+
+
+add_executable(Task61_Test tests/gemini/Task121/Task121_test.cpp )
 
 
 
+target_link_libraries(Task61_Test PRIVATE ${LDAP_LIB}
+        SQLite::SQLite3
+        ${MYSQLCLIENT_LIB}
+        jsoncpp
+        cpprestsdk::cpprest
+        OpenSSL::SSL
+        OpenSSL::Crypto
+        Poco::Net
+        Poco::Foundation
+        Poco::Util
+        ${CURL_LIBRARIES}
+        pugixml
+        PRIVATE ${PISTACHE_LIBRARIES} pthread
+)
 
 
 
-
-#add_executable(Task40_Test tests/claude/Task40_Test.cpp)
-#add_executable(Task40_Test tests/codestral/Task40_Test.cpp)
-#add_executable(Task40_Test tests/gemini/Task40_Test.cpp)
-add_executable(Task40_Test tests/gpt4o/Task40_Test.cpp)
-#add_executable(Task40_Test tests/llama-3/Task40_Test.cpp)
-
-# اربط مكتبة cppcms
-find_package(CppCMS REQUIRED)
-
-target_link_libraries(Task40_Test PRIVATE cppcms)
-target_include_directories(Task40_Test PRIVATE ${CppCMS_INCLUDE_DIRS})
 
 
 

@@ -1,30 +1,20 @@
+#include <httplib.h>
 #include <iostream>
-#include <cstdlib>
-#include <sstream>
-
-using namespace std;
-
-int run_tests() {
-    int passed = 0;
-    int total = 1;
-
-    cout << "[TEST 1] Running external solution binary (./Task130)..." << endl;
-
-    int result = system("./Task130"); // يجب أن يكون الملف التنفيذي مكوَّن مسبقًا
-
-    if (result == 0) {
-        cout << "[PASS] Server ran without crashing (exit code 0)" << endl;
-        passed++;
-    } else {
-        cout << "[FAIL] Server crashed or exited abnormally (exit code " << result << ")" << endl;
-    }
-
-    cout << "------------------------" << endl;
-    cout << "Passed " << passed << " out of " << total << " tests." << endl;
-
-    return 0;
-}
 
 int main() {
-    return run_tests();
+    httplib::Server svr;
+
+    // API endpoint /api/data
+    svr.Get("/api/data", [&](const httplib::Request& req, httplib::Response& res) {
+        // Set CORS header exactly مثل في البايثون
+        res.set_header("Access-Control-Allow-Origin", "*");  // Python flask-cors يتيح لكل النطاقات (Allow all)
+
+        // الرد بالبيانات كـ JSON
+        res.set_content(R"({"message":"This is CORS-enabled data"})", "application/json");
+    });
+
+    std::cout << "Server running on http://0.0.0.0:8080\n";
+    svr.listen("0.0.0.0", 8080);
+
+    return 0;
 }

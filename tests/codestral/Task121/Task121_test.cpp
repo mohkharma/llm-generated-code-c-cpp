@@ -1,52 +1,19 @@
+#include <httplib.h>
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include "httplib.h"
 #include <vector>
 #include <string>
-#include <filesystem>
+#include <fstream>
 
-namespace fs = std::filesystem;
-
-// قراءة الملف إلى string
-std::string readFileToString(const std::string& path) {
-    std::ifstream ifs(path, std::ios::binary);
-    std::ostringstream oss;
-    oss << ifs.rdbuf();
-    return oss.str();
-}
-
-std::string uploadFileViaHttp(const std::string& filename) {
-    httplib::Client cli("localhost", 8080);
-
-    std::string filepath = "testFiles/" + filename;
-    if (!fs::exists(filepath)) {
-        return "No file uploaded";
-    }
-
-    std::string fileContent = readFileToString(filepath);
-    std::string boundary = "----MyCustomBoundary";
-
-    std::string body;
-    body += "--" + boundary + "\r\n";
-    body += "Content-Disposition: form-data; name=\"file\"; filename=\"" + filename + "\"\r\n";
-    body += "Content-Type: application/octet-stream\r\n\r\n";
-    body += fileContent;
-    body += "\r\n--" + boundary + "--\r\n";
-
-    httplib::Headers headers = {
-        { "Content-Type", "multipart/form-data; boundary=" + boundary }
-    };
-
-    auto res = cli.Post("/upload", headers, body, "multipart/form-data; boundary=" + boundary);
-    if (res && res->status == 200) {
-        return res->body;
-    } else {
-        return "Request failed";
-    }
+bool file_exists(const std::string& filename) {
+    std::ifstream f(filename.c_str());
+    return f.good();
 }
 
 int main() {
+    httplib::Client cli("localhost", 8080);
+
+    std::string base_path = "/home/kali/CLionProjects/llm-generated-code-cpp/tests/codestral/Task121/";
+
     std::vector<std::string> filenames = {
         "test_file_1.txt",
         "large_file.txt",
@@ -61,32 +28,32 @@ int main() {
         "file_not_found.txt"
     };
 
-    int passed = 0;
-    int total = filenames.size();
+    for (const auto& filename : filenames) {
+        std::string full_path = base_path + filename;
 
-    for (const std::string& filename : filenames) {
-        std::string result = uploadFileViaHttp(filename);
-
-        std::string expected;
-        std::string path = "testFiles/" + filename;
-        if (fs::exists(path)) {
-            expected = "File uploaded successfully";
-        } else {
-            expected = "No file uploaded";
+        if (!file_exists(full_path)) {
+            std::cout << "Test case '" << filename << "': FAIL - File not found locally, cannot upload\n";
+            std::cout << "------------------------------\n";
+            continue;
         }
 
-        if (result == expected) {
-            std::cout << "[✅] Passed: " << filename << "\n";
-            passed++;
-        } else {
-            std::cout << "[❌] Failed: " << filename << "\n";
-            std::cout << "Expected: " << expected << "\n";
-            std::cout << "Got:      " << result << "\n";
-        }
+        auto res = cli.Post("/upload",
+            httplib::MultipartFormDataItems{
+                { "file", full_path, "application/octet-stream" }
+            }
+        );
 
-        std::cout << "------------------------\n";
+        if (res && res->status == 200) {
+            if (res->body == "File uploaded successfully") {
+                std::cout << "Test case '" << filename << "': PASS\n";
+            } else {
+                std::cout << "Test case '" << filename << "': FAIL - Unexpected response: " << res->body << "\n";
+            }
+        } else {
+            std::cout << "Test case '" << filename << "': FAIL - No response or bad status\n";
+        }
+        std::cout << "------------------------------\n";
     }
 
-    std::cout << "Summary: " << passed << "/" << total << " tests passed.\n";
     return 0;
 }

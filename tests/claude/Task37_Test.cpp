@@ -1,7 +1,6 @@
 #include "../../source/output/claude/cpp/Task37_CLAUDE_claude-3-5-sonnet-20240620.cpp"  // Include the header for the function
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <streambuf>
 

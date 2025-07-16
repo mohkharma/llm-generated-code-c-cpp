@@ -44,6 +44,10 @@ Boost_REGEX_LIBRARY_DEBUG:STRING=/home/kali/.vcpkg-clion/vcpkg/installed/x64-lin
 
 Boost_REGEX_LIBRARY_RELEASE:STRING=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libboost_regex.a
 
+Boost_SERIALIZATION_LIBRARY_DEBUG:STRING=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libboost_serialization.a
+
+Boost_SERIALIZATION_LIBRARY_RELEASE:STRING=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libboost_serialization.a
+
 Boost_SYSTEM_LIBRARY_DEBUG:STRING=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libboost_system.a
 
 Boost_SYSTEM_LIBRARY_RELEASE:STRING=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libboost_system.a
@@ -186,7 +190,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=cpp
+CMAKE_PROJECT_NAME:STATIC=Task61_Test_Project
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -262,8 +266,46 @@ CURL_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/curl
 //The directory containing a CMake configuration file for CppCMS.
 CppCMS_DIR:PATH=CppCMS_DIR-NOTFOUND
 
+EXPAT_LIBRARY:STRING=optimized;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libexpat.a;debug;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libexpat.a
+
 //Path to a library.
-GUMBO_LIB:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libgumbo.a
+EXPAT_LIBRARY_DEBUG:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libexpat.a
+
+//Path to a library.
+EXPAT_LIBRARY_RELEASE:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libexpat.a
+
+//Java AWT Native Interface include directory
+JAVA_AWT_INCLUDE_PATH:PATH=JAVA_AWT_INCLUDE_PATH-NOTFOUND
+
+//Java AWT Native Interface library
+JAVA_AWT_LIBRARY:FILEPATH=/usr/lib/jvm/default-java/lib/libjawt.so
+
+//JNI include directory
+JAVA_INCLUDE_PATH:PATH=JAVA_INCLUDE_PATH-NOTFOUND
+
+//jni_md.h jniport.h include directory
+JAVA_INCLUDE_PATH2:PATH=JAVA_INCLUDE_PATH2-NOTFOUND
+
+//Java Virtual Machine library
+JAVA_JVM_LIBRARY:FILEPATH=/usr/lib/jvm/default-java/lib/server/libjvm.so
+
+//Path to a library.
+LDAP_LIB:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libldap.a
+
+//Path to a file.
+LIBLZMA_INCLUDE_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include
+
+//Path to a library.
+LIBLZMA_LIBRARY_DEBUG:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/liblzma.a
+
+//Path to a library.
+LIBLZMA_LIBRARY_RELEASE:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/liblzma.a
+
+//The directory containing a CMake configuration file for LibXml2.
+LibXml2_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/libxml2
+
+//Path to a library.
+MYSQLCLIENT_LIB:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libmysqlclient.a
 
 //Path to a library.
 OPENSSL_CRYPTO_LIBRARY:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcrypto.a
@@ -277,23 +319,62 @@ OPENSSL_INCLUDE_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/inclu
 //Path to a library.
 OPENSSL_SSL_LIBRARY:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libssl.a
 
+//Specify the include directory containing pcre2.h
+PCRE2_INCLUDE_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include
+
+//Specify the lib directory containing pcre2
+PCRE2_LIBRARY_DEBUG:FILEPATH=PCRE2_LIBRARY_DEBUG-NOTFOUND
+
+//Specify the lib directory containing pcre2
+PCRE2_LIBRARY_RELEASE:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libpcre2-8.a
+
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
-//The directory containing a CMake configuration file for Protobuf.
-Protobuf_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/protobuf
+//The directory containing a CMake configuration file for Pistache.
+Pistache_DIR:PATH=Pistache_DIR-NOTFOUND
 
-//Path to a program.
-Protobuf_PROTOC_EXECUTABLE:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/tools/protobuf/protoc
+//The directory containing a CMake configuration file for PocoFoundation.
+PocoFoundation_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/poco
+
+//The directory containing a CMake configuration file for PocoJSON.
+PocoJSON_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/poco
+
+//The directory containing a CMake configuration file for PocoNet.
+PocoNet_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/poco
+
+//The directory containing a CMake configuration file for PocoUtil.
+PocoUtil_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/poco
+
+//The directory containing a CMake configuration file for PocoXML.
+PocoXML_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/poco
+
+//The directory containing a CMake configuration file for Poco.
+Poco_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/poco
+
+//The directory containing a CMake configuration file for PugiXML.
+PugiXML_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/pugixml
 
 //Path to a file.
 SQLite3_INCLUDE_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include
 
 //Path to a library.
 SQLite3_LIBRARY:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libsqlite3.a
+
+//Value Computed by CMake
+Task61_Test_Project_BINARY_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug
+
+//Value Computed by CMake
+Task61_Test_Project_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Task61_Test_Project_SOURCE_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp
+
+//Path to a library.
+UUID_LIB:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libuuid.a
 
 //Automatically copy dependencies into the output directory for
 // executables.
@@ -326,27 +407,6 @@ VCPKG_TRACE_FIND_PACKAGE:BOOL=OFF
 //Enables messages from the VCPKG toolchain for debugging purposes.
 VCPKG_VERBOSE:BOOL=OFF
 
-//Path to a library.
-XERCESC_LIBRARY:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libxerces-c.a
-
-//Path to a program.
-XMLRPC_C_CONFIG:FILEPATH=/usr/bin/xmlrpc-c-config
-
-//Path to a library.
-XMLRPC_pthread_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpthread.a
-
-//Path to a library.
-XMLRPC_xmlrpc_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libxmlrpc.so
-
-//Path to a library.
-XMLRPC_xmlrpc_util_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libxmlrpc_util.so
-
-//Path to a library.
-XMLRPC_xmlrpc_xmlparse_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libxmlrpc_xmlparse.so
-
-//Path to a library.
-XMLRPC_xmlrpc_xmltok_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libxmlrpc_xmltok.so
-
 //(experimental) Automatically copy dependencies into the install
 // target directory for executables. Requires CMake 3.14.
 X_VCPKG_APPLOCAL_DEPS_INSTALL:BOOL=OFF
@@ -370,9 +430,6 @@ Z_VCPKG_CL:FILEPATH=Z_VCPKG_CL-NOTFOUND
 //The directory which contains the installed libraries for each
 // triplet
 _VCPKG_INSTALLED_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed
-
-//The directory containing a CMake configuration file for absl.
-absl_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/absl
 
 //The directory containing a CMake configuration file for boost_algorithm.
 boost_algorithm_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_algorithm
@@ -425,6 +482,9 @@ boost_detail_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/bo
 //The directory containing a CMake configuration file for boost_dynamic_bitset.
 boost_dynamic_bitset_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_dynamic_bitset
 
+//The directory containing a CMake configuration file for boost_endian.
+boost_endian_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_endian
+
 //The directory containing a CMake configuration file for boost_exception.
 boost_exception_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_exception
 
@@ -476,11 +536,20 @@ boost_numeric_conversion_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-li
 //The directory containing a CMake configuration file for boost_optional.
 boost_optional_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_optional
 
+//The directory containing a CMake configuration file for boost_phoenix.
+boost_phoenix_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_phoenix
+
+//The directory containing a CMake configuration file for boost_pool.
+boost_pool_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_pool
+
 //The directory containing a CMake configuration file for boost_predef.
 boost_predef_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_predef
 
 //The directory containing a CMake configuration file for boost_preprocessor.
 boost_preprocessor_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_preprocessor
+
+//The directory containing a CMake configuration file for boost_proto.
+boost_proto_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_proto
 
 //The directory containing a CMake configuration file for boost_random.
 boost_random_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_random
@@ -497,8 +566,14 @@ boost_regex_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boo
 //The directory containing a CMake configuration file for boost_scope.
 boost_scope_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_scope
 
+//The directory containing a CMake configuration file for boost_serialization.
+boost_serialization_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_serialization
+
 //The directory containing a CMake configuration file for boost_smart_ptr.
 boost_smart_ptr_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_smart_ptr
+
+//The directory containing a CMake configuration file for boost_spirit.
+boost_spirit_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_spirit
 
 //The directory containing a CMake configuration file for boost_static_assert.
 boost_static_assert_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_static_assert
@@ -518,6 +593,9 @@ boost_tokenizer_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share
 //The directory containing a CMake configuration file for boost_tuple.
 boost_tuple_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_tuple
 
+//The directory containing a CMake configuration file for boost_type_index.
+boost_type_index_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_type_index
+
 //The directory containing a CMake configuration file for boost_type_traits.
 boost_type_traits_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_type_traits
 
@@ -533,8 +611,17 @@ boost_utility_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/b
 //The directory containing a CMake configuration file for boost_variant2.
 boost_variant2_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_variant2
 
+//The directory containing a CMake configuration file for boost_variant.
+boost_variant_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_variant
+
 //The directory containing a CMake configuration file for boost_winapi.
 boost_winapi_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost_winapi
+
+//The directory containing a CMake configuration file for bson-1.0.
+bson-1.0_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/bson-1.0
+
+//The directory containing a CMake configuration file for cpp-base64.
+cpp-base64_DIR:PATH=cpp-base64_DIR-NOTFOUND
 
 //Value Computed by CMake
 cpp_BINARY_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug
@@ -548,6 +635,39 @@ cpp_SOURCE_DIR:STATIC=/home/kali/CLionProjects/llm-generated-code-cpp
 //The directory containing a CMake configuration file for cpprestsdk.
 cpprestsdk_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/cpprestsdk
 
+//The directory containing a CMake configuration file for expat.
+expat_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/expat
+
+//The directory containing a CMake configuration file for httplib.
+httplib_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/httplib
+
+//The directory containing a CMake configuration file for jsoncpp.
+jsoncpp_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/jsoncpp
+
+//Path to a library.
+pkgcfg_lib_GUMBO_gumbo:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libgumbo.a
+
+//Path to a library.
+pkgcfg_lib_LDAP_crypto:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcrypto.a
+
+//Path to a library.
+pkgcfg_lib_LDAP_dl:FILEPATH=/usr/lib/x86_64-linux-gnu/libdl.a
+
+//Path to a library.
+pkgcfg_lib_LDAP_lber:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/liblber.a
+
+//Path to a library.
+pkgcfg_lib_LDAP_ldap:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libldap.a
+
+//Path to a library.
+pkgcfg_lib_LDAP_ssl:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libssl.a
+
+//Path to a library.
+pkgcfg_lib_PC_PCRE2_pcre2-8:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libpcre2-8.a
+
+//Path to a library.
+pkgcfg_lib_PISTACHE_pistache:FILEPATH=/usr/lib/x86_64-linux-gnu/libpistache.so
+
 //Path to a library.
 pkgcfg_lib__OPENSSL_crypto:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcrypto.a
 
@@ -557,20 +677,20 @@ pkgcfg_lib__OPENSSL_dl:FILEPATH=/usr/lib/x86_64-linux-gnu/libdl.a
 //Path to a library.
 pkgcfg_lib__OPENSSL_ssl:FILEPATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libssl.a
 
-//CMake built-in FindProtobuf.cmake module compatible
-protobuf_MODULE_COMPATIBLE:BOOL=OFF
+//The directory containing a CMake configuration file for pugixml.
+pugixml_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/pugixml
 
-//Enable for verbose output
-protobuf_VERBOSE:BOOL=OFF
+//The directory containing a CMake configuration file for tinyxml2.
+tinyxml2_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/tinyxml2
 
-//The directory containing a CMake configuration file for unofficial-mysql-connector-cpp.
-unofficial-mysql-connector-cpp_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/unofficial-mysql-connector-cpp
+//The directory containing a CMake configuration file for unofficial-brotli.
+unofficial-brotli_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/unofficial-brotli
 
-//The directory containing a CMake configuration file for utf8_range.
-utf8_range_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/utf8_range
+//The directory containing a CMake configuration file for unofficial-sqlite3.
+unofficial-sqlite3_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/unofficial-sqlite3
 
-//The directory containing a CMake configuration file for zstd.
-zstd_DIR:PATH=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/zstd
+//The directory containing a CMake configuration file for xmlrpc-c.
+xmlrpc-c_DIR:PATH=xmlrpc-c_DIR-NOTFOUND
 
 
 ########################
@@ -664,8 +784,6 @@ CMAKE_HOME_DIRECTORY:INTERNAL=/home/kali/CLionProjects/llm-generated-code-cpp
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_MAKE_PROGRAM
-CMAKE_MAKE_PROGRAM-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS
 CMAKE_MODULE_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_DEBUG
@@ -726,30 +844,201 @@ CMAKE_TOOLCHAIN_FILE-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_LIBRARY_DEBUG
+CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //vcpkg
 CURL_LIBRARY_DEBUG:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcurl-d.a
+//ADVANCED property for variable: CURL_LIBRARY_RELEASE
+CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //vcpkg
 CURL_LIBRARY_RELEASE:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libcurl.a
+//ADVANCED property for variable: EXPAT_LIBRARY_DEBUG
+EXPAT_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: EXPAT_LIBRARY_RELEASE
+EXPAT_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //Details about finding Boost
 FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/share/boost/BoostConfig.cmake][cfound components: random system thread filesystem chrono atomic date_time regex ][v1.85.0()]
+//Details about finding Iconv
+FIND_PACKAGE_MESSAGE_DETAILS_Iconv:INTERNAL=[built in to C library][v()]
+//Details about finding LibLZMA
+FIND_PACKAGE_MESSAGE_DETAILS_LibLZMA:INTERNAL=[optimized;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/liblzma.a;debug;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/liblzma.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][1][1][1][v5.6.2()]
 //Details about finding OpenSSL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcrypto.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][c ][v3.3.1()]
-//Details about finding Protobuf
-FIND_PACKAGE_MESSAGE_DETAILS_Protobuf:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/tools/protobuf/protoc][optimized;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libprotobuf.a;debug;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libprotobufd.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][v25.1.0()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libcrypto.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][c ][v3.3.1(3)]
+//Details about finding PCRE2
+FIND_PACKAGE_MESSAGE_DETAILS_PCRE2:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libpcre2-8.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][v10.43()]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v1.8.1()]
 //Details about finding SQLite3
 FIND_PACKAGE_MESSAGE_DETAILS_SQLite3:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libsqlite3.a][v3.46.0()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-//Details about finding XMLRPC
-FIND_PACKAGE_MESSAGE_DETAILS_XMLRPC:INTERNAL=[1][/usr/lib/x86_64-linux-gnu/libxmlrpc.so;/usr/lib/x86_64-linux-gnu/libxmlrpc_xmlparse.so;/usr/lib/x86_64-linux-gnu/libxmlrpc_xmltok.so;/usr/lib/x86_64-linux-gnu/libxmlrpc_util.so;/usr/lib/x86_64-linux-gnu/libpthread.a][v()]
 //Details about finding ZLIB
-FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[optimized;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libz.a;debug;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libz.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][c ][v1.3.1()]
+FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[optimized;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/lib/libz.a;debug;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/libz.a][/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include][c ][v1.3.1(1)]
+//Details about finding httplib
+FIND_PACKAGE_MESSAGE_DETAILS_httplib:INTERNAL=[/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/httplib.h]
+GUMBO_CFLAGS:INTERNAL=-I
+GUMBO_CFLAGS_I:INTERNAL=
+GUMBO_CFLAGS_OTHER:INTERNAL=
+GUMBO_FOUND:INTERNAL=1
+GUMBO_INCLUDEDIR:INTERNAL=
+GUMBO_INCLUDE_DIRS:INTERNAL=
+GUMBO_LDFLAGS:INTERNAL=-L;-lgumbo
+GUMBO_LDFLAGS_OTHER:INTERNAL=
+GUMBO_LIBDIR:INTERNAL=
+GUMBO_LIBRARIES:INTERNAL=gumbo
+GUMBO_LIBRARY_DIRS:INTERNAL=
+GUMBO_LIBS:INTERNAL=
+GUMBO_LIBS_L:INTERNAL=
+GUMBO_LIBS_OTHER:INTERNAL=
+GUMBO_LIBS_PATHS:INTERNAL=
+GUMBO_MODULE_NAME:INTERNAL=gumbo
+GUMBO_PREFIX:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../..
+GUMBO_STATIC_CFLAGS:INTERNAL=-I
+GUMBO_STATIC_CFLAGS_I:INTERNAL=
+GUMBO_STATIC_CFLAGS_OTHER:INTERNAL=
+GUMBO_STATIC_INCLUDE_DIRS:INTERNAL=
+GUMBO_STATIC_LDFLAGS:INTERNAL=-L;-lgumbo
+GUMBO_STATIC_LDFLAGS_OTHER:INTERNAL=
+GUMBO_STATIC_LIBDIR:INTERNAL=
+GUMBO_STATIC_LIBRARIES:INTERNAL=gumbo
+GUMBO_STATIC_LIBRARY_DIRS:INTERNAL=
+GUMBO_STATIC_LIBS:INTERNAL=
+GUMBO_STATIC_LIBS_L:INTERNAL=
+GUMBO_STATIC_LIBS_OTHER:INTERNAL=
+GUMBO_STATIC_LIBS_PATHS:INTERNAL=
+GUMBO_VERSION:INTERNAL=
+GUMBO_gumbo_INCLUDEDIR:INTERNAL=
+GUMBO_gumbo_LIBDIR:INTERNAL=
+GUMBO_gumbo_PREFIX:INTERNAL=
+GUMBO_gumbo_VERSION:INTERNAL=
+//Test Iconv_IS_BUILT_IN
+Iconv_IS_BUILT_IN:INTERNAL=1
+LDAP_CFLAGS:INTERNAL=-I/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+LDAP_CFLAGS_I:INTERNAL=
+LDAP_CFLAGS_OTHER:INTERNAL=
+LDAP_FOUND:INTERNAL=1
+LDAP_INCLUDEDIR:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+LDAP_INCLUDE_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+LDAP_LDFLAGS:INTERNAL=-L/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib;-lldap;-llber;-lssl;-lcrypto;-ldl;-pthread
+LDAP_LDFLAGS_OTHER:INTERNAL=-pthread
+LDAP_LIBDIR:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
+LDAP_LIBRARIES:INTERNAL=ldap;lber;ssl;crypto;dl
+LDAP_LIBRARY_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
+LDAP_LIBS:INTERNAL=
+LDAP_LIBS_L:INTERNAL=
+LDAP_LIBS_OTHER:INTERNAL=
+LDAP_LIBS_PATHS:INTERNAL=
+LDAP_MODULE_NAME:INTERNAL=ldap
+LDAP_PREFIX:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../..
+LDAP_STATIC_CFLAGS:INTERNAL=-I/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+LDAP_STATIC_CFLAGS_I:INTERNAL=
+LDAP_STATIC_CFLAGS_OTHER:INTERNAL=
+LDAP_STATIC_INCLUDE_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+LDAP_STATIC_LDFLAGS:INTERNAL=-L/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib;-lldap;-llber;-lssl;-lcrypto;-ldl;-pthread
+LDAP_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread
+LDAP_STATIC_LIBDIR:INTERNAL=
+LDAP_STATIC_LIBRARIES:INTERNAL=ldap;lber;ssl;crypto;dl
+LDAP_STATIC_LIBRARY_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
+LDAP_STATIC_LIBS:INTERNAL=
+LDAP_STATIC_LIBS_L:INTERNAL=
+LDAP_STATIC_LIBS_OTHER:INTERNAL=
+LDAP_STATIC_LIBS_PATHS:INTERNAL=
+LDAP_VERSION:INTERNAL=2.5.18
+LDAP_ldap_INCLUDEDIR:INTERNAL=
+LDAP_ldap_LIBDIR:INTERNAL=
+LDAP_ldap_PREFIX:INTERNAL=
+LDAP_ldap_VERSION:INTERNAL=
+LIBLZMA_HAS_AUTO_DECODER:INTERNAL=1
+LIBLZMA_HAS_EASY_ENCODER:INTERNAL=1
+LIBLZMA_HAS_LZMA_PRESET:INTERNAL=1
+//ADVANCED property for variable: LIBLZMA_INCLUDE_DIR
+LIBLZMA_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBLZMA_LIBRARY_DEBUG
+LIBLZMA_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBLZMA_LIBRARY_RELEASE
+LIBLZMA_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENSSL_CRYPTO_LIBRARY
 OPENSSL_CRYPTO_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENSSL_INCLUDE_DIR
 OPENSSL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENSSL_SSL_LIBRARY
 OPENSSL_SSL_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCRE2_INCLUDE_DIR
+PCRE2_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCRE2_LIBRARY_DEBUG
+PCRE2_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PCRE2_LIBRARY_RELEASE
+PCRE2_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+PC_PCRE2_CFLAGS:INTERNAL=-I/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PC_PCRE2_CFLAGS_I:INTERNAL=
+PC_PCRE2_CFLAGS_OTHER:INTERNAL=
+PC_PCRE2_FOUND:INTERNAL=1
+PC_PCRE2_INCLUDEDIR:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PC_PCRE2_INCLUDE_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PC_PCRE2_LDFLAGS:INTERNAL=-L/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib;-lpcre2-8
+PC_PCRE2_LDFLAGS_OTHER:INTERNAL=
+PC_PCRE2_LIBDIR:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
+PC_PCRE2_LIBRARIES:INTERNAL=pcre2-8
+PC_PCRE2_LIBRARY_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
+PC_PCRE2_LIBS:INTERNAL=
+PC_PCRE2_LIBS_L:INTERNAL=
+PC_PCRE2_LIBS_OTHER:INTERNAL=
+PC_PCRE2_LIBS_PATHS:INTERNAL=
+PC_PCRE2_MODULE_NAME:INTERNAL=libpcre2-8
+PC_PCRE2_PREFIX:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../..
+PC_PCRE2_STATIC_CFLAGS:INTERNAL=-I/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PC_PCRE2_STATIC_CFLAGS_I:INTERNAL=
+PC_PCRE2_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_PCRE2_STATIC_INCLUDE_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PC_PCRE2_STATIC_LDFLAGS:INTERNAL=-L/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib;-lpcre2-8
+PC_PCRE2_STATIC_LDFLAGS_OTHER:INTERNAL=
+PC_PCRE2_STATIC_LIBDIR:INTERNAL=
+PC_PCRE2_STATIC_LIBRARIES:INTERNAL=pcre2-8
+PC_PCRE2_STATIC_LIBRARY_DIRS:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
+PC_PCRE2_STATIC_LIBS:INTERNAL=
+PC_PCRE2_STATIC_LIBS_L:INTERNAL=
+PC_PCRE2_STATIC_LIBS_OTHER:INTERNAL=
+PC_PCRE2_STATIC_LIBS_PATHS:INTERNAL=
+PC_PCRE2_VERSION:INTERNAL=10.43
+PC_PCRE2_libpcre2-8_INCLUDEDIR:INTERNAL=
+PC_PCRE2_libpcre2-8_LIBDIR:INTERNAL=
+PC_PCRE2_libpcre2-8_PREFIX:INTERNAL=
+PC_PCRE2_libpcre2-8_VERSION:INTERNAL=
+PISTACHE_CFLAGS:INTERNAL=-I/usr/include;-I/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PISTACHE_CFLAGS_I:INTERNAL=
+PISTACHE_CFLAGS_OTHER:INTERNAL=
+PISTACHE_FOUND:INTERNAL=1
+PISTACHE_INCLUDEDIR:INTERNAL=/usr/include
+PISTACHE_INCLUDE_DIRS:INTERNAL=/usr/include;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PISTACHE_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lpistache
+PISTACHE_LDFLAGS_OTHER:INTERNAL=
+PISTACHE_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+PISTACHE_LIBRARIES:INTERNAL=pistache
+PISTACHE_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
+PISTACHE_LIBS:INTERNAL=
+PISTACHE_LIBS_L:INTERNAL=
+PISTACHE_LIBS_OTHER:INTERNAL=
+PISTACHE_LIBS_PATHS:INTERNAL=
+PISTACHE_MODULE_NAME:INTERNAL=libpistache
+PISTACHE_PREFIX:INTERNAL=/usr
+PISTACHE_STATIC_CFLAGS:INTERNAL=-I/usr/include;-I/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PISTACHE_STATIC_CFLAGS_I:INTERNAL=
+PISTACHE_STATIC_CFLAGS_OTHER:INTERNAL=
+PISTACHE_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include
+PISTACHE_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lpistache;-L/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib;-lssl;-lcrypto;-ldl;-pthread
+PISTACHE_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread
+PISTACHE_STATIC_LIBDIR:INTERNAL=
+PISTACHE_STATIC_LIBRARIES:INTERNAL=pistache;ssl;crypto;dl
+PISTACHE_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu;/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
+PISTACHE_STATIC_LIBS:INTERNAL=
+PISTACHE_STATIC_LIBS_L:INTERNAL=
+PISTACHE_STATIC_LIBS_OTHER:INTERNAL=
+PISTACHE_STATIC_LIBS_PATHS:INTERNAL=
+PISTACHE_VERSION:INTERNAL=0.0.5-git20220901
+PISTACHE_libpistache_INCLUDEDIR:INTERNAL=
+PISTACHE_libpistache_LIBDIR:INTERNAL=
+PISTACHE_libpistache_PREFIX:INTERNAL=
+PISTACHE_libpistache_VERSION:INTERNAL=
 //ADVANCED property for variable: PKG_CONFIG_ARGN
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
@@ -766,16 +1055,6 @@ SQLite3_LIBRARY-ADVANCED:INTERNAL=1
 VCPKG_MANIFEST_INSTALL:INTERNAL=OFF
 //ADVANCED property for variable: VCPKG_VERBOSE
 VCPKG_VERBOSE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: XMLRPC_pthread_LIBRARY
-XMLRPC_pthread_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: XMLRPC_xmlrpc_LIBRARY
-XMLRPC_xmlrpc_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: XMLRPC_xmlrpc_util_LIBRARY
-XMLRPC_xmlrpc_util_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: XMLRPC_xmlrpc_xmlparse_LIBRARY
-XMLRPC_xmlrpc_xmlparse_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: XMLRPC_xmlrpc_xmltok_LIBRARY
-XMLRPC_xmlrpc_xmltok_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ZLIB_INCLUDE_DIR
 ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ZLIB_LIBRARY_DEBUG
@@ -823,17 +1102,37 @@ _OPENSSL_openssl_INCLUDEDIR:INTERNAL=
 _OPENSSL_openssl_LIBDIR:INTERNAL=
 _OPENSSL_openssl_PREFIX:INTERNAL=
 _OPENSSL_openssl_VERSION:INTERNAL=
+__pkg_config_arguments_GUMBO:INTERNAL=REQUIRED;gumbo
+__pkg_config_arguments_LDAP:INTERNAL=REQUIRED;ldap
+__pkg_config_arguments_PC_PCRE2:INTERNAL=QUIET;libpcre2-8
+__pkg_config_arguments_PISTACHE:INTERNAL=REQUIRED;libpistache
 __pkg_config_arguments__OPENSSL:INTERNAL=QUIET;openssl
+__pkg_config_checked_GUMBO:INTERNAL=1
+__pkg_config_checked_LDAP:INTERNAL=1
+__pkg_config_checked_PC_PCRE2:INTERNAL=1
+__pkg_config_checked_PISTACHE:INTERNAL=1
 __pkg_config_checked__OPENSSL:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_GUMBO_gumbo
+pkgcfg_lib_GUMBO_gumbo-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LDAP_crypto
+pkgcfg_lib_LDAP_crypto-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LDAP_dl
+pkgcfg_lib_LDAP_dl-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LDAP_lber
+pkgcfg_lib_LDAP_lber-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LDAP_ldap
+pkgcfg_lib_LDAP_ldap-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LDAP_ssl
+pkgcfg_lib_LDAP_ssl-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_PC_PCRE2_pcre2-8
+pkgcfg_lib_PC_PCRE2_pcre2-8-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_PISTACHE_pistache
+pkgcfg_lib_PISTACHE_pistache-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib__OPENSSL_crypto
 pkgcfg_lib__OPENSSL_crypto-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib__OPENSSL_dl
 pkgcfg_lib__OPENSSL_dl-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib__OPENSSL_ssl
 pkgcfg_lib__OPENSSL_ssl-ADVANCED:INTERNAL=1
-prefix_result:INTERNAL=/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../lib
-//ADVANCED property for variable: protobuf_MODULE_COMPATIBLE
-protobuf_MODULE_COMPATIBLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: protobuf_VERBOSE
-protobuf_VERBOSE-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=/usr/lib/x86_64-linux-gnu
 
