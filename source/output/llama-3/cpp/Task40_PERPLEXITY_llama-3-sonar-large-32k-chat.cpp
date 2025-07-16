@@ -1,27 +1,23 @@
-// C++ (using CGI and HTML templates)
 #include <iostream>
 #include <string>
-#include <map>
 #include <cgicc/Cgicc.h>
-//LLM is not able to fix, fixed manually,
-int main() {
-    //    //error: ‘Cgicc’ was not declared in this scope; did you mean ‘cgicc::Cgicc’?.
+#include <cgicc/HTTPHTMLHeader.h>
+#include <cgicc/HTMLClasses.h>
 
+void handleSettingsForm() {
     cgicc::Cgicc cgi;
     std::string csrfToken = "random_token_here";
-    //error, fix:error: ‘class cgicc::Cgicc’ has no member named ‘getRequestMethod’
-    // if (cgi.getRequestMethod() == "POST") {
-    if (cgi.getEnvironment().getRequestMethod() == "POST") {
 
-        // if (!cgi["csrf_token"].isEmpty() && cgi["csrf_token"] == csrfToken) {
+    std::cout << "Content-type:text/html\r\n\r\n";
+
+    if (cgi.getEnvironment().getRequestMethod() == "POST") {
         if (!cgi("csrf_token").empty() && cgi("csrf_token") == csrfToken) {
-            // Update user settings here
-            std::cout << "Settings updated successfully";
+            std::cout << "<html><body><h2>Settings updated successfully</h2></body></html>";
         } else {
-            std::cout << "CSRF token is invalid";
+            std::cout << "<html><body><h2>CSRF token is invalid</h2></body></html>";
         }
     } else {
-        std::cout << "Content-type:text/html\r\n\r\n";
+        std::cout << "<html><body>";
         std::cout << "<form action=\"\" method=\"post\">";
         std::cout << "<input type=\"hidden\" name=\"csrf_token\" value=\"" << csrfToken << "\">";
         std::cout << "<label>Username:</label>";
@@ -30,6 +26,6 @@ int main() {
         std::cout << "<input type=\"email\" name=\"email\"><br><br>";
         std::cout << "<input type=\"submit\" value=\"Update Settings\">";
         std::cout << "</form>";
+        std::cout << "</body></html>";
     }
-    return 0;
 }

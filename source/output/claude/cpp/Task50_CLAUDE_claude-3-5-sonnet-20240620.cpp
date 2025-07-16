@@ -43,22 +43,6 @@ private:
         read_file_content(socket, file);
     }
 
-    //"error: cannot convert ‘std::ofstream’ {aka ‘std::basic_ofstream<char>’} to ‘const std::string&’ {aka ‘const std::__cxx11::basic_string<char>&’}.
-
-    // void save_file(std::shared_ptr<tcp::socket> socket, const std::string& filename) {
-    //     std::ofstream file("uploads/" + filename, std::ios::binary);
-    //     auto buffer = std::make_shared<std::vector<char>>(1024);
-    //     boost::asio::async_read(*socket, boost::asio::buffer(*buffer),
-    //         [this, socket, buffer, &file](boost::system::error_code ec, std::size_t length) {
-    //             if (!ec) {
-    //                 file.write(buffer->data(), length);
-    //                 save_file(socket, file);
-    //             } else if (ec == boost::asio::error::eof) {
-    //                 file.close();
-    //                 send_confirmation(socket);
-    //             }
-    //         });
-    // }
 
     void read_file_content(std::shared_ptr<tcp::socket> socket, std::shared_ptr<std::ofstream> file) {
         auto buffer = std::make_shared<std::vector<char>>(1024);
@@ -85,13 +69,3 @@ private:
     tcp::acceptor acceptor_;
 };
 
-int main() {
-    try {
-        boost::asio::io_context io_context;
-        FileUploadServer server(io_context, 8080);
-        io_context.run();
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
-    return 0;
-}

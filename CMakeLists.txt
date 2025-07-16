@@ -8,12 +8,9 @@ include_directories(/home/kali/.vcpkg-clion/vcpkg/installed/x64-linux/include/)
 include_directories(/home/kali/CLionProjects/mysql-connector-cpp/driver/)
 include_directories(/home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/linux/ /home/kali/workingDirectory/programs/clion-2024.1.4/jbr/include/)
 #include_directories(/usr/include/)
-find_package(unofficial-sqlite3 CONFIG REQUIRED)
 find_package(cpprestsdk REQUIRED)
 #target_link_libraries(main PRIVATE cpprestsdk::cpprest)
 
-find_package(httplib CONFIG REQUIRED)
-find_package(bson-1.0 CONFIG REQUIRED)
 #target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
 
 set(Boost_USE_STATIC_LIBS ON)
@@ -26,17 +23,18 @@ set(Boost_USE_STATIC_RUNTIME OFF)
 
 
 
+#add_executable(Task40_Test tests/claude/Task40_Test.cpp)
+#add_executable(Task40_Test tests/codestral/Task40_Test.cpp)
+#add_executable(Task40_Test tests/gemini/Task40_Test.cpp)
+add_executable(Task40_Test tests/gpt4o/Task40_Test.cpp)
+#add_executable(Task40_Test tests/llama-3/Task40_Test.cpp)
 
+# اربط مكتبة cppcms
+find_package(CppCMS REQUIRED)
 
+target_link_libraries(Task40_Test PRIVATE cppcms)
+target_include_directories(Task40_Test PRIVATE ${CppCMS_INCLUDE_DIRS})
 
-
- add_executable(Task61_Test tests/llama-3/Task61_Test.cpp)
-
-
-
-find_package(tinyxml2 REQUIRED)
-
-target_link_libraries(Task61_Test PRIVATE tinyxml2::tinyxml2)
 
 
 

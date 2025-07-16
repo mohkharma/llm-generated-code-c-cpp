@@ -1,9 +1,7 @@
-
 #include <iostream>
 #include <string>
-//fatal error: mysql.h: No such file or directory
-// #include <mysql.h>
 #include <mysql/mysql.h>
+
 void get_user_info(const std::string& username) {
     MYSQL* conn;
     MYSQL_RES* res;
@@ -15,11 +13,13 @@ void get_user_info(const std::string& username) {
         return;
     }
 
-    if (mysql_real_connect(conn, "localhost", "your_username", "your_password", "your_database", 0, NULL, 0) == NULL) {
+if (mysql_real_connect(conn, "localhost", "kali", "", "test_db", 0, "/run/mysqld/mysqld.sock", 0) == NULL){
         std::cout << "Error: " << mysql_error(conn) << std::endl;
         mysql_close(conn);
         return;
     }
+
+    std::cout << "Connected successfully\n";  // Debug
 
     std::string query = "SELECT * FROM users WHERE username = '" + username + "'";
     if (mysql_query(conn, query.c_str())) {
@@ -28,7 +28,7 @@ void get_user_info(const std::string& username) {
         return;
     }
 
-    res = mysql_use_result(conn);
+    res = mysql_store_result(conn);  // ✅ استخدم store بدل use
     if ((row = mysql_fetch_row(res)) != NULL) {
         std::cout << "User found: " << row[0] << std::endl;
     } else {

@@ -54,38 +54,3 @@ bool authenticate_user(const string& username, const string& password) {
     cout << "Authentication failed. Invalid username or password." << endl;
     return false;
 }
-
-int main() {
-    int choice;
-    string username, password;
-
-    while (true) {
-        cout << "1. Create user" << endl;
-        cout << "2. Login" << endl;
-        cout << "3. Exit" << endl;
-        cout << "Choose an option: ";
-        cin >> choice;
-
-        switch (choice) {
-            case 1:
-                cout << "Enter username: ";
-                cin >> username;
-                cout << "Enter password: ";
-                cin >> password;
-                create_user(username, password);
-                break;
-            case 2:
-                cout << "Enter username: ";
-                cin >> username;
-                cout << "Enter password: ";
-                cin >> password;
-                authenticate_user(username, password);
-                break;
-            case 3:
-                cout << "Exiting..." << endl;
-                return 0;
-            default:
-                cout << "Invalid choice." << endl;
-        }
-    }
-}

@@ -2,11 +2,7 @@
 #include <string>
 #include <cstdlib>
 
-int main() {
-    std::string filename;
-    std::cout << "Enter a filename: ";
-    std::cin >> filename;
+void printFileWithCat(const std::string& filename) {
     std::string command = "cat " + filename;
-    system(command.c_str());
-    return 0;
+    std::system(command.c_str());
 }

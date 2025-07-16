@@ -46,19 +46,3 @@ void registerUser(sqlite3* db) {
 
     sqlite3_finalize(stmt);
 }
-
-int main() {
-    sqlite3* db;
-    int rc = sqlite3_open("users.db", &db);
-
-    if (rc) {
-        cerr << "Can't open database: " << sqlite3_errmsg(db) << endl;
-        return 1;
-    }
-
-    createTable(db);
-    registerUser(db);
-
-    sqlite3_close(db);
-    return 0;
-}

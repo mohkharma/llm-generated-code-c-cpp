@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main() {
+void doubleNumberInput() {
     double number;
     std::cout << "Enter a number: ";
     if (std::cin >> number) {
@@ -9,5 +9,4 @@ int main() {
     } else {
         std::cout << "Invalid input. Please enter a number." << std::endl;
     }
-    return 0;
 }

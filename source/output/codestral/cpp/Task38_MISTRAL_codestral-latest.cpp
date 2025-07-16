@@ -1,9 +1,8 @@
-// C++ CGI web application
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
 
-int main() {
+void handleCGIUserInput() {
     char* data = getenv("QUERY_STRING");
     if (data != nullptr) {
         char* userInput = strstr(data, "user_input=");
@@ -15,5 +14,4 @@ int main() {
             std::cout << "</body></html>";
         }
     }
-    return 0;
 }

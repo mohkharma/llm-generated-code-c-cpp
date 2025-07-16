@@ -27,19 +27,3 @@ void handle_post(http_request request) {
         })
         .wait();
 }
-
-int main1() {
-    http_listener listener(U("http://localhost:8080/add_user"));
-    listener.support(methods::POST, handle_post);
-
-    try {
-        listener.open().wait();
-        std::cout << "Listening on port 8080..." << std::endl;
-        std::string line;
-        std::getline(std::cin, line);
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    return 0;
-}

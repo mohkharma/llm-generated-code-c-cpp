@@ -40,23 +40,3 @@ void do_session(tcp::socket& socket) {
 
     http::write(socket, res);
 }
-
-int main(int argc, char* argv[]) {
-    try {
-        auto const address = net::ip::make_address("0.0.0.0");
-        auto const port = static_cast<unsigned short>(8080);
-        auto const threads = 1;
-
-        net::io_context ioc{threads};
-
-        tcp::acceptor acceptor{ioc, {address, port}};
-        for (;;) {
-            tcp::socket socket{ioc};
-            acceptor.accept(socket);
-            std::thread{std::bind(&do_session, std::move(socket))}.detach();
-        }
-    } catch (std::exception const& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-}

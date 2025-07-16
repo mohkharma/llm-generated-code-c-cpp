@@ -140,24 +140,3 @@ void handle_request(tcp::socket& socket, session_manager& session_manager) {
 
     http::write(socket, res);
 }
-
-int main(int argc, char* argv[]) {
-    try {
-        auto const address = net::ip::make_address("0.0.0.0");
-        auto const port = static_cast<unsigned short>(std::atoi("8080"));
-        auto const doc_root = ".";
-
-        net::io_context ioc{1};
-        tcp::acceptor acceptor{ioc, {address, port}};
-        session_manager session_manager;
-
-        for (;;) {
-            tcp::socket socket{ioc};
-            acceptor.accept(socket);
-            std::thread{std::bind(&handle_request, std::move(socket), std::ref(session_manager))}.detach();
-        }
-    } catch (std::exception const& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-}

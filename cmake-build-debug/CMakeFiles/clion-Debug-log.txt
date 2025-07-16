@@ -1,4 +1,21 @@
 /home/kali/workingDirectory/programs/clion-2024.1.4/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/kali/workingDirectory/programs/clion-2024.1.4/bin/ninja/linux/x64/ninja -DCMAKE_TOOLCHAIN_FILE=/home/kali/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S /home/kali/CLionProjects/llm-generated-code-cpp -B /home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug
--- Configuring done (2.3s)
--- Generating done (2.1s)
--- Build files have been written to: /home/kali/CLionProjects/llm-generated-code-cpp/cmake-build-debug
+CMake Error at /home/kali/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake:857 (_find_package):
+  By not providing "FindCppCMS.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "CppCMS", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "CppCMS" with any
+  of the following names:
+
+    CppCMSConfig.cmake
+    cppcms-config.cmake
+
+  Add the installation prefix of "CppCMS" to CMAKE_PREFIX_PATH or set
+  "CppCMS_DIR" to a directory containing one of the above files.  If "CppCMS"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+Call Stack (most recent call first):
+  CMakeLists.txt:33 (find_package)
+
+
+-- Configuring incomplete, errors occurred!

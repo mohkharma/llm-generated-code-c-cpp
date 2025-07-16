@@ -23,22 +23,3 @@ void validateInput(const std::string& inputStr) {
         }
     }
 }
-
-int main() {
-    std::string inputStr = getUserInput("Enter a string: ");
-    try {
-        validateInput(inputStr);
-        std::cout << "Input is valid" << std::endl;
-        for (char& c : inputStr) {
-            c = std::toupper(c);
-        }
-        std::cout << "Upper case: " << inputStr << std::endl;
-        for (char& c : inputStr) {
-            c = std::tolower(c);
-        }
-        std::cout << "Lower case: " << inputStr << std::endl;
-    } catch (const std::exception& e) {
-        std::cout << "Error: " << e.what() << std::endl;
-    }
-    return 0;
-}

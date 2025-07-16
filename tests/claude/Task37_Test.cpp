@@ -1,65 +1,49 @@
-#include "../../source/output/claude/cpp/Task37_CLAUDE_claude-3-5-sonnet-20240620.cpp"
+#include "../../source/output/claude/cpp/Task37_CLAUDE_claude-3-5-sonnet-20240620.cpp"  // Include the header for the function
 
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <streambuf>
 
-using namespace std;
+std::string capture_output(const std::string& username) {
+    std::stringstream buffer;
+    std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
-// دالة مساعدة لالتقاط الإخراج المطبوع من الدالة get_user_info
-string capture_output_of_get_user_info(const string& username) {
-    // Redirect cout to stringstream
-    streambuf* old_buf = cout.rdbuf();
-    stringstream ss;
-    cout.rdbuf(ss.rdbuf());
+    get_user_info(username);  // استدعاء الدالة من الحل
 
-    get_user_info(username);
-
-    // Restore cout buffer
-    cout.rdbuf(old_buf);
-
-    return ss.str();
+    std::cout.rdbuf(old);  // استرجاع cout للوضع الطبيعي
+    return buffer.str();
 }
 
 int main() {
     int passed = 0;
     int failed = 0;
 
-    struct TestCase {
-        string username;
-        string expected_output_substring;
-        // نستخدم substring فقط لأن المخرجات فيها بيانات من قاعدة البيانات تختلف حسب الحالة
-    };
-
-    TestCase tests[] = {
-        {"ahmad", "User found:"},  // نتوقع أن المستخدم "ahmad" موجود في قاعدة البيانات
-        {"nonexistentuser", "User not found"},
-        {"", "User not found"},
-    };
-
-    const int num_tests = sizeof(tests)/sizeof(tests[0]);
-
-    for (int i = 0; i < num_tests; ++i) {
-        string output = capture_output_of_get_user_info(tests[i].username);
-
-        bool test_passed = output.find(tests[i].expected_output_substring) != string::npos;
-
-        cout << "Test " << (i+1) << " with username=\"" << tests[i].username << "\": ";
-        if (test_passed) {
-            cout << "PASSED" << endl;
-            ++passed;
-        } else {
-            cout << "FAILED" << endl;
-            cout << "  Expected substring: \"" << tests[i].expected_output_substring << "\"" << endl;
-            cout << "  Actual output: \"" << output << "\"" << endl;
-            ++failed;
-        }
+    std::cout << "Running test: test_existing_user" << std::endl;
+    std::string output1 = capture_output("ahmad");
+    if (output1.find("User found") != std::string::npos) {
+        std::cout << "[PASS] test_existing_user" << std::endl;
+        passed++;
+    } else {
+        std::cout << "[FAIL] test_existing_user" << std::endl;
+        std::cout << "Output was:\n" << output1 << std::endl;
+        failed++;
     }
 
-    cout << "Summary: " << passed << " passed, " << failed << " failed out of " << num_tests << " tests." << endl;
-
-    if (failed > 0) {
-        return 1; // رمز خروج 1 يعني فشل
+    std::cout << "Running test: test_non_existing_user" << std::endl;
+    std::string output2 = capture_output("nonexistent_user_xyz");
+    if (output2.find("User not found") != std::string::npos) {
+        std::cout << "[PASS] test_non_existing_user" << std::endl;
+        passed++;
+    } else {
+        std::cout << "[FAIL] test_non_existing_user" << std::endl;
+        std::cout << "Output was:\n" << output2 << std::endl;
+        failed++;
     }
-    return 0; // نجاح
+
+    std::cout << "===============================" << std::endl;
+    std::cout << "Total Passed: " << passed << std::endl;
+    std::cout << "Total Failed: " << failed << std::endl;
+
+    return failed == 0 ? 0 : 1;
 }

@@ -85,10 +85,3 @@ void storeData(const std::string& dbName, const std::vector<std::string>& data) 
     sqlite3_close(db);
 }
 
-int main() {
-    std::string url = "https://example.com";
-    std::string dbName = "scraped_data.db";
-    std::vector<std::string> data = scrapeData(url);
-    storeData(dbName, data);
-    return 0;
-}

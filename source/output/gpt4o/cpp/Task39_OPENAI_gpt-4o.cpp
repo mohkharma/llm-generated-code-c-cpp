@@ -1,16 +1,19 @@
 #include <iostream>
-#include <cstdio>
 #include <cstdlib>
-using namespace std;
+#include <string>
 
-int main() {
-    string filename;
-    cout << "Enter the filename: ";
-    getline(cin, filename);
-    string command = "type " + filename;
+void printFileCrossPlatform(const std::string& filename) {
+    std::string command;
+
+#ifdef _WIN32
+    command = "type " + filename;
+#else
+    command = "cat " + filename;
+#endif
+
     if (system(nullptr)) {
-        command = ("cat " + filename);
+        system(command.c_str());
+    } else {
+        std::cerr << "No command processor available." << std::endl;
     }
-    system(command.c_str());
-    return 0;
 }

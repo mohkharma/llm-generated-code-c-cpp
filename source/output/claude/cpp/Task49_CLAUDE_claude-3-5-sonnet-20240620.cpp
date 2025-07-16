@@ -45,23 +45,3 @@ public:
 private:
     sqlite3* db;
 };
-
-int main() {
-    http_listener listener("http://localhost:8080/api/users");
-    UserHandler handler;
-
-    listener.support(methods::POST, [&](http_request request) {
-        handler.handle_post(request);
-    });
-
-    try {
-        listener.open().wait();
-        std::cout << "Listening on http://localhost:8080/api/users" << std::endl;
-        while (true);
-    }
-    catch (const std::exception& e) {
-        std::cout << e.what() << std::endl;
-    }
-
-    return 0;
-}

@@ -1,11 +1,8 @@
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
-int main() {
-    std::string filename;
-    std::cout << "Enter the filename: ";
-    std::getline(std::cin, filename);
+void displayFileWithSystem(const std::string& filename) {
     std::string command = "cat " + filename;
     std::system(command.c_str());
-    return 0;
 }

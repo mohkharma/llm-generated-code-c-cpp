@@ -1,11 +1,13 @@
-// CPP
 #include <iostream>
 #include <map>
 #include <string>
 
-std::map<std::string, std::string> users = {{"user1", "password1"}, {"user2", "password2"}};
+std::map<std::string, std::string> users = {
+    {"user1", "password1"},
+    {"user2", "password2"}
+};
 
-int main() {
+void authenticateUser() {
     std::string username, password;
 
     std::cout << "Enter your username: ";
@@ -19,6 +21,4 @@ int main() {
     } else {
         std::cout << "Invalid username or password." << std::endl;
     }
-
-    return 0;
 }
