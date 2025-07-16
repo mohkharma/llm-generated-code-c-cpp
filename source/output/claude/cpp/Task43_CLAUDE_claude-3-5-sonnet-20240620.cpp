@@ -41,22 +41,17 @@ std::string hash_password(const std::string& password) {
     }
     return ss.str();
 }
-
-int main() {
-    crow::SimpleApp app;
+// بدل int main() بـ:
+void start_server() {
+    static crow::SimpleApp app;
 
     CROW_ROUTE(app, "/register").methods("POST"_method)
     ([](const crow::request& req) {
         auto x = crow::json::load(req.body);
         if (!x) return crow::response(400, "Invalid JSON");
-        
         std::string username = x["username"].s();
         std::string password = x["password"].s();
-        
-        if (users.find(username) != users.end()) {
-            return crow::response(400, "Username already exists");
-        }
-        
+        if (users.count(username)) return crow::response(400, "Username already exists");
         users[username] = hash_password(password);
         return crow::response(201, "User registered successfully");
     });
@@ -65,17 +60,12 @@ int main() {
     ([](const crow::request& req) {
         auto x = crow::json::load(req.body);
         if (!x) return crow::response(400, "Invalid JSON");
-        
         std::string username = x["username"].s();
         std::string password = x["password"].s();
-        
-        if (users.find(username) == users.end() || users[username] != hash_password(password)) {
+        if (!users.count(username) || users[username] != hash_password(password))
             return crow::response(401, "Invalid credentials");
-        }
-        
         std::string session_id = generate_session_id();
         sessions[session_id] = {username, std::chrono::system_clock::now()};
-        
         crow::response res(200, "Logged in successfully");
         res.add_header("Set-Cookie", "session_id=" + session_id + "; HttpOnly; Path=/");
         return res;
@@ -84,9 +74,7 @@ int main() {
     CROW_ROUTE(app, "/logout").methods("POST"_method)
     ([](const crow::request& req) {
         auto session_id = req.get_header_value("Cookie");
-        if (!session_id.empty()) {
-            sessions.erase(session_id);
-        }
+        if (!session_id.empty()) sessions.erase(session_id);
         crow::response res(200, "Logged out successfully");
         res.add_header("Set-Cookie", "session_id=; HttpOnly; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT");
         return res;
@@ -95,20 +83,18 @@ int main() {
     CROW_ROUTE(app, "/protected").methods("GET"_method)
     ([](const crow::request& req) {
         auto session_id = req.get_header_value("Cookie");
-        if (session_id.empty() || sessions.find(session_id) == sessions.end()) {
+        if (session_id.empty() || !sessions.count(session_id))
             return crow::response(401, "Unauthorized");
-        }
-        
+
         auto& session = sessions[session_id];
         auto now = std::chrono::system_clock::now();
         if (std::chrono::duration_cast<std::chrono::seconds>(now - session.login_time).count() > SESSION_TIMEOUT) {
             sessions.erase(session_id);
             return crow::response(401, "Session expired");
         }
-        
+
         return crow::response(200, "Hello, " + session.username + "!");
     });
 
     app.port(8080).multithreaded().run();
-    return 0;
 }

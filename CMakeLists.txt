@@ -33,6 +33,9 @@ find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIRS})
 
 
+
+
+
 find_package(pugixml REQUIRED)
 
 find_library(LDAP_LIB ldap-2.5 PATHS /lib/x86_64-linux-gnu NO_DEFAULT_PATH)
@@ -44,37 +47,22 @@ else()
 endif()
 
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(PISTACHE REQUIRED libpistache)
-
-
-add_executable(Task61_Test tests/gemini/Task121/Task121_test.cpp )
 
 
 
-target_link_libraries(Task61_Test PRIVATE ${LDAP_LIB}
-        SQLite::SQLite3
-        ${MYSQLCLIENT_LIB}
-        jsoncpp
-        cpprestsdk::cpprest
-        OpenSSL::SSL
-        OpenSSL::Crypto
-        Poco::Net
-        Poco::Foundation
-        Poco::Util
-        ${CURL_LIBRARIES}
-        pugixml
-        PRIVATE ${PISTACHE_LIBRARIES} pthread
+ #add_executable(Task74_Test tests/gemini/Task74_Test.cpp)
+#add_executable(Task74_Test tests/gpt4o/Task74_Test.cpp)
+#add_executable(Task74_Test tests/llama-3/Task74_Test.cpp)
+#add_executable(Task74_Test tests/claude/Task74_Test.cpp)
+add_executable(Task74_Test tests/claude/Task74_Test.cpp)
+
+find_library(PQ_LIBRARY NAMES pq REQUIRED)
+find_library(PQXX_LIBRARY NAMES pqxx REQUIRED)
+
+target_link_libraries(Task74_Test PRIVATE
+        ${PQXX_LIBRARY}
+        ${PQ_LIBRARY}     # ← مكتبة PostgreSQL الأصلية
 )
-
-
-
-
-
-
-
-
-
 
 
 
