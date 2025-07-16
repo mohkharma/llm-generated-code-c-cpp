@@ -33,9 +33,26 @@ find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIRS})
 
 
-add_executable(Task61_Test tests/gemini/Task64_Test.cpp )
+find_package(pugixml REQUIRED)
 
-target_link_libraries(Task61_Test
+find_library(LDAP_LIB ldap-2.5 PATHS /lib/x86_64-linux-gnu NO_DEFAULT_PATH)
+
+if (NOT LDAP_LIB)
+    message(FATAL_ERROR "LDAP library not found!")
+else()
+    message(STATUS "Found LDAP library: ${LDAP_LIB}")
+endif()
+
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(PISTACHE REQUIRED libpistache)
+
+
+add_executable(Task61_Test tests/llama-3/Task180/Task180_test.cpp )
+
+
+
+target_link_libraries(Task61_Test PRIVATE ${LDAP_LIB}
         SQLite::SQLite3
         ${MYSQLCLIENT_LIB}
         jsoncpp
@@ -46,6 +63,8 @@ target_link_libraries(Task61_Test
         Poco::Foundation
         Poco::Util
         ${CURL_LIBRARIES}
+        pugixml
+        PRIVATE ${PISTACHE_LIBRARIES} pthread
 )
 
 

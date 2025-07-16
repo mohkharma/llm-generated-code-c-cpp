@@ -1,6 +1,5 @@
-#include <iostream>
-#include <cassert>
-#include <cstdint>
+#include <stdio.h>
+#include <stdint.h>
 
 struct BitFields {
     uint8_t field1 : 2;
@@ -9,56 +8,47 @@ struct BitFields {
     uint8_t : 2;  // padding
 };
 
-// =========== Test cases =============
-
-// لأن bit-fields تخزن القيم مباشرة، ما نحتاج mask يدوياً، فقط تعيين وقراءة
-
-bool test_case_1() {
-    BitFields bf{};
-    bf.field1 = 3;   // 0b11 max for 2 bits
-    return bf.field1 == 3;
+// دالة مساعدة للطباعة والنتيجة
+void test_case(const char* test_name, int condition) {
+    if (condition) {
+        printf("%s: PASS\n", test_name);
+    } else {
+        printf("%s: FAIL\n", test_name);
+    }
 }
-
-bool test_case_2() {
-    BitFields bf{};
-    bf.field2 = 5;  // 0b101 max for 3 bits
-    return bf.field2 == 5;
-}
-
-bool test_case_3() {
-    BitFields bf{};
-    bf.field3 = 1;  // 1 bit
-    return bf.field3 == 1;
-}
-
-bool test_case_4() {
-    BitFields bf{};
-    bf.field1 = 2;
-    bf.field2 = 6;  // 6 fits in 3 bits (0b110)
-    bf.field3 = 1;
-    return (bf.field1 == 2) && (bf.field2 == 6) && (bf.field3 == 1);
-}
-
-bool test_case_5() {
-    BitFields bf{};
-    bf.field1 = 4;  // 4 = 0b100 but field1 is 2 bits, so only lower 2 bits stored
-                    // this is implementation-defined but normally bits truncated
-    // Expected: stored value = 0 (4 & 0b11 = 0)
-    return bf.field1 == (4 & 0b11);
-}
-
-// ============ Run tests and print results ==============
 
 int main() {
-    int pass_count = 0;
-    int fail_count = 0;
+    struct BitFields bf = {0};
 
-    if (test_case_1()) { std::cout << "Test case 1: PASS\n"; pass_count++; } else { std::cout << "Test case 1: FAIL\n"; fail_count++; }
-    if (test_case_2()) { std::cout << "Test case 2: PASS\n"; pass_count++; } else { std::cout << "Test case 2: FAIL\n"; fail_count++; }
-    if (test_case_3()) { std::cout << "Test case 3: PASS\n"; pass_count++; } else { std::cout << "Test case 3: FAIL\n"; fail_count++; }
-    if (test_case_4()) { std::cout << "Test case 4: PASS\n"; pass_count++; } else { std::cout << "Test case 4: FAIL\n"; fail_count++; }
-    if (test_case_5()) { std::cout << "Test case 5: PASS\n"; pass_count++; } else { std::cout << "Test case 5: FAIL\n"; fail_count++; }
+    // Test 1: Set and get field1 (2 bits) with max value 3
+    bf.field1 = 3;
+    test_case("Test field1 max value", bf.field1 == 3);
 
-    std::cout << "Summary: " << pass_count << " passed, " << fail_count << " failed.\n";
+    // Test 2: Set and get field1 with value overflow (e.g., 5 -> should store 1 because 2 bits)
+    bf.field1 = 5;
+    test_case("Test field1 overflow value", bf.field1 == (5 & 0b11));
+
+    // Test 3: Set and get field2 (3 bits) with max value 7
+    bf.field2 = 7;
+    test_case("Test field2 max value", bf.field2 == 7);
+
+    // Test 4: Set and get field2 with overflow value (e.g., 10 -> 2 because 10 & 0b111 = 2)
+    bf.field2 = 10;
+    test_case("Test field2 overflow value", bf.field2 == (10 & 0b111));
+
+    // Test 5: Set and get field3 (1 bit) with max value 1
+    bf.field3 = 1;
+    test_case("Test field3 max value", bf.field3 == 1);
+
+    // Test 6: Set and get field3 with overflow value (e.g., 3 -> 1 because 3 & 0b1 = 1)
+    bf.field3 = 3;
+    test_case("Test field3 overflow value", bf.field3 == (3 & 0b1));
+
+    // Test 7: Set all fields and verify independently
+    bf.field1 = 2;
+    bf.field2 = 5;
+    bf.field3 = 0;
+    test_case("Test all fields set/get", (bf.field1 == 2) && (bf.field2 == 5) && (bf.field3 == 0));
+
     return 0;
 }

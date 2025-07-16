@@ -4,10 +4,9 @@
 
 int run_test(const char* hostname, const char* username, const char* password, const char* filename, const char* expected_substring) {
     char cmd[512];
-    const char* executable = "./ftp_downloader"; // تأكد من اسم الملف التنفيذي هنا
-    char output_file[] = "test_output.txt";
+    const char* executable = "./ftp_downloader";  // عدّل الاسم إن اختلف عندك
+    const char* output_file = "test_output.txt";
 
-    // بناء أمر التنفيذ مع توجيه الإخراج لملف نصي
     snprintf(cmd, sizeof(cmd), "%s %s %s %s %s > %s 2>&1", executable, hostname, username, password, filename, output_file);
 
     int ret = system(cmd);
@@ -70,6 +69,5 @@ int main() {
         failed++;
 
     printf("\nSummary: Passed: %d, Failed: %d\n", passed, failed);
-
     return 0;
 }

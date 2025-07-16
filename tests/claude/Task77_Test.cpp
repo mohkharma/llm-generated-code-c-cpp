@@ -1,43 +1,75 @@
-#include <iostream>
-#include <cstdio>
-#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-bool run_test(const std::string& test_name, const std::string& args, const std::string& expected_start) {
-    std::string cmd = "./ftp_downloader " + args + " 2>&1"; // برنامجك المترجم
-    FILE* pipe = popen(cmd.c_str(), "r");
-    if (!pipe) {
-        std::cerr << "Failed to run command\n";
-        return false;
+int run_test(const char* hostname, const char* username, const char* password, const char* filename, const char* expected_output_substring) {
+    char cmd[512];
+    char output_file[] = "test_output.txt";
+
+    // بناء أمر التنفيذ مع إعادة التوجيه لإخراج في ملف مؤقت
+    snprintf(cmd, sizeof(cmd), "./ftp_downloader %s %s %s %s > %s 2>&1", hostname, username, password, filename, output_file);
+
+    int ret = system(cmd);
+    if (ret != 0) {
+        printf("FAIL (program exited with code %d)\n", ret);
+        return 0;
     }
-    char buffer[512];
-    std::string output;
-    while (fgets(buffer, sizeof(buffer), pipe)) output += buffer;
-    int ret_code = pclose(pipe);
 
-    bool pass = (output.find(expected_start) == 0);
-    std::cout << test_name << ": " << (pass ? "PASS" : "FAIL") << std::endl;
-
-    if (!pass) {
-        std::cout << "  Expected start: \"" << expected_start << "\"\n";
-        std::cout << "  Got: \"" << output << "\"\n";
+    // فتح الملف المؤقت وقراءة المحتوى
+    FILE* f = fopen(output_file, "r");
+    if (!f) {
+        printf("FAIL (cannot open output file)\n");
+        return 0;
     }
-    return pass;
+
+    char buffer[1024];
+    int found = 0;
+    while (fgets(buffer, sizeof(buffer), f)) {
+        if (strstr(buffer, expected_output_substring) != NULL) {
+            found = 1;
+            break;
+        }
+    }
+    fclose(f);
+    remove(output_file);
+
+    if (found) {
+        printf("PASS\n");
+        return 1;
+    } else {
+        printf("FAIL (expected output not found)\n");
+        return 0;
+    }
 }
 
 int main() {
     int pass_count = 0, fail_count = 0;
 
-    // 1. عدم تمرير 4 أرجومنتات (نجرب بدون أرجومنت أو أقل من 4)
-    if (run_test("test_missing_args", "", "Usage:")) pass_count++; else fail_count++;
+    printf("Test Case 1: ");
+    if (run_test("ftp.testserver.com", "user1", "pass1", "testfile.txt", "downloaded successfully"))
+        pass_count++;
+    else
+        fail_count++;
 
-    // 2. تنزيل ناجح (اختبر باستخدام سيرفر FTP صالح لديك، هنا مثال وهمي)
-    // غير صالح للاختبار الفعلي إلا مع سيرفر موجود
-    // استبدل hostname و username و password و filename بقيم حقيقية للاختبار
-    if (run_test("test_successful_download", "ftp.example.com user pass file.txt", "File file.txt downloaded successfully.")) pass_count++; else fail_count++;
+    printf("Test Case 2: ");
+    if (run_test("invalid.host", "user2", "pass2", "testfile.txt", "An error occurred"))
+        pass_count++;
+    else
+        fail_count++;
 
-    // 3. فشل التنزيل (مثلاً سيرفر غير موجود)
-    if (run_test("test_failed_download", "invalid.host user pass file.txt", "Failed to download the file:")) pass_count++; else fail_count++;
+    printf("Test Case 3: ");
+    if (run_test("ftp.testserver.com", "invalid", "invalid", "testfile.txt", "An error occurred"))
+        pass_count++;
+    else
+        fail_count++;
 
-    std::cout << "Total Pass: " << pass_count << ", Total Fail: " << fail_count << std::endl;
+    printf("Test Case 4: ");
+    if (run_test("ftp.testserver.com", "user1", "pass1", "missing.txt", "An error occurred"))
+        pass_count++;
+    else
+        fail_count++;
+
+    printf("\nSummary: Passed: %d, Failed: %d\n", pass_count, fail_count);
+
     return 0;
 }
