@@ -21,20 +21,3 @@ public:
         *retvalP = xmlrpc_c::value_int(x - y);
     }
 };
-
-int main() {
-    xmlrpc_c::registry myRegistry;
-    xmlrpc_c::methodPtr const addMethodP(new addMethod);
-    xmlrpc_c::methodPtr const subtractMethodP(new subtractMethod);
-
-    myRegistry.addMethod("add", addMethodP);
-    myRegistry.addMethod("subtract", subtractMethodP);
-
-    xmlrpc_c::serverAbyss myAbyssServer(
-        xmlrpc_c::serverAbyss::constrOpt()
-        .registryP(&myRegistry)
-        .portNumber(8000));
-
-    myAbyssServer.run();
-    return 0;
-}

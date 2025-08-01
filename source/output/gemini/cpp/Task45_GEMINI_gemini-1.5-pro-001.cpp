@@ -34,36 +34,3 @@ double performOperation(int choice, int num1, int num2) {
             throw invalid_argument("Invalid choice.");
     }
 }
-
-int main() {
-    while (true) {
-        cout << "\nMenu:" << endl;
-        cout << "1. Addition" << endl;
-        cout << "2. Subtraction" << endl;
-        cout << "3. Multiplication" << endl;
-        cout << "4. Division" << endl;
-        cout << "5. Exit" << endl;
-
-        try {
-            int choice = getIntegerInput("Enter your choice (1-5): ");
-
-            if (choice == 5) {
-                break;
-            }
-
-            if (choice >= 1 && choice <= 4) {
-                int num1 = getIntegerInput("Enter the first number: ");
-                int num2 = getIntegerInput("Enter the second number: ");
-
-                double result = performOperation(choice, num1, num2);
-                cout << "Result: " << result << endl;
-            } else {
-                cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
-            }
-        } catch (const exception& e) {
-            cout << "Error: " << e.what() << endl;
-        }
-    }
-
-    return 0;
-}

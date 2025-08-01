@@ -1,4 +1,3 @@
-// C++: Server to upload files using Boost.Beast and Boost.Asio
 #include <fstream>
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
@@ -7,15 +6,16 @@
 #include <boost/filesystem.hpp>
 #include <iostream>
 #include <string>
+
 namespace beast = boost::beast;
 namespace http = beast::http;
-namespace net = boost::asio;        
-using tcp = net::ip::tcp;           
+namespace net = boost::asio;
+using tcp = net::ip::tcp;
 namespace fs = boost::filesystem;
 
 const std::string UPLOAD_DIR = "uploads/";
 
-int main() {
+void startFileUploadServer() {
     try {
         if (!fs::exists(UPLOAD_DIR)) {
             fs::create_directory(UPLOAD_DIR);
@@ -26,6 +26,8 @@ int main() {
         net::io_context ioc{1};
 
         tcp::acceptor acceptor{ioc, {address, static_cast<unsigned short>(port)}};
+        std::cout << "File upload server started at http://0.0.0.0:" << port << std::endl;
+
         for (;;) {
             tcp::socket socket{ioc};
             acceptor.accept(socket);
@@ -39,23 +41,23 @@ int main() {
                 continue;
             }
 
-            auto const& body = req.body();
+            // Save uploaded data to file
             std::ofstream ofs(UPLOAD_DIR + "uploaded_file", std::ios::binary);
-            ofs.write(body.data(), body.size());
+            ofs.write(req.body().data(), req.body().size());
             ofs.close();
 
+            // Send response
             http::response<http::string_body> res{http::status::ok, req.version()};
-            res.set(http::field::server, "Beast");
+            res.set(http::field::server, "Boost.Beast");
             res.set(http::field::content_type, "text/plain");
             res.body() = "File successfully uploaded";
             res.prepare_payload();
             http::write(socket, res);
 
-            socket.shutdown(tcp::socket::shutdown_send);
+            beast::error_code ec;
+            socket.shutdown(tcp::socket::shutdown_send, ec);
         }
-    }
-    catch(const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
+    } catch (const std::exception& e) {
+        std::cerr << "Server error: " << e.what() << std::endl;
     }
 }

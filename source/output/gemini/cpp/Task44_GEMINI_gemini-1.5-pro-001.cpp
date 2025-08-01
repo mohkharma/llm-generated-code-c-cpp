@@ -16,18 +16,3 @@ int getIntegerInput(const string& prompt) {
         }
     }
 }
-
-int main() {
-    int num1 = getIntegerInput("Enter the first number: ");
-    int num2 = getIntegerInput("Enter the second number: ");
-
-    int sum = num1 + num2;
-    int difference = num1 - num2;
-    int product = num1 * num2;
-
-    cout << "The sum is: " << sum << endl;
-    cout << "The difference is: " << difference << endl;
-    cout << "The product is: " << product << endl;
-
-    return 0;
-}

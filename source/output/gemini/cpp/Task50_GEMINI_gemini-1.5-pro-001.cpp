@@ -48,49 +48,47 @@ void handleClient(int clientSocket) {
     send(clientSocket, "File uploaded successfully!", 26, 0);
 }
 
-int main() {
-    int serverSocket, clientSocket;
-    sockaddr_in serverAddress, clientAddress;
-    socklen_t clientAddressSize;
+// ✅ نقطة التشغيل لاستخدامها من ملف الاختبار
+void start_server() {
+    int server_fd, clientSocket;
+    struct sockaddr_in address;
+    int opt = 1;
+    socklen_t addrlen = sizeof(address);
 
-    // Create socket
-    serverSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (serverSocket == -1) {
-        cerr << "Error creating socket" << endl;
-        return 1;
+    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_fd == 0) {
+        perror("socket failed");
+        return;
     }
 
-    // Bind socket to address
-    memset(&serverAddress, 0, sizeof(serverAddress));
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_addr.s_addr = INADDR_ANY;
-    serverAddress.sin_port = htons(PORT);
-    if (bind(serverSocket, (sockaddr*)&serverAddress, sizeof(serverAddress)) == -1) {
-        cerr << "Error binding socket" << endl;
-        return 1;
+    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
+
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(PORT);
+
+    if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) {
+        perror("bind failed");
+        return;
     }
 
-    // Listen for incoming connections
-    if (listen(serverSocket, 5) == -1) {
-        cerr << "Error listening for connections" << endl;
-        return 1;
+    if (listen(server_fd, 3) < 0) {
+        perror("listen failed");
+        return;
     }
 
-    cout << "Server started on port " << PORT << endl;
+    std::cout << "Gemini server listening on port " << PORT << "...\n";
 
-    while (true) {
-        clientAddressSize = sizeof(clientAddress);
-        clientSocket = accept(serverSocket, (sockaddr*)&clientAddress, &clientAddressSize);
-        if (clientSocket == -1) {
-            cerr << "Error accepting connection" << endl;
-            continue;
-        }
-
-        cout << "Client connected" << endl;
-        handleClient(clientSocket);
-        close(clientSocket);
+    // 🔁 يقبل اتصال واحد فقط
+    clientSocket = accept(server_fd, (struct sockaddr*)&address, &addrlen);
+    if (clientSocket < 0) {
+        perror("accept failed");
+        return;
     }
 
-    close(serverSocket);
-    return 0;
+    handleClient(clientSocket);
+    close(clientSocket);
+    close(server_fd);
+    close(clientSocket);
+    close(server_fd);
 }

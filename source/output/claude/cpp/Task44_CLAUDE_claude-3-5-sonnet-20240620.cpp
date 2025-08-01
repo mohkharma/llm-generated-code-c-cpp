@@ -14,22 +14,3 @@ std::string processInput(std::string input) {
     }
     return input;
 }
-
-int main() {
-    std::string userInput;
-
-    while (true) {
-        std::cout << "Enter some text (alphanumeric characters and spaces only): ";
-        std::getline(std::cin, userInput);
-
-        if (validateInput(userInput)) {
-            std::string processedInput = processInput(userInput);
-            std::cout << "Processed input: " << processedInput << std::endl;
-            break;
-        } else {
-            std::cout << "Invalid input. Please try again." << std::endl;
-        }
-    }
-
-    return 0;
-}

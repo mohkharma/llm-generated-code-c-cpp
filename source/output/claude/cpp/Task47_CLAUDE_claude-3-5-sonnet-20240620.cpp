@@ -78,10 +78,3 @@ void storeInDatabase(const std::vector<std::string>& data) {
     sqlite3_close(db);
 }
 
-int main() {
-    std::string url = "https://example.com"; // Replace with the website you want to scrape
-    std::vector<std::string> scrapedData = scrapeWebsite(url);
-    storeInDatabase(scrapedData);
-    std::cout << "Data scraped and stored successfully." << std::endl;
-    return 0;
-}

@@ -18,23 +18,3 @@ public:
         }
     }
 };
-
-int main() {
-    std::vector<User> users = {{User("user1", "password1"), User("user2", "password2")}};
-    std::string username, password;
-    std::cout << "Enter username: ";
-    std::cin >> username;
-    std::cout << "Enter password: ";
-    std::cin >> password;
-    //error: passing ‘const User’ as ‘this’ argument discards qualifiers [-fpermissive]
-    //remove the constant qualifier from user object defintion.
-    // for (const auto& user : users) {
-    for (auto& user : users) {
-        if (user.authenticate(username, password)) {
-            std::cout << "Authentication successful!" << std::endl;
-            return 0;
-        }
-    }
-    std::cout << "Invalid credentials!" << std::endl;
-    return 0;
-}

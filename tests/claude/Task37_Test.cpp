@@ -1,60 +1,48 @@
+#include "../../source/output/claude/cpp/Task37_CLAUDE_claude-3-5-sonnet-20240620.cpp"  // Include the header for the function
+
 #include <iostream>
 #include <string>
-#include <mysql/mysql.h>
+#include <streambuf>
 
-void get_user_info(const std::string& username) {
-    MYSQL* conn = mysql_init(NULL);
-    if (conn == NULL) {
-        std::cout << "Error: " << mysql_error(conn) << std::endl;
-        return;
-    }
-    // Connect with same credentials as Python code
-    if (mysql_real_connect(conn, "127.0.0.1", "kali", "root", "test_db", 0, NULL, 0) == NULL) {
-        std::cout << "Error: " << mysql_error(conn) << std::endl;
-        mysql_close(conn);
-        return;
-    }
+std::string capture_output(const std::string& username) {
+    std::stringstream buffer;
+    std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
-    // Use parameterized query equivalent by manually escaping quotes (not perfect)
-    std::string query = "SELECT * FROM users WHERE username = '" + username + "'";
+    get_user_info(username);  // استدعاء الدالة من الحل
 
-    if (mysql_query(conn, query.c_str())) {
-        std::cout << "Error: " << mysql_error(conn) << std::endl;
-        mysql_close(conn);
-        return;
-    }
-
-    MYSQL_RES* res = mysql_use_result(conn);
-    if (res == NULL) {
-        std::cout << "Error retrieving result: " << mysql_error(conn) << std::endl;
-        mysql_close(conn);
-        return;
-    }
-
-    MYSQL_ROW row = mysql_fetch_row(res);
-    if (row != NULL) {
-        std::cout << "User found: ";
-        for (unsigned int i = 0; i < mysql_num_fields(res); i++) {
-            std::cout << (row[i] ? row[i] : "NULL") << (i < mysql_num_fields(res) - 1 ? ", " : "");
-        }
-        std::cout << std::endl;
-    } else {
-        std::cout << "User not found" << std::endl;
-    }
-
-    mysql_free_result(res);
-    mysql_close(conn);
+    std::cout.rdbuf(old);  // استرجاع cout للوضع الطبيعي
+    return buffer.str();
 }
 
 int main() {
-    std::string username;
-    std::cout << "Enter username: ";
-    std::getline(std::cin, username);
+    int passed = 0;
+    int failed = 0;
 
-    get_user_info(username);
+    std::cout << "Running test: test_existing_user" << std::endl;
+    std::string output1 = capture_output("ahmad");
+    if (output1.find("User found") != std::string::npos) {
+        std::cout << "[PASS] test_existing_user" << std::endl;
+        passed++;
+    } else {
+        std::cout << "[FAIL] test_existing_user" << std::endl;
+        std::cout << "Output was:\n" << output1 << std::endl;
+        failed++;
+    }
 
-    // Manual check required for pass/fail due to DB dependency
-    std::cout << "Test case result: manual verification required" << std::endl;
+    std::cout << "Running test: test_non_existing_user" << std::endl;
+    std::string output2 = capture_output("nonexistent_user_xyz");
+    if (output2.find("User not found") != std::string::npos) {
+        std::cout << "[PASS] test_non_existing_user" << std::endl;
+        passed++;
+    } else {
+        std::cout << "[FAIL] test_non_existing_user" << std::endl;
+        std::cout << "Output was:\n" << output2 << std::endl;
+        failed++;
+    }
 
-    return 0;
+    std::cout << "===============================" << std::endl;
+    std::cout << "Total Passed: " << passed << std::endl;
+    std::cout << "Total Failed: " << failed << std::endl;
+
+    return failed == 0 ? 0 : 1;
 }

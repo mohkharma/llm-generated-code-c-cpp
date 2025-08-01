@@ -22,17 +22,10 @@ void getUserByUsername(const std::string& username) {
     sqlite3_bind_text(stmt, 1, username.c_str(), -1, SQLITE_STATIC);
 
     while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
-        std::cout << "User: " << sqlite3_column_text(stmt, 1) << " - Info: " << sqlite3_column_text(stmt, 2) << std::endl;
+        std::cout << "User: " << sqlite3_column_text(stmt, 1)
+                  << " - Info: " << sqlite3_column_text(stmt, 2) << std::endl;
     }
 
     sqlite3_finalize(stmt);
     sqlite3_close(db);
-}
-
-int main() {
-    std::string username;
-    std::cout << "Enter username: ";
-    std::cin >> username;
-    getUserByUsername(username);
-    return 0;
 }

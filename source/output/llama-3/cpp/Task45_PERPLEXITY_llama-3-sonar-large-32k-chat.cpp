@@ -1,10 +1,11 @@
 #include <iostream>
 #include <limits>
 
-int main() {
+void runSafeCalculator() {
     double num1, num2;
     char operation;
-    
+
+    // قراءة الرقم الأول
     std::cout << "Enter first number: ";
     while (!(std::cin >> num1)) {
         std::cout << "Error: Invalid input!\n";
@@ -12,7 +13,8 @@ int main() {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-    
+
+    // قراءة الرقم الثاني
     std::cout << "Enter second number: ";
     while (!(std::cin >> num2)) {
         std::cout << "Error: Invalid input!\n";
@@ -20,7 +22,8 @@ int main() {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-    
+
+    // قراءة العملية
     std::cout << "Enter operation (+, -, *, /): ";
     while (!(std::cin >> operation)) {
         std::cout << "Error: Invalid input!\n";
@@ -28,7 +31,8 @@ int main() {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
-    
+
+    // تنفيذ العملية
     if (operation == '+') {
         std::cout << "Result: " << num1 + num2 << std::endl;
     } else if (operation == '-') {
@@ -44,6 +48,4 @@ int main() {
     } else {
         std::cout << "Error: Invalid operation!" << std::endl;
     }
-    
-    return 0;
 }

@@ -30,11 +30,3 @@ public:
         return users[username] == hashPassword(password);
     }
 };
-
-int main() {
-    UserAuth auth;
-    auth.addUser("user", "pass");
-    std::cout << auth.authenticate("user", "pass") << std::endl;
-    std::cout << auth.authenticate("user", "wrongpass") << std::endl;
-    return 0;
-}

@@ -1,12 +1,9 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
-int main() {
-    string input;
-    getline(cin, input);
-    // Process the string safely here
-    cout << input << endl;
-    return 0;
+void readAndPrintInput() {
+    std::string input;
+    std::getline(std::cin, input);
+    // Process the string safely here if needed
+    std::cout << input << std::endl;
 }

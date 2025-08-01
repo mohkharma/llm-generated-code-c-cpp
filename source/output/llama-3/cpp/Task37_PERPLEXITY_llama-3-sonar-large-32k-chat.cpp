@@ -1,33 +1,34 @@
-// Note: This code uses the mysql-connector-cpp library, which is not a standard C++ library.
-// You need to install it and link it to your project.
+// Task55_PERPLEXITY_llama-3-sonar-large-32k-chat.cpp
 
 #include <mysql/mysql.h>
 #include <iostream>
 #include <string>
 
-int main() {
-    std::string username;
-    std::cout << "Enter username: ";
-    std::cin >> username;
+void getUserByUsername(const std::string& username) {
     MYSQL *conn;
     MYSQL_RES *res;
     MYSQL_ROW row;
+
     conn = mysql_init(NULL);
-    if (!mysql_real_connect(conn, "localhost", "your_username", "your_password", "your_database", 0, NULL, 0)) {
+    if (!mysql_real_connect(conn, "localhost", "your_username", "your_password", "test_db", 0, NULL, 0)) {
         std::cout << "Error connecting to database" << std::endl;
-        return 1;
+        return;
     }
+
     std::string query = "SELECT * FROM users WHERE username = '" + username + "'";
     if (mysql_query(conn, query.c_str())) {
         std::cout << "Error executing query" << std::endl;
-        return 1;
+        mysql_close(conn);
+        return;
     }
+
     res = mysql_store_result(conn);
     if ((row = mysql_fetch_row(res)) != NULL) {
         std::cout << "User found: " << row[0] << ", " << row[1] << std::endl;
     } else {
         std::cout << "User not found" << std::endl;
     }
+
+    mysql_free_result(res);
     mysql_close(conn);
-    return 0;
 }
