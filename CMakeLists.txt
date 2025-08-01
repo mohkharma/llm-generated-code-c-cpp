@@ -48,7 +48,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(PISTACHE REQUIRED libpistache)
 
 
-add_executable(Task61_Test tests/gemini/Task121/Task121_test.cpp )
+add_executable(Task61_Test tests/claude/Task74_Test.cpp )
 
 
 
